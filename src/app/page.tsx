@@ -7,9 +7,9 @@ export default async function Home() {
 	const supabase = createServerComponentClient({ cookies })
 	const { data: { session } } = await supabase.auth.getSession()
 
-	if (session === null ){
+/* 	if (session === null ){
 		redirect('/login')
-	}
+	} */
 
 	const { data: activities } = await supabase.from('activities').select()
 	return (
