@@ -15,7 +15,9 @@ type Props = {
 export const ExperienceHeroCard: FunctionComponent<Props> = ({ sourceImg, score, duration, title }) => {
     return (
         <div className='w-72 bg-white flex rounded-lg p-1'>
-            <img src={sourceImg} alt="" className="w-20 rounded-lg"/>
+            <picture>
+                <img src={sourceImg} alt="" className="w-20 rounded-lg"/>
+            </picture>
             <div className='flex flex-col justify-center w-full px-3 gap-2 text-lg'>
                 <div className='flex justify-between'>
                     <span className='flex gap-2'>
@@ -28,7 +30,9 @@ export const ExperienceHeroCard: FunctionComponent<Props> = ({ sourceImg, score,
                         <FavoriteBorderIcon />
                     </IconButton>
                 </div>
-                {title}
+                <div className='text-pretty'>
+                    {title}
+                </div>
             </div>
         </div>
     )

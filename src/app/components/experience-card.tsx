@@ -11,13 +11,14 @@ type Props = {
     score: string
     title: string
     description: string
+    size: number
 }
 
-export const ExperienceCard: FunctionComponent<Props> = ({ score, title, description, sourceImg}) => {
+export const ExperienceCard: FunctionComponent<Props> = ({ score, title, description, sourceImg, size}) => {
     return (
-        <div className='rounded-lg text-[#171D1E] w-64'>
+        <div className={`rounded-lg text-[#171D1E] w-${size}`}>
             <picture>
-                <img src={sourceImg} alt="" className="w-full rounded-lg"/>
+                <img src={sourceImg} alt="" className="rounded-lg w-60"/>
             </picture>
             <div className='flex items-center justify-between mt-3'>
                <span className='flex gap-2'><StarIcon /> {score}</span>
@@ -26,7 +27,7 @@ export const ExperienceCard: FunctionComponent<Props> = ({ score, title, descrip
                </IconButton>
             </div>
             <div>
-                <h6 className='mb-2 text-xl font-semibold text-balance'>{title}</h6>
+                <h6 className='mb-2 text-xl font-semibold text-pretty'>{title}</h6>
                 <p className='text-lg text-pretty'>
                     {description}
                 </p>

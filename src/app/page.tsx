@@ -12,6 +12,7 @@ import { ExperienceCard } from './components/experience-card';
 import { ClickableChip } from './components/clickable-chip';
 import { ExperienceHeroCard } from './components/experience-hero-card';
 import { HorizontalScroll } from './components/horizontal-scroll';
+import Link from 'next/link';
 
 export default async function Home() {
 	const supabase = createServerComponentClient({ cookies })
@@ -46,13 +47,13 @@ export default async function Home() {
 						/>
 						<ExperienceHeroCard
 							sourceImg='./dance.webp'
-							title='Dancing with James'
+							title='Dancing with Robert'
 							score='5 (80)'
 							duration='1hr'
 						/>
 						<ExperienceHeroCard
-							sourceImg='./pottery.webp'
-							title='Pottery with Ava'
+							sourceImg='./oil.webp'
+							title='Oil painting with Gerard'
 							score='5 (100)'
 							duration='2hr'
 						/>
@@ -63,9 +64,10 @@ export default async function Home() {
 				<h4 className='text-3xl font-medium text-[#171D1E]'>
 					Explore the Art
 				</h4>
-				<button type='button' className='flex justify-center items-center gap-2 bg-[#775A0B] w-1/3 h-14 rounded-lg text-2xl text-white'>
-					<SearchIcon sx={{ fontSize: 30 }} /> Try it
-				</button>
+				<Link href="/experiences" className='flex justify-center items-center gap-2 bg-[#775A0B] w-1/3 h-14 rounded-lg text-2xl text-white' style={{ textDecoration: 'none', cursor: 'pointer' }}>
+					<SearchIcon sx={{ fontSize: 30 }} />
+					Try it
+				</Link>
 			</section>
 			<section className='flex flex-col gap-8 bg-[#9FEFFF] text-[#001F24] px-6 py-14'>
 				<FeatureBlock
@@ -114,24 +116,28 @@ export default async function Home() {
 						score='5 (100)'
 						title='Pottery with Ava'
 						description="Dive into the magic of clay in my ceramics workshop. Together, we'll breathe life into your creativity as you shape unique pieces..."
+						size={60}
 					/>
 					<ExperienceCard
 						sourceImg='./gallery.webp'
 						score='5 (80)'
 						title='Art Gallery Guide with Sofia'
 						description="Explore the richness of local art with our Gallery Tour. Discover carefully selected galleries, where each piece tells its own story..."
+						size={60}
 					/>
 					<ExperienceCard
 						sourceImg='./food.webp'
 						score='5 (60)'
 						title='Cooking with William'
 						description="Join me in discovering a universe of flavors and culinary techniques. From the secrets of Asian cuisine to Mediterranean delights..."
+						size={60}
 					/>
 					<ExperienceCard
 						sourceImg='./yoga.webp'
 						score='5 (70)'
 						title='Yoga with Emily'
 						description="I invite you to disconnect from the outside world and reconnect with yourself through yoga. Together, we'll explore the strength and flexibility..."
+						size={60}
 					/>
 				</HorizontalScroll>
 				<div className='pr-6'>
