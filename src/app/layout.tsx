@@ -5,6 +5,7 @@ import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import { NavbarComponent } from './components/navbar'
+import { NavbarKeep } from './components/navbar-keep';
 import { Footer } from './components/footer';
 
 export const metadata: Metadata = {
@@ -20,7 +21,8 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body>
-				<NavbarComponent />
+			{/* 	<NavbarComponent /> */}
+				<NavbarKeep />
 				{children}
 				<Footer />
 			</body>

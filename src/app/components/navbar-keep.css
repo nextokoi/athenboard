@@ -1,0 +1,11 @@
+.toggle-svg-color svg {
+    fill: #fff;
+}
+
+.link-color span {
+    color: #fff;
+}
+
+.link-color span:hover{
+    color: #c2c2c2;
+}
