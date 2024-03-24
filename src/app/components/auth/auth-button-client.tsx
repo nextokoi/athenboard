@@ -2,7 +2,7 @@
 
 import { type Session, createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
-import { GitHubIcon } from './icons'
+import { GitHubIcon } from '../icons'
 
 export function AuthButton({ session } : { session: Session | null }) {
 	const supabase = createClientComponentClient()

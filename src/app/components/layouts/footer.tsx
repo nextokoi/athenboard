@@ -1,16 +1,16 @@
 "use client"
 
-import InstagramIcon from '@mui/icons-material/Instagram';
-import XIcon from '@mui/icons-material/X';
-import GitHubIcon from '@mui/icons-material/GitHub';
+import { FaInstagram } from "react-icons/fa6";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaGithub } from "react-icons/fa6";
 
 export const Footer = () => {
     return (
         <footer className='flex flex-col items-center gap-8 justify-center bg-[#006876] text-white h-44 px-6'>
             <div className='flex gap-6'>
-                <InstagramIcon fontSize='large'/>
-                <XIcon fontSize='large'/>
-                <GitHubIcon fontSize='large'/>
+                <FaInstagram className='text-4xl'/>
+                <FaXTwitter className='text-4xl'/>
+                <FaGithub className='text-4xl'/>
             </div>
             <ul className='flex w-full justify-around'>
                 <li>ATHENBOARD @ 2024</li>

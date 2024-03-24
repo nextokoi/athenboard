@@ -1,12 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
-import { NavbarComponent } from './components/navbar'
-import { NavbarKeep } from './components/navbar-keep';
-import { Footer } from './components/footer';
+import { NavbarComponent } from './components/layouts/navbar';
+import { Footer } from './components/layouts/footer';
 
 export const metadata: Metadata = {
 	title: 'Athenboard',
@@ -21,8 +16,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body>
-			{/* 	<NavbarComponent /> */}
-				<NavbarKeep />
+				<NavbarComponent />
 				{children}
 				<Footer />
 			</body>

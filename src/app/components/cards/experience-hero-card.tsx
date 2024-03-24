@@ -1,8 +1,8 @@
 'use client'
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import StarIcon from '@mui/icons-material/Star';
-import { IconButton } from '@mui/material';
+
+import { FavoriteButton } from '../ui/favorite-button';
+
+import { FaStar } from "react-icons/fa6";
 import { FunctionComponent } from 'react';
 
 type Props = {
@@ -18,17 +18,15 @@ export const ExperienceHeroCard: FunctionComponent<Props> = ({ sourceImg, score,
             <picture>
                 <img src={sourceImg} alt="" className="w-20 rounded-lg"/>
             </picture>
-            <div className='flex flex-col justify-center w-full px-3 gap-2 text-lg'>
-                <div className='flex justify-between'>
-                    <span className='flex gap-2'>
-                        <StarIcon /> {score} 
+            <div className='flex flex-col w-full px-3 gap-2 text-lg'>
+                <div className='flex justify-between items-center'>
+                    <span className='flex items-center gap-2'>
+                        <FaStar className='text-xl' /> {score} 
                     </span> 
                     <span>
                         {duration}
                     </span>
-                    <IconButton>
-                        <FavoriteBorderIcon />
-                    </IconButton>
+                    <FavoriteButton />
                 </div>
                 <div className='text-pretty'>
                     {title}

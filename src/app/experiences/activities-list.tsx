@@ -1,5 +1,5 @@
 'use client'
-import { ExperienceCard } from "./experience-card"
+import { ExperienceCard } from "../components/cards/experience-card"
 
 export const ActivitiesList = () => {
     return (

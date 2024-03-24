@@ -1,22 +1,27 @@
-
 "use client";
-import Image from "next/image";
-import { Navbar } from "keep-react";
-import './navbar-keep.css'
 
-export const NavbarKeep = () => {
+import './navbar.css'
+
+import Image from "next/image";
+import Link from "next/link";
+
+import { Navbar } from "keep-react";
+
+export const NavbarComponent = () => {
   return (
     <Navbar fluid={true} className="bg-[#006876]">
       <Navbar.Container className="flex items-center justify-between">
         <Navbar.Container className="flex items-center">
-          <Navbar.Brand>
-            <Image
-              src="./logo.svg"
-              alt="keep"
-              width="130"
-              height="40"
-            />
-          </Navbar.Brand>
+          <Link href="./">
+            <Navbar.Brand>
+              <Image
+                src="./logo.svg"
+                alt="keep"
+                width="130"
+                height="40"
+              />
+            </Navbar.Brand>
+          </Link>
           <Navbar.Divider />
           <Navbar.Container
             tag="ul"

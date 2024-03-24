@@ -1,17 +1,20 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
-import { AuthButtonServer } from '@/app/components/auth-button-server'
+import { AuthButtonServer } from '@/app/components/auth/auth-button-server'
 import { redirect } from 'next/navigation'
-import SearchIcon from '@mui/icons-material/Search';
-import PaletteIcon from '@mui/icons-material/Palette';
-import BrushIcon from '@mui/icons-material/Brush';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import SettingsIcon from '@mui/icons-material/Settings';
-import { FeatureBlock } from './components/feature-block';
-import { ExperienceCard } from './components/experience-card';
-import { ClickableChip } from './components/clickable-chip';
-import { ExperienceHeroCard } from './components/experience-hero-card';
+
+import { FaPalette } from "react-icons/fa6";
+import { FaPaintbrush } from "react-icons/fa6";
+import { FaCircleCheck } from "react-icons/fa6";
+import { FaGear } from "react-icons/fa6";
+import { FaMagnifyingGlass } from "react-icons/fa6";
+
+import { FeatureBlock } from './components/ui/feature-block';
+import { ExperienceCard } from './components/cards/experience-card';
+import { TagComponent } from './components/ui/tag';
+import { ExperienceHeroCard } from './components/cards/experience-hero-card';
 import { HorizontalScroll } from './components/horizontal-scroll';
+
 import Link from 'next/link';
 
 export default async function Home() {
@@ -65,7 +68,7 @@ export default async function Home() {
 					Explore the Art
 				</h4>
 				<Link href="/experiences" className='flex justify-center items-center gap-2 bg-[#775A0B] w-1/3 h-14 rounded-lg text-2xl text-white' style={{ textDecoration: 'none', cursor: 'pointer' }}>
-					<SearchIcon sx={{ fontSize: 30 }} />
+					<FaMagnifyingGlass className='text-2xl'/>
 					Try it
 				</Link>
 			</section>
@@ -73,22 +76,22 @@ export default async function Home() {
 				<FeatureBlock
 					title="Creative Diversity"
 					description="Explore a broad range of artistic experiences, from sculpture workshops to gourmet cooking classes, all in one place."
-					Icon={PaletteIcon}
+					Icon={FaPalette}
 				/>
 				<FeatureBlock
 					title="Connect with Talented Artists"
 					description="Collaborate with talented and passionate artists who share their expertise and skills with you."
-					Icon={BrushIcon}
+					Icon={FaPaintbrush}
 				/>
 				<FeatureBlock
 					title="Book with Confidence"
 					description="Our platform offers an easy and secure booking process, providing you with the confidence to immerse yourself in new creative adventures."
-					Icon={CheckCircleIcon}
+					Icon={FaCircleCheck}
 				/>
 				<FeatureBlock
 					title="Customize Your Artistic Journey"
 					description="Find experiences that suit your interests and schedule. Customize your artistic journey according to your style and preferences."
-					Icon={SettingsIcon}
+					Icon={FaGear}
 				/>
 			</section>
 			<section className='py-14 pl-6'>
@@ -96,16 +99,16 @@ export default async function Home() {
 					Uncover the diverse experiences awaiting you nearby
 				</h3>
 				<HorizontalScroll>
-					<ClickableChip label='Sculpture' />
-					<ClickableChip label='Pottery' />
-					<ClickableChip label='Food' />
-					<ClickableChip label='Gardering' />
-					<ClickableChip label='Dance' />
-					<ClickableChip label='Oil paiting' />
-					<ClickableChip label='Photography' />
-					<ClickableChip label='Gallery' />
-					<ClickableChip label='Jewellery' />
-					<ClickableChip label='Yoga' />
+					<TagComponent label='Sculpture' />
+					<TagComponent label='Pottery' />
+					<TagComponent label='Food' />
+					<TagComponent label='Gardering' />
+					<TagComponent label='Dance' />
+					<TagComponent label='Oil paiting' />
+					<TagComponent label='Photography' />
+					<TagComponent label='Gallery' />
+					<TagComponent label='Jewellery' />
+					<TagComponent label='Yoga' />
 				</HorizontalScroll>
 				<h3 className='text-2xl font-semibold my-6 pr-6'>
 					The Top-Rated Experiences

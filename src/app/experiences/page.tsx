@@ -1,45 +1,42 @@
-import FormControl from '@mui/material/FormControl';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import SearchIcon from '@mui/icons-material/Search';
-import InputAdornment from '@mui/material/InputAdornment';
-import { IconButton, Typography } from '@mui/material';
-import TuneIcon from '@mui/icons-material/Tune';
-import { Button } from '../components/button';
-import { ActivitiesList } from '../components/activities-list';
+import { ButtonComponent } from '../components/ui/button';
+import { TagComponent } from '../components/ui/tag';
+import { ActivitiesList } from './activities-list';
+
+import { Button, Icon, Input } from 'keep-react';
+import { Typography } from 'keep-react';
+
+import { FaMagnifyingGlass } from "react-icons/fa6";
+import { FaSliders } from "react-icons/fa6";
 
 export default function Experiences() {
-    return(
+    return (
         <div className='px-5'>
             <header className='py-8 flex flex-col gap-5'>
                 <div className='flex items-center justify-between gap-5'>
-                    <FormControl variant="outlined" className='w-full'>
-                    <OutlinedInput
-                        placeholder='Art'
-                        startAdornment={
-                        <InputAdornment position="start">
-                            <SearchIcon />
-                        </InputAdornment>
-                        }
-                    />
-                    </FormControl>
-                    <IconButton size='medium' sx={{border: '1px solid grey'}}>
-                        <TuneIcon fontSize='large'/>
-                    </IconButton>
+                <fieldset className="relative w-full">
+                    <Input placeholder="Art" className="ps-12" />
+                        <Icon>
+                            <FaMagnifyingGlass className='text-xl text-[#8a8a8a]' />
+                        </Icon>
+                    </fieldset>
+                    <Button shape='circle' className='bg-transparent hover:bg-slate-200 text-[#171D1E] w-12 border'>
+                        <FaSliders className='text-xl' />
+                    </Button>
                 </div>
 
-                <Typography>Home / Experiences</Typography>
+                <Typography variant='body-4'>Home / Experiences</Typography>
 
                 <div>
-                    <div className='flex justify-between'>
-                        <Button title='Activity Type' bgColor='#775A0B'/>    
-                        <Button title='Price' bgColor='#775A0B'/>    
-                        <Button title='Available languages' bgColor='#775A0B'/>    
+                    <div className='flex justify-between'>  
+                        <TagComponent label='Activity type' />
+                        <TagComponent label='Price' />
+                        <TagComponent label='Available languages' />
                     </div>
                 </div>
             </header>
             <main className='flex flex-col gap-10 pb-10'>
                 <ActivitiesList />
-                <Button title='Show more' bgColor='#3B6939' width='w-full'/>
+                <ButtonComponent title='Show more' bgColor='#3B6939' width='w-full'/>
             </main>
         </div>
     )

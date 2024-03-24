@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image"
-import imgAvatar from '../../../public/pottery.webp'
+import imgAvatar from '../../../../public/pottery.webp'
 
 export const AvatarComponent = () => {
   return (
