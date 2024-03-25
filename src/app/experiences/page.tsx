@@ -7,6 +7,7 @@ import { Typography } from 'keep-react';
 
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import { FaSliders } from "react-icons/fa6";
+import { BreadcrumbComponent } from '../components/ui/breadcrumbs';
 
 export default function Experiences() {
     return (
@@ -24,7 +25,7 @@ export default function Experiences() {
                     </Button>
                 </div>
 
-                <Typography variant='body-4'>Home / Experiences</Typography>
+                <BreadcrumbComponent />
 
                 <div>
                     <div className='flex justify-between'>  

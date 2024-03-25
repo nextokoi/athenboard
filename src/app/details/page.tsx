@@ -6,6 +6,7 @@ import { CarouselComponent } from "../components/ui/carousel"
 import { AvatarComponent } from "../components/ui/avatar"
 import { IncludesCard } from "../components/cards/includes-card"
 import { HorizontalScroll } from "../components/horizontal-scroll"
+import { BreadcrumbComponent } from "../components/ui/breadcrumbs"
 import { ButtonComponent } from "../components/ui/button"
 import { ReviewComponent } from "./reviews"
 
@@ -15,9 +16,7 @@ import { BsTools } from "react-icons/bs";
 export default function details() {
     return(
         <main> 
-            <div className="flex gap-5 py-5">
-                <Typography variant="body-4"> Home / Experiences / Pottery with Ava</Typography>
-            </div>
+            <BreadcrumbComponent />
             <div className="flex justify-center">
                 <CarouselComponent />
             </div>
