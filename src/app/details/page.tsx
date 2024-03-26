@@ -17,30 +17,32 @@ import { CancellationPolicy } from "./components/cancellation-policy"
 
 export default function details() {
     return(
-        <main> 
+        <> 
             <BreadcrumbComponent />
             <CarouselComponent />
-            <ExperienceHeader />
-                <Divider />
-            <HostDetails />
-                <Divider />
-            <ExperienceDescription />
-                <Divider />
-            <IncludesSection />
-                <Divider />
-            <AccesibilitySection />
-                <Divider />
-            <HostBio />
-                <Divider />
-            <LocationSection />
-                <Divider />
-            <ReviewsSection />
-                <Divider />
-            <AvailableDatesSection />
-                <Divider />
-            <CancellationPolicy />
-                <Divider />
-            <Typography variant="body-2" className="font-bold">Report this experience</Typography>
-        </main>
+            <main className="pl-5">
+                <ExperienceHeader />
+                    <Divider />
+                <HostDetails />
+                    <Divider />
+                <ExperienceDescription />
+                    <Divider />
+                <IncludesSection />
+                    <Divider />
+                <AccesibilitySection />
+                    <Divider />
+                <HostBio />
+                    <Divider />
+                <LocationSection />
+                    <Divider />
+                <ReviewsSection />
+                    <Divider />
+                <AvailableDatesSection />
+                    <Divider />
+                <CancellationPolicy />
+                    <Divider />
+                <Typography variant="body-2" className="font-bold">Report this experience</Typography>
+            </main>
+        </>
     )
 }

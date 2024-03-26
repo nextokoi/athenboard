@@ -3,7 +3,7 @@ import { AvatarComponent } from "@/app/components/ui/avatar"
 
 export const HostDetails = () => {
     return (
-        <div>
+        <div className="py-5 pr-5">
             <div className="flex gap-8">
                 <Typography variant="heading-6">Experience offered by Ava</Typography>
                 <AvatarComponent />
