@@ -20,28 +20,21 @@ export default function details() {
         <> 
             <BreadcrumbComponent />
             <CarouselComponent />
-            <main className="pl-5">
+            <main className="pl-5 pb-10">
                 <ExperienceHeader />
                     <Divider />
                 <HostDetails />
                     <Divider />
                 <ExperienceDescription />
-                    <Divider />
                 <IncludesSection />
-                    <Divider />
                 <AccesibilitySection />
-                    <Divider />
                 <HostBio />
-                    <Divider />
                 <LocationSection />
-                    <Divider />
                 <ReviewsSection />
-                    <Divider />
                 <AvailableDatesSection />
-                    <Divider />
                 <CancellationPolicy />
                     <Divider />
-                <Typography variant="body-2" className="font-bold">Report this experience</Typography>
+                <Typography variant="body-2" className="font-bold pt-5">Report this experience</Typography>
             </main>
         </>
     )
