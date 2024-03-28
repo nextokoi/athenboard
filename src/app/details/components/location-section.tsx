@@ -5,7 +5,7 @@ export const LocationSection = () => {
     return (
         <div className="pr-5">
             <div className="flex flex-col gap-3 py-5">
-                <Typography variant="heading-6">Where will you go</Typography>
+                <Typography variant="heading-6" className="font-medium">Where will you go</Typography>
                 <img src='http://unsplash.it/300/150?gravity=center' alt=''/>
                 <Typography variant="body-2">
                     My workshop is around here; i&apos;ll see you there.

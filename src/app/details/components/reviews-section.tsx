@@ -2,12 +2,12 @@ import { Divider, Typography } from "keep-react"
 
 import { ButtonComponent } from "@/app/components/ui/button"
 import { HorizontalScroll } from "@/app/components/horizontal-scroll"
-import { ReviewComponent } from "../reviews"
+import { ReviewComponent } from "./reviews"
 
 export const ReviewsSection = () => {
     return (
         <div className="flex flex-col gap-3 py-5">
-            <Typography variant="heading-6">⭐5(100 reviews)</Typography>
+            <Typography variant="heading-6" className="font-medium">⭐5(100 reviews)</Typography>
             <HorizontalScroll>
                 <ReviewComponent />
                 <ReviewComponent />

@@ -21,7 +21,7 @@ export const ExperienceHeroCard: FunctionComponent<Props> = ({ sourceImg, score,
             <div className='flex flex-col w-full px-3 gap-2 text-lg'>
                 <div className='flex justify-between items-center'>
                     <span className='flex items-center gap-2'>
-                        <FaStar className='text-xl' /> {score} 
+                        <FaStar className='text-xl text-yellow-500' /> {score} 
                     </span> 
                     <span>
                         {duration}

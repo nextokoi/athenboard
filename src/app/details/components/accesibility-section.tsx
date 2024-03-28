@@ -6,7 +6,7 @@ export const AccesibilitySection = () => {
         <div className="pr-5">
             <Divider />
             <div className="flex flex-col gap-3 py-5">
-                <Typography variant="heading-6">Accesibility</Typography>
+                <Typography variant="heading-6" className="font-medium">Accesibility</Typography>
                 <Typography variant="body-2" className="text-pretty">
                     Free entry for individuals assisting participants with functional diversity.
                 </Typography>

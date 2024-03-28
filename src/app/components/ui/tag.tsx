@@ -1,5 +1,5 @@
 "use client";
-import { Tag } from "keep-react";
+import { Tag, Typography } from "keep-react";
 import { FunctionComponent } from 'react';
 
 type Props = {
@@ -13,7 +13,7 @@ export const TagComponent: FunctionComponent<Props> = ({label}) => {
 
   return (
     <Tag className='bg-[#775A0B] hover:bg-[#775A0B] text-white text-base rounded-full' onClick={handleClick}>
-      {label}
+      <Typography variant="body-5">{label}</Typography>
     </Tag>
   )
 }

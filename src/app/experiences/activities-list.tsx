@@ -3,7 +3,7 @@ import { ExperienceCard } from "../components/cards/experience-card"
 
 export const ActivitiesList = () => {
     return (
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
             <ExperienceCard
                 sourceImg='./pottery.webp'
                 score='5 (100)'

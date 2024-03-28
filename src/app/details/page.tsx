@@ -15,6 +15,8 @@ import { ReviewsSection } from "./components/reviews-section"
 import { AvailableDatesSection } from "./components/available-dates-section"
 import { CancellationPolicy } from "./components/cancellation-policy"
 
+import { FaFlag } from "react-icons/fa6";
+
 export default function details() {
     return(
         <> 
@@ -22,9 +24,7 @@ export default function details() {
             <CarouselComponent />
             <main className="pl-5 pb-10">
                 <ExperienceHeader />
-                    <Divider />
                 <HostDetails />
-                    <Divider />
                 <ExperienceDescription />
                 <IncludesSection />
                 <AccesibilitySection />
@@ -34,7 +34,7 @@ export default function details() {
                 <AvailableDatesSection />
                 <CancellationPolicy />
                     <Divider />
-                <Typography variant="body-2" className="font-bold pt-5">Report this experience</Typography>
+                <Typography variant="body-2" className="flex items-center gap-3 font-bold pt-5"><FaFlag className="text-xl"/>Report this experience</Typography>
             </main>
         </>
     )

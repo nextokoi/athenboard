@@ -13,7 +13,7 @@ export const FavoriteButton = () => {
     }
     return (
         <Button shape='circle' className='bg-transparent hover:bg-slate-200 text-[#171D1E]' onClick={handleClick}>
-            {favorite ? <FaHeart className='text-xl' /> : <FaRegHeart className='text-xl' /> }
+            {favorite ? <FaHeart className='text-xl text-red-500' /> : <FaRegHeart className='text-xl' /> }
         </Button>
     )
 }
