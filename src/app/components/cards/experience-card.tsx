@@ -12,13 +12,14 @@ type Props = {
     score: string
     title: string
     description: string
-    size: number
+    size: number,
+    id: string
 }
 
-export const ExperienceCard: FunctionComponent<Props> = ({ score, title, description, sourceImg, size }) => {
+export const ExperienceCard: FunctionComponent<Props> = ({ score, title, description, sourceImg, size, id }) => {
     return (
         <div className={`rounded-lg text-[#171D1E] w-${size}`}>
-            <Link href={'/details'}>
+            <Link href={`/experiences/${id}`}>
                 <img src={sourceImg} alt="" className="rounded-lg w-60" />
             </Link>
             <div className='flex justify-between mt-3'>
@@ -26,7 +27,9 @@ export const ExperienceCard: FunctionComponent<Props> = ({ score, title, descrip
                 <FavoriteButton />
             </div>
             <div>
-                <h6 className='mb-2 text-xl font-semibold text-pretty'>{title}</h6>
+                <Link href={`/experiences/${id}`}>
+                    <h6 className='mb-2 text-xl font-semibold text-pretty'>{title}</h6>
+                </Link>
                 <p className='text-lg text-pretty'>
                     {description}
                 </p>

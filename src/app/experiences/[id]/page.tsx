@@ -2,8 +2,8 @@
 import { Typography } from "keep-react"
 import { Divider } from "keep-react"
 
-import { CarouselComponent } from "../components/ui/carousel"
-import { BreadcrumbComponent } from "../components/ui/breadcrumbs"
+import { CarouselComponent } from "../../components/ui/carousel"
+import { BreadcrumbComponent } from "../../components/ui/breadcrumbs"
 import { ExperienceHeader } from "./components/experience-header"
 import { HostDetails } from "./components/host-details"
 import { ExperienceDescription } from "./components/experience-description"
@@ -17,9 +17,11 @@ import { CancellationPolicy } from "./components/cancellation-policy"
 
 import { FaFlag } from "react-icons/fa6";
 
-export default function details() {
+export default function Details() {
+    
     return(
         <> 
+            <Typography variant="body-2">Detalles de la actividad</Typography>
             <BreadcrumbComponent />
             <CarouselComponent />
             <main className="pl-5 pb-10">

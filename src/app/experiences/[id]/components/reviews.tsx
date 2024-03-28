@@ -1,7 +1,7 @@
 'use client'
 
 import { Typography } from "keep-react"
-import { AvatarComponent } from "../../components/ui/avatar"
+import { AvatarComponent } from "../../../components/ui/avatar"
 
 export const ReviewComponent = () => {
     return (
