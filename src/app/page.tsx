@@ -30,32 +30,32 @@ export default async function Home() {
 		<main>
 			{/* <AuthButtonServer /> */}
 			{/* <pre>{JSON.stringify(activities, null, 2)}</pre> */}
-			<header className="bg-[url('/hero.webp')] w-full h-screen bg-cover flex flex-col justify-around">
+			<header className="bg-[url('https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/hero.webp?t=2024-03-28T14%3A50%3A12.791Z')] w-full h-screen bg-cover flex flex-col justify-around">
 				<h4 className="text-4xl font-medium text-balanc text-[#261A00] ml-5" >
 					Find the experiences that appeal to you
 				</h4>
 				<div className='ml-5'>
 					<HorizontalScroll>
 						<ExperienceHeroCard
-							sourceImg='./gardering.webp'
+							sourceImg='https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/gardering.webp?t=2024-03-28T14%3A50%3A24.205Z'
 							title='Gardering with Olivia'
 							score='5 (100)'
 							duration='2hr'
 						/>
 						<ExperienceHeroCard
-							sourceImg='./sculpture.webp'
+							sourceImg='https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/sculpture.webp?t=2024-03-28T14%3A50%3A58.141Z'
 							title='Sculpture with James'
 							score='4,5 (120)'
 							duration='3hr'
 						/>
 						<ExperienceHeroCard
-							sourceImg='./dance.webp'
+							sourceImg='https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/dance.webp?t=2024-03-28T14%3A51%3A06.638Z'
 							title='Dancing with Robert'
 							score='5 (80)'
 							duration='1hr'
 						/>
 						<ExperienceHeroCard
-							sourceImg='./oil.webp'
+							sourceImg='https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/oil.webp?t=2024-03-28T14%3A03%3A48.371Z'
 							title='Oil painting with Gerard'
 							score='5 (100)'
 							duration='2hr'
@@ -115,28 +115,28 @@ export default async function Home() {
 				</h3>
 				<HorizontalScroll>
 					<ExperienceCard
-						sourceImg='./pottery.webp'
+						sourceImg='https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/sign/user_images/pottery.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ1c2VyX2ltYWdlcy9wb3R0ZXJ5LndlYnAiLCJpYXQiOjE3MTE2MzEyOTEsImV4cCI6MzE3MDQwMDk1MjkxfQ.CgN72U3u11GSdKQS_dw-wIwCn_N0oL3j34poGRn2Ck4&t=2024-03-28T13%3A08%3A11.309Z'
 						score='5 (100)'
 						title='Pottery with Ava'
 						description="Dive into the magic of clay in my ceramics workshop. Together, we'll breathe life into your creativity as you shape unique pieces..."
 						size={60}
 					/>
 					<ExperienceCard
-						sourceImg='./gallery.webp'
+						sourceImg='https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/gallery.webp?t=2024-03-28T14%3A02%3A25.587Z'
 						score='5 (80)'
 						title='Art Gallery Guide with Sofia'
 						description="Explore the richness of local art with our Gallery Tour. Discover carefully selected galleries, where each piece tells its own story..."
 						size={60}
 					/>
 					<ExperienceCard
-						sourceImg='./food.webp'
+						sourceImg='https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/food.webp?t=2024-03-28T14%3A03%3A22.081Z'
 						score='5 (60)'
 						title='Cooking with William'
 						description="Join me in discovering a universe of flavors and culinary techniques. From the secrets of Asian cuisine to Mediterranean delights..."
 						size={60}
 					/>
 					<ExperienceCard
-						sourceImg='./yoga.webp'
+						sourceImg='https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/yoga.webp?t=2024-03-28T14%3A52%3A31.169Z'
 						score='5 (70)'
 						title='Yoga with Emily'
 						description="I invite you to disconnect from the outside world and reconnect with yourself through yoga. Together, we'll explore the strength and flexibility..."

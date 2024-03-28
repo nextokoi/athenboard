@@ -15,11 +15,11 @@ type Props = {
     size: number
 }
 
-export const ExperienceCard: FunctionComponent<Props> = ({ score, title, description, sourceImg, size}) => {
+export const ExperienceCard: FunctionComponent<Props> = ({ score, title, description, sourceImg, size }) => {
     return (
         <div className={`rounded-lg text-[#171D1E] w-${size}`}>
             <Link href={'/details'}>
-                <img src={sourceImg} alt="" className="rounded-lg w-60"/>
+                <img src={sourceImg} alt="" className="rounded-lg w-60" />
             </Link>
             <div className='flex justify-between mt-3'>
                 <span className='flex items-center gap-2'><FaStar className='text-xl text-yellow-500' /> {score}</span>
