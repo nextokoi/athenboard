@@ -12,7 +12,7 @@ export const NavbarComponent = () => {
     <Navbar fluid={true} className="bg-[#006876]">
       <Navbar.Container className="flex items-center justify-between">
         <Navbar.Container className="flex items-center">
-          <Link href="./">
+          <Link href="/">
             <Navbar.Brand>
               <Image
                 src="./logo.svg"

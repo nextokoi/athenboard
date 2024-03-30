@@ -1,5 +1,3 @@
-'use server'
-
 import { Typography } from "keep-react"
 import { FunctionComponent } from "react"
 import { IconType } from "react-icons"
