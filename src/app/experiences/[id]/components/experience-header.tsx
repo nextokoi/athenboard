@@ -14,7 +14,7 @@ export const ExperienceHeader = ({title} : Props) => {
                     <FaStar className="text-xl text-yellow-500" />
                     <Typography variant="body-4">5 (100)</Typography>
                 </div>
-                <Typography variant="body-4">Teror, España</Typography>
+                <Typography variant="body-4">Teror, Gran Canaria</Typography>
             </div>
             <Divider />
         </div>
