@@ -16,7 +16,7 @@ import { AvailableDatesSection } from "./components/available-dates-section"
 import { CancellationPolicy } from "./components/cancellation-policy"
 
 import { FaFlag } from "react-icons/fa6";
-import { fetchOneExperience } from "@/app/services/dataService"
+import { fetchOneExperience } from "@/app/utils/supabase/dataService"
 
 interface Props{
     params: { id: string}
@@ -25,13 +25,12 @@ interface Props{
 export default async function Details({ params }: Props) {
     const { id } = params
     const data = await fetchOneExperience(id)
-    const { name } = data
     return (
         <>
-        <BreadcrumbComponent title={ name }/>
+        <BreadcrumbComponent data={ data }/>
         <CarouselComponent />
         <main className="pl-5 pb-10">
-            <ExperienceHeader title={ name }/>
+            <ExperienceHeader data={ data }/>
             <HostDetails />
             <ExperienceDescription />
             <IncludesSection />

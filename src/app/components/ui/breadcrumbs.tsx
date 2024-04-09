@@ -5,13 +5,16 @@ import { usePathname } from 'next/navigation'
 import { House } from 'phosphor-react'
 
 interface Props {
-  title?: string
+  data: {
+    title: string
+  }
 }
 
-export const BreadcrumbComponent = ({title} : Props) => {
+export const BreadcrumbComponent = ({ data } : Props) => {
   const currentRoute = usePathname()
   const namePage = currentRoute.substring(1).charAt(0).toUpperCase() + currentRoute.slice(2)
   const breadPieces = namePage.split('/')
+  const title = data ? data.title : ''
   
   const breadItems = () => {
     const lastIndex = breadPieces.length - 1
