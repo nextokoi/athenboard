@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import { House } from 'phosphor-react'
 
 interface Props {
-  data: {
+  data?: {
     title: string
   }
 }

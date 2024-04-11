@@ -4,16 +4,16 @@ import { Divider } from "keep-react"
 
 import { CarouselComponent } from "../../components/ui/carousel"
 import { BreadcrumbComponent } from "../../components/ui/breadcrumbs"
-import { ExperienceHeader } from "./components/experience-header"
-import { HostDetails } from "./components/host-details"
-import { ExperienceDescription } from "./components/experience-description"
-import { IncludesSection } from "./components/includes-section"
-import { AccesibilitySection } from "./components/accesibility-section"
-import { HostBio } from "./components/host-bio"
-import { LocationSection } from "./components/location-section"
-import { ReviewsSection } from "./components/reviews-section"
-import { AvailableDatesSection } from "./components/available-dates-section"
-import { CancellationPolicy } from "./components/cancellation-policy"
+import { ExperienceHeader } from "../../components/experiences-id/experience-header"
+import { HostDetails } from "../../components/experiences-id/host-details"
+import { ExperienceDescription } from "../../components/experiences-id/experience-description"
+import { IncludesSection } from "../../components/experiences-id/includes-section"
+import { AccesibilitySection } from "../../components/experiences-id/accesibility-section"
+import { HostBio } from "../../components/experiences-id/host-bio"
+import { LocationSection } from "../../components/experiences-id/location-section"
+import { ReviewsSection } from "../../components/experiences-id/reviews-section"
+import { AvailableDatesSection } from "../../components/experiences-id/available-dates-section"
+import { CancellationPolicy } from "../../components/experiences-id/cancellation-policy"
 
 import { FaFlag } from "react-icons/fa6";
 import { fetchOneExperience } from "@/app/utils/supabase/dataService"
@@ -21,6 +21,8 @@ import { fetchOneExperience } from "@/app/utils/supabase/dataService"
 interface Props{
     params: { id: string}
 }
+
+export const revalidate = 60
 
 export default async function Details({ params }: Props) {
     const { id } = params

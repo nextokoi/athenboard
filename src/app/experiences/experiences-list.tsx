@@ -1,7 +1,7 @@
 import { ExperienceCard } from "../components/cards/experience-card"
 import { fetchDataFromSupabase, fetchImageUrl } from '../utils/supabase/dataService'
 
-export const ActivitiesList = async () => {
+export const ExperiencesList = async () => {
     try {
         const data = await fetchDataFromSupabase() || []
         const urlsPromises = data.map(activity => fetchImageUrl(activity.id))
