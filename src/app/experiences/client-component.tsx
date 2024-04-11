@@ -6,7 +6,6 @@ import { SearchBarComponent } from "../components/ui/searchbar"
 import { TagComponent } from "../components/ui/tag"
 
 export const ClientComponent = ({ children } : {children: React.ReactNode}) => {
-
     return (
         <>
             <header className='py-8 flex flex-col gap-3 px-5'>

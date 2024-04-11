@@ -1,14 +1,25 @@
 import { ExperienceCard } from "../components/cards/experience-card"
 import { fetchDataFromSupabase, fetchImageUrl } from '../utils/supabase/dataService'
 
-export const ExperiencesList = async () => {
+type ExperiencesListProps = {
+    searchTerm: { [key: string]: string | string[] | undefined }
+}
+
+export const ExperiencesList = async ({ searchTerm } : ExperiencesListProps) => {
     try {
         const data = await fetchDataFromSupabase() || []
         const urlsPromises = data.map(activity => fetchImageUrl(activity.id))
         const urls = await Promise.all(urlsPromises)
 
+        const search = typeof searchTerm.search === 'string' ? searchTerm.search : undefined
+        const lowercaseSearch = search ? search.toLowerCase() : ''
+     
+        const filteredExperiences = data.filter(item => 
+            item.title.toLowerCase().includes(lowercaseSearch)
+        )
+
         const getAllActivities = () => {
-            return data.map((item, index) =>
+            return filteredExperiences.map((item, index) =>
                 <ExperienceCard
                     key={item.id}
                     id={item.id}
