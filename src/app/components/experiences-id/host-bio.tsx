@@ -6,7 +6,11 @@ import { AvatarComponent } from "@/app/components/ui/avatar"
 import { FaStar } from "react-icons/fa6";
 import { MdVerified } from "react-icons/md";
 
-export const HostBio = () => {
+type Props = {
+    images: string
+}
+
+export const HostBio = ({images} : Props) => {
     return (
         <div className="pr-5">
             <div className="flex flex-col gap-3 py-5">
@@ -14,7 +18,7 @@ export const HostBio = () => {
                     <Typography variant="heading-6" className="font-medium">
                         Meet Ava, your artist
                     </Typography>
-                    <AvatarComponent />
+                    <AvatarComponent image={images}/>
                 </div>
                 <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-2">

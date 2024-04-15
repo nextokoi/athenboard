@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import { Typography } from "keep-react"
 import { Divider } from "keep-react"
 
@@ -16,7 +15,7 @@ import { AvailableDatesSection } from "../../components/experiences-id/available
 import { CancellationPolicy } from "../../components/experiences-id/cancellation-policy"
 
 import { FaFlag } from "react-icons/fa6";
-import { fetchOneExperience } from "@/app/utils/supabase/dataService"
+import { fetchImageUrl, fetchOneExperience } from "@/app/utils/supabase/dataService"
 
 interface Props{
     params: { id: string}
@@ -27,17 +26,18 @@ export const revalidate = 60
 export default async function Details({ params }: Props) {
     const { id } = params
     const data = await fetchOneExperience(id)
+    const imageUrl = await fetchImageUrl(id)
     return (
         <>
             <BreadcrumbComponent data={ data }/>
-            <CarouselComponent />
+            <CarouselComponent images={imageUrl}/>
             <main className="pl-5 pb-10">
                 <ExperienceHeader data={ data }/>
-                <HostDetails />
+                <HostDetails images={imageUrl}/>
                 <ExperienceDescription />
                 <IncludesSection />
                 <AccesibilitySection />
-                <HostBio />
+                <HostBio images={imageUrl} />
                 <LocationSection />
                 <ReviewsSection />
                 <AvailableDatesSection />
