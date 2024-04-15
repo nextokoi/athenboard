@@ -4,6 +4,8 @@ import { FavoriteButton } from '../ui/favorite-button';
 
 import { FaStar } from "react-icons/fa6";
 import { FunctionComponent } from 'react';
+import Image from 'next/image';
+import { Typography } from 'keep-react';
 
 type Props = {
     sourceImg: string
@@ -14,24 +16,27 @@ type Props = {
 
 export const ExperienceHeroCard: FunctionComponent<Props> = ({ sourceImg, score, duration, title }) => {
     return (
-        <div className='w-72 bg-white flex rounded-lg p-1'>
+        <article className='w-64 bg-white flex rounded-lg p-1'>
             <picture>
-                <img src={sourceImg} alt="" className="w-20 rounded-lg"/>
+                <Image src={sourceImg} alt="" className="rounded-lg" width={640} height={960}/>
             </picture>
-            <div className='flex flex-col w-full px-3 gap-2 text-lg'>
-                <div className='flex justify-between items-center'>
+            <div className='flex flex-col w-full pl-2'>
+                <div className='flex justify-between items-center gap-2'>
                     <span className='flex items-center gap-2'>
-                        <FaStar className='text-xl text-yellow-500' /> {score} 
+                        <FaStar className='text-xl text-yellow-500' />
+                        <Typography variant='body-3'>
+                            {score} 
+                        </Typography>
                     </span> 
-                    <span>
+                    <Typography variant='body-3'>
                         {duration}
-                    </span>
+                    </Typography>
                     <FavoriteButton />
                 </div>
-                <div className='text-pretty'>
+                <Typography variant='body-2' className='text-pretty font-semibold'>
                     {title}
-                </div>
+                </Typography>
             </div>
-        </div>
+        </article>
     )
 }

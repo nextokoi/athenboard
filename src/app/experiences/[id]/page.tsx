@@ -29,22 +29,22 @@ export default async function Details({ params }: Props) {
     const data = await fetchOneExperience(id)
     return (
         <>
-        <BreadcrumbComponent data={ data }/>
-        <CarouselComponent />
-        <main className="pl-5 pb-10">
-            <ExperienceHeader data={ data }/>
-            <HostDetails />
-            <ExperienceDescription />
-            <IncludesSection />
-            <AccesibilitySection />
-            <HostBio />
-            <LocationSection />
-            <ReviewsSection />
-            <AvailableDatesSection />
-            <CancellationPolicy />
-            <Divider />
-            <Typography variant="body-2" className="flex items-center gap-3 font-bold pt-5"><FaFlag className="text-xl" />Report this experience</Typography>
-        </main>
-    </>
+            <BreadcrumbComponent data={ data }/>
+            <CarouselComponent />
+            <main className="pl-5 pb-10">
+                <ExperienceHeader data={ data }/>
+                <HostDetails />
+                <ExperienceDescription />
+                <IncludesSection />
+                <AccesibilitySection />
+                <HostBio />
+                <LocationSection />
+                <ReviewsSection />
+                <AvailableDatesSection />
+                <CancellationPolicy />
+                <Divider />
+                <Typography variant="body-2" className="flex items-center gap-3 font-bold pt-5"><FaFlag className="text-xl" />Report this experience</Typography>
+            </main>
+        </>
     )
 }

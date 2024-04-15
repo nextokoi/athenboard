@@ -45,13 +45,13 @@ export default async function Home() {
 						<ExperienceHeroCard
 							sourceImg='https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/sculpture.webp?t=2024-03-28T14%3A50%3A58.141Z'
 							title='Sculpture with James'
-							score='4,5 (120)'
+							score='4 (120)'
 							duration='3hr'
 						/>
 						<ExperienceHeroCard
 							sourceImg='https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/dance.webp?t=2024-03-28T14%3A51%3A06.638Z'
 							title='Dancing with Robert'
-							score='5 (80)'
+							score='5 (100)'
 							duration='1hr'
 						/>
 						<ExperienceHeroCard
@@ -119,28 +119,28 @@ export default async function Home() {
 						score='5 (100)'
 						title='Pottery with Ava'
 						description="Dive into the magic of clay in my ceramics workshop. Together, we'll breathe life into your creativity as you shape unique pieces..."
-						size={60}
+						size="60"
 					/>
 					<ExperienceCard
 						sourceImg='https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/gallery.webp?t=2024-03-28T14%3A02%3A25.587Z'
 						score='5 (80)'
 						title='Art Gallery Guide with Sofia'
 						description="Explore the richness of local art with our Gallery Tour. Discover carefully selected galleries, where each piece tells its own story..."
-						size={60}
+						size="60"
 					/>
 					<ExperienceCard
 						sourceImg='https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/food.webp?t=2024-03-28T14%3A03%3A22.081Z'
 						score='5 (60)'
 						title='Cooking with William'
 						description="Join me in discovering a universe of flavors and culinary techniques. From the secrets of Asian cuisine to Mediterranean delights..."
-						size={60}
+						size="60"
 					/>
 					<ExperienceCard
 						sourceImg='https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/yoga.webp?t=2024-03-28T14%3A52%3A31.169Z'
 						score='5 (70)'
 						title='Yoga with Emily'
 						description="I invite you to disconnect from the outside world and reconnect with yourself through yoga. Together, we'll explore the strength and flexibility..."
-						size={60}
+						size="60"
 					/>
 				</HorizontalScroll>
 				<div className='pr-6'>

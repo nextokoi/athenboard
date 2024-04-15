@@ -13,7 +13,7 @@ export async function fetchDataFromSupabase() {
 		}
 		return data
 	} catch (error) {
-		console.error('Error al obtener los datos de Supabase: ', error.message)
+		console.error('Error retrieving data from Supabase: ', error.message)
 	}
 }
 
@@ -34,7 +34,7 @@ export async function fetchImageUrl(experienceId: string) {
 		}
 		return data.url
 	} catch (error) {
-		console.error('Error al obtener la URL de la imagen: ', error.message)
+		console.error('Error retrieving the image URL: ', error.message)
 		throw error
 	}
 }
@@ -52,7 +52,7 @@ export async function fetchOneExperience(id: string) {
 		}
 		return data
 	} catch (error) {
-		console.error('Error al hacer fetching en una experiencia', error.message)
+		console.error('Error fetching an experience', error.message)
 		throw error
 	}
 }

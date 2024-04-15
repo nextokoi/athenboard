@@ -15,10 +15,10 @@ export const NavbarComponent = () => {
           <Link href="/">
             <Navbar.Brand>
               <Image
-                src="./logo.svg"
-                alt="keep"
-                width="130"
-                height="40"
+                src="https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/logo.svg"
+                alt=""
+                width="103"
+                height="97"
               />
             </Navbar.Brand>
           </Link>
