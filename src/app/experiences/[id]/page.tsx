@@ -15,7 +15,7 @@ import { AvailableDatesSection } from "../../components/experiences-id/available
 import { CancellationPolicy } from "../../components/experiences-id/cancellation-policy"
 
 import { FaFlag } from "react-icons/fa6";
-import { fetchImageUrl, fetchOneExperience } from "@/app/utils/supabase/dataService"
+import { fetchImageUrl, fetchOneExperience, fetchOneArtist } from "@/app/utils/supabase/dataService"
 
 interface Props{
     params: { id: string}
@@ -25,26 +25,36 @@ export const revalidate = 60
 
 export default async function Details({ params }: Props) {
     const { id } = params
-    const data = await fetchOneExperience(id)
-    const imageUrl = await fetchImageUrl(id)
-    return (
-        <>
-            <BreadcrumbComponent data={ data }/>
-            <CarouselComponent images={imageUrl}/>
-            <main className="pl-5 pb-10">
-                <ExperienceHeader data={ data }/>
-                <HostDetails images={imageUrl}/>
-                <ExperienceDescription />
-                <IncludesSection />
-                <AccesibilitySection />
-                <HostBio images={imageUrl} />
-                <LocationSection />
-                <ReviewsSection />
-                <AvailableDatesSection />
-                <CancellationPolicy />
-                <Divider />
-                <Typography variant="body-2" className="flex items-center gap-3 font-bold pt-5"><FaFlag className="text-xl" />Report this experience</Typography>
-            </main>
-        </>
-    )
+    try {
+        const experience = await fetchOneExperience(id)
+        const imageUrl = await fetchImageUrl(id)
+        const artist = await fetchOneArtist(experience.artist_id)
+        const artData = {
+            ...experience,
+            ...artist,
+            imageUrl
+        }
+        return (
+            <>
+                <BreadcrumbComponent data={ experience }/>
+                <CarouselComponent data={imageUrl}/>
+                <main className="pl-5 pb-10">
+                    <ExperienceHeader data={ experience }/>
+                    <HostDetails data={ artData }/>
+                    <ExperienceDescription data={ experience }/>
+                    <IncludesSection />
+                    <AccesibilitySection />
+                    <HostBio data={artData} />
+                    <LocationSection />
+                    <ReviewsSection />
+                    <AvailableDatesSection />
+                    <CancellationPolicy />
+                    <Divider />
+                    <Typography variant="body-2" className="flex items-center gap-3 font-bold pt-5"><FaFlag className="text-xl" />Report this experience</Typography>
+                </main>
+            </>
+        )
+    } catch (error) {
+        console.log('Error getting experience details', error.message)
+    }
 }

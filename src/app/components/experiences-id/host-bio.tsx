@@ -7,18 +7,23 @@ import { FaStar } from "react-icons/fa6";
 import { MdVerified } from "react-icons/md";
 
 type Props = {
-    images: string
+    data:{
+        name: string
+        biography: string
+        imageUrl: string
+    }
 }
 
-export const HostBio = ({images} : Props) => {
+export const HostBio = ({data} : Props) => {
+    const { name, biography, imageUrl } = data
     return (
         <div className="pr-5">
             <div className="flex flex-col gap-3 py-5">
                 <div className="flex gap-8 items-center justify-between">
                     <Typography variant="heading-6" className="font-medium">
-                        Meet Ava, your artist
+                        Meet {name}, your artist
                     </Typography>
-                    <AvatarComponent image={images}/>
+                    <AvatarComponent image={imageUrl}/>
                 </div>
                 <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-2">
@@ -30,8 +35,7 @@ export const HostBio = ({images} : Props) => {
                         <Typography variant="body-2">Verified</Typography>
                     </div>
                     <Typography variant="body-2" className="text-pretty">
-                        Hi, I&apos;m Ava, the creator behind the ceramic workshop. Since my childhood, I found solace and expression in the art of clay. Each piece I mold carries with it my personal journey. In my studio, I share that special connection between clay and creativity, guiding others to discover their own story in each piece. 
-                        Welcome to my artistic corner!
+                        {biography}
                     </Typography>
                     <ButtonComponent title="Contact with the artist" width="full" bgColor="#3B6939"/>
                 </div>

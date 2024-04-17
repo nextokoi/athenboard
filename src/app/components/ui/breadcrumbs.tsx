@@ -14,7 +14,9 @@ export const BreadcrumbComponent = ({ data } : Props) => {
   const currentRoute = usePathname()
   const namePage = currentRoute.substring(1).charAt(0).toUpperCase() + currentRoute.slice(2)
   const breadPieces = namePage.split('/')
-  const title = data ? data.title : ''
+
+  const title = data?.title
+  const itemTitle = data ? title : ''
   
   const breadItems = () => {
     const lastIndex = breadPieces.length - 1
@@ -23,7 +25,7 @@ export const BreadcrumbComponent = ({ data } : Props) => {
       return(
         // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
         <Breadcrumb.Item key={index} activeType={index === lastIndex ? 'base' : undefined} href={index !== lastIndex ? `/${item.toLowerCase()}` : null as unknown as string}>
-          {isUUID ? title : item}
+          {isUUID ? itemTitle : item}
         </Breadcrumb.Item>
       )
     })

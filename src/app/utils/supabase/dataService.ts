@@ -56,3 +56,20 @@ export async function fetchOneExperience(id: string) {
 		throw error
 	}
 }
+
+export async function fetchOneArtist(id: string) {
+	try {
+		const { data, error } = await supabase
+			.from('artists')
+			.select()
+			.eq('id', id)
+			.single()
+		if (error) {
+			throw error
+		}
+		return data
+	} catch (error) {
+		console.error('Error fetching an artist', error.message)
+		throw error
+	}
+}
