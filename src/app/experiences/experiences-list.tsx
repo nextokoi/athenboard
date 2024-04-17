@@ -38,7 +38,7 @@ export const ExperiencesList = async ({ searchTerm } : ExperiencesListProps) => 
                 <ExperienceCard
                     key={item.id}
                     id={item.id}
-                    sourceImg={item.imageUrl}
+                    sourceImg={item.imageUrl[0]}
                     score='5 (100)'
                     title={item.title}
                     description={`Starting from ${item.price}€ per person`}

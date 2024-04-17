@@ -23,16 +23,18 @@ export async function fetchImageUrl(experienceId: string) {
 			.from('images')
 			.select('url')
 			.eq('experience_id', experienceId)
-			.single()
 
 		if (error) {
 			throw error
 		}
 
 		if (!data) {
-			return null
+			return []
 		}
-		return data.url
+
+		const urls: string[] = data.map((image) => image.url)
+
+		return urls
 	} catch (error) {
 		console.error('Error retrieving the image URL: ', error.message)
 		throw error

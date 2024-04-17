@@ -115,32 +115,32 @@ export default async function Home() {
 				</h3>
 				<HorizontalScroll>
 					<ExperienceCard
-						sourceImg='https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/sign/user_images/pottery.webp?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ1c2VyX2ltYWdlcy9wb3R0ZXJ5LndlYnAiLCJpYXQiOjE3MTE2MzEyOTEsImV4cCI6MzE3MDQwMDk1MjkxfQ.CgN72U3u11GSdKQS_dw-wIwCn_N0oL3j34poGRn2Ck4&t=2024-03-28T13%3A08%3A11.309Z'
+						sourceImg='https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/pottery-1.webp?t=2024-04-17T19%3A05%3A35.228Z'
 						score='5 (100)'
 						title='Pottery with Ava'
 						description="Dive into the magic of clay in my ceramics workshop. Together, we'll breathe life into your creativity as you shape unique pieces..."
-						size="60"
+						size="64"
 					/>
 					<ExperienceCard
 						sourceImg='https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/gallery.webp?t=2024-03-28T14%3A02%3A25.587Z'
 						score='5 (80)'
 						title='Art Gallery Guide with Sofia'
 						description="Explore the richness of local art with our Gallery Tour. Discover carefully selected galleries, where each piece tells its own story..."
-						size="60"
+						size="64"
 					/>
 					<ExperienceCard
 						sourceImg='https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/food.webp?t=2024-03-28T14%3A03%3A22.081Z'
 						score='5 (60)'
 						title='Cooking with William'
 						description="Join me in discovering a universe of flavors and culinary techniques. From the secrets of Asian cuisine to Mediterranean delights..."
-						size="60"
+						size="64"
 					/>
 					<ExperienceCard
 						sourceImg='https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/yoga.webp?t=2024-03-28T14%3A52%3A31.169Z'
 						score='5 (70)'
 						title='Yoga with Emily'
 						description="I invite you to disconnect from the outside world and reconnect with yourself through yoga. Together, we'll explore the strength and flexibility..."
-						size="60"
+						size="64"
 					/>
 				</HorizontalScroll>
 				<div className='pr-6'>
