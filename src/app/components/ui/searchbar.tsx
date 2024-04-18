@@ -3,7 +3,7 @@
 import { Icon, Input } from "keep-react"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
-import { FaMagnifyingGlass, FaSliders } from "react-icons/fa6"
+import { FaMagnifyingGlass } from "react-icons/fa6"
 import { useDebounce } from "use-debounce"
 import { SearchFilters } from "./search-filters"
 
