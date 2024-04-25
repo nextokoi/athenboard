@@ -23,7 +23,7 @@ export const SearchFilters = () => {
     const activityType = ['Art and culture', 'Leisure', 'Food and drink', 'Sports']
     const availableLanguages = ['Spanish', 'English', 'French', 'German', 'Japanese']
     const mobility = ['No stairs or steps', 'Accessible bathroom', 'Parking for people with functional diversity', 'Flat or level ground']
-    const communication = ['Detailed audible or vebal information', 'Sign language', 'Accessibility for individuals with auditory functional diversity']
+    const communication = ['Detailed audible or verbal information', 'Sign language', 'Accessibility for individuals with auditory functional diversity']
     const sensoryNeeds = ['No extreme sensory', 'Quiet space for resting']
     const personalAssistants = ['Free entry for individuals assisting participants with functional diversity']
 

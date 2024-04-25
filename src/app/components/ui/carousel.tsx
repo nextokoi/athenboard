@@ -6,7 +6,6 @@ type Props = {
 }
 
 export const CarouselComponent = async ({ data } : Props) => {
-  console.log(data)
   const renderItemCarousel = () => {
     return data.map(image => {
       return (

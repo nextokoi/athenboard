@@ -5,6 +5,20 @@ const supabase = createClient(
 	process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string,
 )
 
+interface Filters {
+	filters: {
+		date: string[]
+		minPrice: string[]
+		maxPrice: string[]
+		activityTypes: string[]
+		languages: string[]
+		mobility: string[]
+		communication: string[]
+		sensoryNeeds: string[]
+		personalAssistants: string[]
+	}
+}
+
 export async function fetchDataFromSupabase() {
 	try {
 		const { data, error } = await supabase.from('experiences').select()
@@ -74,4 +88,26 @@ export async function fetchOneArtist(id: string) {
 		console.error('Error fetching an artist', error.message)
 		throw error
 	}
+}
+
+export async function fetchFilteredExperiences({ filters }: Filters) {
+	const { data, error } = await supabase
+		.from('experiences')
+		.select()
+		.eq('date', filters.date)
+		.gte('price', filters.minPrice)
+		.lte('price', filters.maxPrice)
+		.in('activity_type', filters.activityTypes)
+		.contains('available_languages', filters.languages)
+		.contains('mobility_features', filters.mobility)
+		.contains('communication_features', filters.communication)
+		.contains('sensory_needs', filters.sensoryNeeds)
+		.contains('personal_assistants_features', filters.personalAssistants)
+
+	if (error) {
+		console.error('Error fetching filtered experiences')
+		return null
+	}
+
+	return data
 }

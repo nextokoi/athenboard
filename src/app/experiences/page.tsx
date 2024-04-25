@@ -1,12 +1,12 @@
 import { ExperiencesList } from './experiences-list';
-import { ClientComponent } from './client-component';
+import { ExperiencesLayout } from './experiences-layout';
 
 export default function Experiences({ searchParams }: { searchParams: { [key: string]: string | string[] | undefined } }) {
     return (
         <>
-            <ClientComponent>
+            <ExperiencesLayout>
                 <ExperiencesList searchTerm={ searchParams }/>
-            </ClientComponent>
+            </ExperiencesLayout>
         </>
     )
 }
