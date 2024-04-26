@@ -1,16 +1,19 @@
 'use client'
 
 import { Button, Divider, Typography } from "keep-react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { FaSliders } from "react-icons/fa6"
 import { HiXMark } from "react-icons/hi2";
 import { Drawer } from "./drawer"
 import { DatePickerComponent } from "./date-picker";
 import { CheckboxComponent } from "./checkbox";
 import { SliderComponent } from "./slider";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export const SearchFilters = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+    const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+    const router = useRouter()
 
     const handleOpenDrawer = () => {
         setIsDrawerOpen(true)
@@ -18,6 +21,26 @@ export const SearchFilters = () => {
 
     const handleCloseDrawer = () => {
         setIsDrawerOpen(false)
+    }
+
+    const handleDateChange = (date: Date | null) => {
+        setSelectedDate(date)
+    }
+
+    const handleShowResults = () => {
+        setIsDrawerOpen(false)
+        if (selectedDate) {
+            const formattedDate = selectedDate.toISOString().split('T')[0]
+            router.push(`?date=${formattedDate}`)
+        } else {
+            router.push('/experiences')
+        }
+    }
+
+    const handleRemoveResults = () => {
+        setIsDrawerOpen(false)
+        setSelectedDate(null)
+        router.push('/experiences')
     }
 
     const activityType = ['Art and culture', 'Leisure', 'Food and drink', 'Sports']
@@ -46,7 +69,7 @@ export const SearchFilters = () => {
                     <div className="flex flex-col gap-8 pt-5 px-5">
                         <Typography variant="heading-5">Choose a date</Typography>
                         <div className="w-2/3 mx-auto">
-                            <DatePickerComponent />
+                            <DatePickerComponent onDateChange={handleDateChange}/>
                         </div>
                         <Divider size="md" />
                     </div>
@@ -88,8 +111,8 @@ export const SearchFilters = () => {
                     </div>
                 </main>
                 <div className="flex justify-between items-center w-full border-y-2 p-5 sticky bottom-0 bg-[#fdfdfd] z-10">
-                    <Typography variant="body-2" className="font-medium">Remove filters</Typography>
-                    <Button color="success">Show results</Button>
+                    <Button variant="link" color="secondary" className="font-medium" onClick={handleRemoveResults}>Remove filters</Button>
+                    <Button color="success" onClick={handleShowResults}>Show results</Button>
                 </div>
             </Drawer>
         </>
