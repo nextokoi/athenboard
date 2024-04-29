@@ -1,5 +1,5 @@
 import { fetchDataFromSupabase, fetchImageUrl } from '../utils/supabase/dataService';
-import { Typography } from 'keep-react';
+import { Button, Typography } from 'keep-react';
 import { ExperienceCard } from '../components/cards/experience-card';
 import { SearchBarComponent } from '../components/ui/searchbar';
 import { BreadcrumbComponent } from '../components/ui/breadcrumbs';
@@ -23,15 +23,10 @@ export default async function Experiences({ searchParams }: { searchParams: { [k
     const search = typeof searchParams.search === 'string' ? searchParams.search : undefined
     const lowercaseSearch = search ? search.toLowerCase() : ''
 
-    const date = typeof searchParams.date === 'string' ? searchParams.date : undefined
-
-    const filteredExperiences = experiencesWithImages.filter(item =>
-        date ? item.date === date : true
-    ).filter(item =>
+    let filteredExperiences = experiencesWithImages.filter(item =>
         item.title.toLowerCase().includes(lowercaseSearch)
     )
-
-/*     const filterByCriteria = (experiences: typeof filteredExperiences, key: string, value: string) => {
+    const filterByCriteria = (experiences: typeof filteredExperiences, key: string, value: string) => {
         return experiences.filter(item => item[key]?.includes(value))
     }
 
@@ -50,10 +45,16 @@ export default async function Experiences({ searchParams }: { searchParams: { [k
         }
     }    
 
-    applyFilters(searchParams) */
+    applyFilters(searchParams)
 
     if (filteredExperiences.length === 0) {
-        return <Typography variant='body-2' className="p-10">No experiences found</Typography>
+        return (
+            <div className='min-h-screen flex flex-col items-center justify-center gap-5'>
+                <Typography variant='body-2'>No experiences found</Typography>
+                <Button color='secondary' variant='outline'>Back to experiences</Button>
+            </div>
+        )
+        
     }
 
     const getAllExperiences = () => {

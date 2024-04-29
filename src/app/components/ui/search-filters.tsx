@@ -43,20 +43,23 @@ export const SearchFilters = () => {
 
     const handleShowResults = () => {
         setIsDrawerOpen(false)
+        let queryParams = []
+
         if (selectedDate) {
             const formattedDate = selectedDate.toISOString().split('T')[0]
-            console.log(formattedDate)
-            router.push(`?date=${formattedDate}`)
-        } else {
-            router.push('/experiences')
+            queryParams.push(`date=${formattedDate}`)
         }
 
         if (selectedCheckbox) {
-            const query = selectedCheckbox.map(item => `${item.filterName}=${item.value}`).join('&')
-            router.push(`?${query}`)
-        } else {
-            router.push('/experiences')
+            const checkboxParams = selectedCheckbox.map(item => `${item.filterName}=${item.value}`)
+            queryParams = queryParams.concat(checkboxParams)
         }
+
+        const queryString = queryParams.length > 0 ? `?${queryParams.join('&')}` : ''
+
+        const url = '/experiences' + queryString
+
+        router.push(url)
     }
 
     const handleRemoveFilters = () => {
