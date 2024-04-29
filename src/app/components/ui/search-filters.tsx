@@ -1,18 +1,19 @@
 'use client'
 
 import { Button, Divider, Typography } from "keep-react"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { FaSliders } from "react-icons/fa6"
 import { HiXMark } from "react-icons/hi2";
 import { Drawer } from "./drawer"
 import { DatePickerComponent } from "./date-picker";
 import { CheckboxComponent } from "./checkbox";
 import { SliderComponent } from "./slider";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export const SearchFilters = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
     const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+    const [selectedCheckbox, setSelectedCheckbox] = useState<{ filterName: string, value: string }[]>([])
     const router = useRouter()
 
     const handleOpenDrawer = () => {
@@ -27,19 +28,41 @@ export const SearchFilters = () => {
         setSelectedDate(date)
     }
 
+    const handleCheckBoxChange = (e: React.ChangeEvent<HTMLInputElement>, filterName: string) => {
+        const value = e.target.value
+        const isChecked = e.target.checked
+        setSelectedCheckbox(prev => {
+            if (isChecked) {
+                return [...prev, { filterName, value }]
+                // biome-ignore lint/style/noUselessElse: <explanation>
+            } else {
+                return prev.filter(item => item.filterName !== filterName || item.value !== value)
+            }
+        })
+    }
+
     const handleShowResults = () => {
         setIsDrawerOpen(false)
         if (selectedDate) {
             const formattedDate = selectedDate.toISOString().split('T')[0]
+            console.log(formattedDate)
             router.push(`?date=${formattedDate}`)
+        } else {
+            router.push('/experiences')
+        }
+
+        if (selectedCheckbox) {
+            const query = selectedCheckbox.map(item => `${item.filterName}=${item.value}`).join('&')
+            router.push(`?${query}`)
         } else {
             router.push('/experiences')
         }
     }
 
-    const handleRemoveResults = () => {
+    const handleRemoveFilters = () => {
         setIsDrawerOpen(false)
         setSelectedDate(null)
+        setSelectedCheckbox([])
         router.push('/experiences')
     }
 
@@ -69,13 +92,13 @@ export const SearchFilters = () => {
                     <div className="flex flex-col gap-8 pt-5 px-5">
                         <Typography variant="heading-5">Choose a date</Typography>
                         <div className="w-2/3 mx-auto">
-                            <DatePickerComponent onDateChange={handleDateChange}/>
+                            <DatePickerComponent onDateChange={handleDateChange} />
                         </div>
                         <Divider size="md" />
                     </div>
                     <div className="flex flex-col gap-8 pt-5 px-5">
                         <Typography variant="heading-5">Activity type</Typography>
-                        <CheckboxComponent data={activityType} />
+                        <CheckboxComponent data={activityType} onCheckBoxChange={handleCheckBoxChange} selectedCheckbox={selectedCheckbox} filterName="category"/>
                         <Divider size="md" />
                     </div>
                     <div className="flex flex-col gap-8 pt-5 px-5">
@@ -85,7 +108,7 @@ export const SearchFilters = () => {
                     </div>
                     <div className="flex flex-col gap-8 pt-5 px-5">
                         <Typography variant="heading-5">Available languages</Typography>
-                        <CheckboxComponent data={availableLanguages} />
+                        <CheckboxComponent data={availableLanguages} filterName="available_languages" onCheckBoxChange={handleCheckBoxChange} selectedCheckbox={selectedCheckbox}/>
                         <Typography variant="body-4" className="font-bold">Show all</Typography>
                         <Divider size="md" />
                     </div>
@@ -93,25 +116,25 @@ export const SearchFilters = () => {
                         <Typography variant="heading-5">Accesibility features</Typography>
                         <article>
                             <Typography variant="body-3" className="font-semibold mb-5">Mobility</Typography>
-                            <CheckboxComponent data={mobility} />
+                            <CheckboxComponent data={mobility} filterName="mobility_features"/>
                         </article>
                         <article>
                             <Typography variant="body-3" className="font-semibold mb-5">Communication</Typography>
-                            <CheckboxComponent data={communication} />
+                            <CheckboxComponent data={communication} filterName="communication_features"/>
                         </article>
                         <article>
                             <Typography variant="body-3" className="font-semibold mb-5">Sensory needs</Typography>
-                            <CheckboxComponent data={sensoryNeeds} />
+                            <CheckboxComponent data={sensoryNeeds} filterName="sensory_needs"/>
                         </article>
                         <article>
                             <Typography variant="body-3" className="font-semibold mb-5">Personal assistants</Typography>
-                            <CheckboxComponent data={personalAssistants} />
+                            <CheckboxComponent data={personalAssistants} filterName="personal_assistants_features"/>
                             <Typography variant="body-4" className="text-pretty text-slate-400 mt-2 mb-10 w-10/12">Interpreters, caregivers, or other personal assistants can accompany the participants they assist without having to pay any additional fees</Typography>
                         </article>
                     </div>
                 </main>
                 <div className="flex justify-between items-center w-full border-y-2 p-5 sticky bottom-0 bg-[#fdfdfd] z-10">
-                    <Button variant="link" color="secondary" className="font-medium" onClick={handleRemoveResults}>Remove filters</Button>
+                    <Button variant="link" color="secondary" className="font-medium" onClick={handleRemoveFilters}>Remove filters</Button>
                     <Button color="success" onClick={handleShowResults}>Show results</Button>
                 </div>
             </Drawer>

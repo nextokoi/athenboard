@@ -26,10 +26,31 @@ export default async function Experiences({ searchParams }: { searchParams: { [k
     const date = typeof searchParams.date === 'string' ? searchParams.date : undefined
 
     const filteredExperiences = experiencesWithImages.filter(item =>
-        date ? item.date.includes(date) : true
-    ).filter(item => 
+        date ? item.date === date : true
+    ).filter(item =>
         item.title.toLowerCase().includes(lowercaseSearch)
     )
+
+/*     const filterByCriteria = (experiences: typeof filteredExperiences, key: string, value: string) => {
+        return experiences.filter(item => item[key]?.includes(value))
+    }
+
+    const applyFilters = (SearchParams: typeof searchParams) => {
+        for (const [key, value] of Object.entries(SearchParams)) {
+            if (typeof value === 'string'){
+                switch (key){
+                    case 'date':
+                    case 'category':
+                        filteredExperiences = filterByCriteria(filteredExperiences, key, value)
+                        break
+                    default:
+                        break
+                }
+            }
+        }
+    }    
+
+    applyFilters(searchParams) */
 
     if (filteredExperiences.length === 0) {
         return <Typography variant='body-2' className="p-10">No experiences found</Typography>
