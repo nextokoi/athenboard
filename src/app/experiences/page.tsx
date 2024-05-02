@@ -1,10 +1,10 @@
 import { fetchDataFromSupabase, fetchImageUrl } from '../utils/supabase/dataService';
-import { Button, Typography } from 'keep-react';
 import { ExperienceCard } from '../components/cards/experience-card';
 import { SearchBarComponent } from '../components/ui/searchbar';
 import { BreadcrumbComponent } from '../components/ui/breadcrumbs';
 import { TagComponent } from '../components/ui/tag';
 import { ButtonComponent } from '../components/ui/button';
+import Link from 'next/link';
 
 export const revalidate = 60
 
@@ -30,31 +30,28 @@ export default async function Experiences({ searchParams }: { searchParams: { [k
         return experiences.filter(item => item[key]?.includes(value))
     }
 
-    const applyFilters = (SearchParams: typeof searchParams) => {
-        for (const [key, value] of Object.entries(SearchParams)) {
-            if (typeof value === 'string'){
-                switch (key){
-                    case 'date':
-                    case 'category':
-                        filteredExperiences = filterByCriteria(filteredExperiences, key, value)
-                        break
-                    default:
-                        break
-                }
+    for (const [key, value] of Object.entries(searchParams)) {
+        if (typeof value === 'string') {
+            switch (key) {
+                case 'date':
+                case 'category':
+                case 'availables_languages':
+                    filteredExperiences = filterByCriteria(filteredExperiences, key, value)
+                    break
+                default:
+                    break
             }
         }
-    }    
-
-    applyFilters(searchParams)
+    }
 
     if (filteredExperiences.length === 0) {
         return (
             <div className='min-h-screen flex flex-col items-center justify-center gap-5'>
-                <Typography variant='body-2'>No experiences found</Typography>
-                <Button color='secondary' variant='outline'>Back to experiences</Button>
+                <p className='text-body-2'>No experiences found</p>
+                <Link href='/experiences' className='border border-slate-500 rounded-lg px-5 py-2 bg-slate-200'>Back to experiences</Link>
             </div>
         )
-        
+
     }
 
     const getAllExperiences = () => {

@@ -1,6 +1,6 @@
 
 "use client";
-import { Icon, Input, Slider } from "keep-react";
+import { Icon, Slider } from "keep-react";
 import { useState } from "react";
 import { FaEuroSign } from "react-icons/fa6";
 

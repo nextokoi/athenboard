@@ -1,4 +1,4 @@
-import { Divider, Typography } from "keep-react"
+import { Divider } from "keep-react"
 import { FaStar } from "react-icons/fa6"
 
 interface Props {
@@ -12,13 +12,13 @@ export const ExperienceHeader = ({ data } : Props) => {
     const { title, address } = data
     return (
         <div className="py-5 flex flex-col gap-3 pr-5">
-            <Typography variant="heading-5">{title}</Typography>
+            <h5 className="text-heading-5">{title}</h5>
             <div className="flex gap-4 font-medium">
                 <div className="flex gap-2">
                     <FaStar className="text-xl text-yellow-500" />
-                    <Typography variant="body-4">5 (100)</Typography>
+                    <span className="text-body-5">5 (100)</span>
                 </div>
-                <Typography variant="body-4">{address}</Typography>
+                <p className="text-body-4">{address}</p>
             </div>
             <Divider />
         </div>

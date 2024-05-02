@@ -1,6 +1,6 @@
 'use client'
 
-import { Button, Divider, Typography } from "keep-react"
+import { Button, Divider } from "keep-react"
 import { useState } from "react"
 import { FaSliders } from "react-icons/fa6"
 import { HiXMark } from "react-icons/hi2";
@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 
 export const SearchFilters = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
-    const [selectedDate, setSelectedDate] = useState<Date | null>(null)
+    const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined)
     const [selectedCheckbox, setSelectedCheckbox] = useState<{ filterName: string, value: string }[]>([])
     const router = useRouter()
 
@@ -22,10 +22,6 @@ export const SearchFilters = () => {
 
     const handleCloseDrawer = () => {
         setIsDrawerOpen(false)
-    }
-
-    const handleDateChange = (date: Date | null) => {
-        setSelectedDate(date)
     }
 
     const handleCheckBoxChange = (e: React.ChangeEvent<HTMLInputElement>, filterName: string) => {
@@ -46,7 +42,9 @@ export const SearchFilters = () => {
         let queryParams = []
 
         if (selectedDate) {
-            const formattedDate = selectedDate.toISOString().split('T')[0]
+            const newDate = new Date(selectedDate)
+            newDate.setDate(newDate.getDate() + 1)
+            const formattedDate = newDate.toISOString().split('T')[0]
             queryParams.push(`date=${formattedDate}`)
         }
 
@@ -57,14 +55,14 @@ export const SearchFilters = () => {
 
         const queryString = queryParams.length > 0 ? `?${queryParams.join('&')}` : ''
 
-        const url = '/experiences' + queryString
+        const url = `/experiences${queryString}`
 
         router.push(url)
     }
 
     const handleRemoveFilters = () => {
         setIsDrawerOpen(false)
-        setSelectedDate(null)
+        setSelectedDate(undefined)
         setSelectedCheckbox([])
         router.push('/experiences')
     }
@@ -87,52 +85,52 @@ export const SearchFilters = () => {
                         <Button shape='circle' className='bg-transparent hover:bg-slate-200 text-[#171D1E]' onClick={handleCloseDrawer}>
                             <HiXMark className='text-4xl' />
                         </Button>
-                        <Typography variant="heading-4" className="flex-grow text-center">Filters</Typography>
+                        <h4 className="flex-grow text-center text-heading-4">Filters</h4>
                     </header>
                     <Divider size="md" />
                 </div>
                 <main>
                     <div className="flex flex-col gap-8 pt-5 px-5">
-                        <Typography variant="heading-5">Choose a date</Typography>
+                        <h5 className="text-heading-5">Choose a date</h5>
                         <div className="w-2/3 mx-auto">
-                            <DatePickerComponent onDateChange={handleDateChange} />
+                            <DatePickerComponent onDateChange={setSelectedDate} date={selectedDate}/>
                         </div>
                         <Divider size="md" />
                     </div>
                     <div className="flex flex-col gap-8 pt-5 px-5">
-                        <Typography variant="heading-5">Activity type</Typography>
-                        <CheckboxComponent data={activityType} onCheckBoxChange={handleCheckBoxChange} selectedCheckbox={selectedCheckbox} filterName="category"/>
+                        <h5 className="text-heading-5">Activity type</h5>
+                        <CheckboxComponent data={activityType} onCheckBoxChange={handleCheckBoxChange} selectedCheckbox={selectedCheckbox} filterName="category" />
                         <Divider size="md" />
                     </div>
                     <div className="flex flex-col gap-8 pt-5 px-5">
-                        <Typography variant="heading-5">Price range</Typography>
+                        <h5 className="text-heading-5">Price range</h5>
                         <SliderComponent />
                         <Divider size="md" />
                     </div>
                     <div className="flex flex-col gap-8 pt-5 px-5">
-                        <Typography variant="heading-5">Available languages</Typography>
-                        <CheckboxComponent data={availableLanguages} filterName="available_languages" onCheckBoxChange={handleCheckBoxChange} selectedCheckbox={selectedCheckbox}/>
-                        <Typography variant="body-4" className="font-bold">Show all</Typography>
+                        <h5 className="text-heading-5">Available languages</h5>
+                        <CheckboxComponent data={availableLanguages} filterName="available_languages" onCheckBoxChange={handleCheckBoxChange} selectedCheckbox={selectedCheckbox} />
+                        <span className="font-bold text-md">Show all</span>
                         <Divider size="md" />
                     </div>
                     <div className="flex flex-col gap-8 pt-5 px-5">
-                        <Typography variant="heading-5">Accesibility features</Typography>
+                    <h5 className="text-heading-5">Accesibility features</h5>
                         <article>
-                            <Typography variant="body-3" className="font-semibold mb-5">Mobility</Typography>
-                            <CheckboxComponent data={mobility} filterName="mobility_features"/>
+                            <h6 className="font-semibold mb-5 text-heading-6">Mobility</h6>
+                            <CheckboxComponent data={mobility} filterName="mobility_features" />
                         </article>
                         <article>
-                            <Typography variant="body-3" className="font-semibold mb-5">Communication</Typography>
-                            <CheckboxComponent data={communication} filterName="communication_features"/>
+                            <h6 className="font-semibold mb-5 text-heading-6">Communication</h6>
+                            <CheckboxComponent data={communication} filterName="communication_features" />
                         </article>
                         <article>
-                            <Typography variant="body-3" className="font-semibold mb-5">Sensory needs</Typography>
-                            <CheckboxComponent data={sensoryNeeds} filterName="sensory_needs"/>
+                            <h6 className="font-semibold mb-5 text-heading-6">Sensory needs</h6>
+                            <CheckboxComponent data={sensoryNeeds} filterName="sensory_needs" />
                         </article>
                         <article>
-                            <Typography variant="body-3" className="font-semibold mb-5">Personal assistants</Typography>
-                            <CheckboxComponent data={personalAssistants} filterName="personal_assistants_features"/>
-                            <Typography variant="body-4" className="text-pretty text-slate-400 mt-2 mb-10 w-10/12">Interpreters, caregivers, or other personal assistants can accompany the participants they assist without having to pay any additional fees</Typography>
+                            <h6 className="font-semibold mb-5 text-heading-6">Personal assistants</h6>
+                            <CheckboxComponent data={personalAssistants} filterName="personal_assistants_features" />
+                            <p className="text-pretty text-slate-400 mt-2 mb-10 w-10/12 text-body-3">Interpreters, caregivers, or other personal assistants can accompany the participants they assist without having to pay any additional fees</p>
                         </article>
                     </div>
                 </main>

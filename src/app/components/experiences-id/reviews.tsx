@@ -1,6 +1,5 @@
 'use client'
 
-import { Typography } from "keep-react"
 import { AvatarComponent } from "../ui/avatar"
 
 export const ReviewComponent = () => {
@@ -9,8 +8,8 @@ export const ReviewComponent = () => {
             <div className="flex items-center gap-6">
                 <AvatarComponent />
                 <div>
-                    <Typography variant="heading-6" className="font-medium">Hye-Jin</Typography>
-                    <Typography variant="body-4">december 2023</Typography>
+                    <h6 className="text-heading-6 font-medium">Hye-Jin</h6>
+                    <p className="text-body-4">december 2023</p>
                 </div>
             </div>
             <div className="text-balance">

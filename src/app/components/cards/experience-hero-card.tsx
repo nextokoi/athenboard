@@ -5,7 +5,6 @@ import { FavoriteButton } from '../ui/favorite-button';
 import { FaStar } from "react-icons/fa6";
 import { FunctionComponent } from 'react';
 import Image from 'next/image';
-import { Typography } from 'keep-react';
 
 type Props = {
     sourceImg: string
@@ -24,18 +23,18 @@ export const ExperienceHeroCard: FunctionComponent<Props> = ({ sourceImg, score,
                 <div className='flex justify-between items-center gap-2'>
                     <span className='flex items-center gap-2'>
                         <FaStar className='text-xl text-yellow-500' />
-                        <Typography variant='body-3'>
+                        <h3 className='heading-text-3'>
                             {score} 
-                        </Typography>
+                        </h3>
                     </span> 
-                    <Typography variant='body-3'>
+                    <h3 className='heading-text-3'>
                         {duration}
-                    </Typography>
+                    </h3>
                     <FavoriteButton />
                 </div>
-                <Typography variant='body-2' className='text-pretty font-semibold'>
+                <p className='body-text-2 text-pretty font-semibold'>
                     {title}
-                </Typography>
+                </p>
             </div>
         </article>
     )

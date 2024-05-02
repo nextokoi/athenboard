@@ -1,23 +1,46 @@
-import { Carousel } from "keep-react";
+"use client"
+
 import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules"
+
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+
 
 type Props = {
   data: string[]
 }
 
-export const CarouselComponent = async ({ data } : Props) => {
+export const CarouselComponent = ({ data }: Props) => {
   const renderItemCarousel = () => {
-    return data.map(image => {
+    return data.map((image, index) => {
       return (
-        <Image key={image} src={image} alt="slider-1" className="object-cover object-center sm:w-fit" height={960} width={640}/>
+        // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+        <SwiperSlide key={index}>
+          <div className="flex w-full items-center justify-center">
+            <Image
+              src={image}
+              alt={`slider-${index}`}
+              className="object-cover object-center lg:w-1/4 w-2/3 h-96"
+              height={960}
+              width={640}
+            />
+          </div>
+        </SwiperSlide>
       )
     })
   }
   return (
-    <div className="flex justify-center">
-      <Carousel slideInterval={5000} showControls={true} indicators={true} indicatorsType="bar" slide={false} className="text-white w-full h-96 sm:h-96 bg-[#cecece]">
-        {renderItemCarousel()}
-      </Carousel>
-    </div>
+    <Swiper
+      navigation
+      pagination={{ type: "fraction" }}
+      modules={[Navigation, Pagination]}
+      className="w-full text-white bg-[#cecece]"
+      loop
+    >
+      {renderItemCarousel()}
+    </Swiper>
   )
 }

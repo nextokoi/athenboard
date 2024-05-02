@@ -1,4 +1,3 @@
-import { Typography } from "keep-react"
 import { Divider } from "keep-react"
 
 import { CarouselComponent } from "../../components/ui/carousel"
@@ -50,7 +49,7 @@ export default async function Details({ params }: Props) {
                     <AvailableDatesSection />
                     <CancellationPolicy />
                     <Divider />
-                    <Typography variant="body-2" className="flex items-center gap-3 font-bold pt-5"><FaFlag className="text-xl" />Report this experience</Typography>
+                    <p className="text-body-2 flex items-center gap-3 font-bold pt-5"><FaFlag className="text-xl" />Report this experience</p>
                 </main>
             </>
         )

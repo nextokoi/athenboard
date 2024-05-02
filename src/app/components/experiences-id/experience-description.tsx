@@ -1,4 +1,4 @@
-import { Divider, Typography } from "keep-react"
+import { Divider } from "keep-react"
 
 type Props = {
     data: {
@@ -11,9 +11,9 @@ export const ExperienceDescription = ({ data } : Props) => {
     return (
         <div className="pr-5">
             <div className="flex flex-col gap-3 py-5">
-                <Typography variant="heading-6" className="font-medium">What you will do</Typography>
-                <Typography variant="body-2" className="text-pretty">{description}</Typography>
-                <Typography variant="body-4" className="font-bold">More info</Typography>
+                <h6 className="text-heading-6 font-medium">What you will do</h6>
+                <p className="text-body-2text-pretty">{description}</p>
+                <p className="text-body-4 font-bold">More info</p>
             </div>
             <Divider />
         </div>
