@@ -14,6 +14,7 @@ export const SearchFilters = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
     const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined)
     const [selectedCheckbox, setSelectedCheckbox] = useState<{ filterName: string, value: string }[]>([])
+    const [rangeValues, setRangeValues] = useState<number[]>([25, 100])
     const router = useRouter()
 
     const handleOpenDrawer = () => {
@@ -53,6 +54,11 @@ export const SearchFilters = () => {
             queryParams = queryParams.concat(checkboxParams)
         }
 
+        if (rangeValues[0] !== 25 || rangeValues[1] !== 100) {
+            queryParams.push(`price_min=${rangeValues[0]}`)
+            queryParams.push(`price_max=${rangeValues[1]}`)
+        }
+        
         const queryString = queryParams.length > 0 ? `?${queryParams.join('&')}` : ''
 
         const url = `/experiences${queryString}`
@@ -64,6 +70,7 @@ export const SearchFilters = () => {
         setIsDrawerOpen(false)
         setSelectedDate(undefined)
         setSelectedCheckbox([])
+        setRangeValues([25, 100])
         router.push('/experiences')
     }
 
@@ -104,7 +111,7 @@ export const SearchFilters = () => {
                     </div>
                     <div className="flex flex-col gap-8 pt-5 px-5">
                         <h5 className="text-heading-5">Price range</h5>
-                        <SliderComponent />
+                        <SliderComponent rangeValues={rangeValues} onRangeValuesChange={setRangeValues}/>
                         <Divider size="md" />
                     </div>
                     <div className="flex flex-col gap-8 pt-5 px-5">
@@ -117,19 +124,19 @@ export const SearchFilters = () => {
                     <h5 className="text-heading-5">Accesibility features</h5>
                         <article>
                             <h6 className="font-semibold mb-5 text-heading-6">Mobility</h6>
-                            <CheckboxComponent data={mobility} filterName="mobility_features" />
+                            <CheckboxComponent data={mobility} filterName="mobility_features" onCheckBoxChange={handleCheckBoxChange} selectedCheckbox={selectedCheckbox}/>
                         </article>
                         <article>
                             <h6 className="font-semibold mb-5 text-heading-6">Communication</h6>
-                            <CheckboxComponent data={communication} filterName="communication_features" />
+                            <CheckboxComponent data={communication} filterName="communication_features" onCheckBoxChange={handleCheckBoxChange} selectedCheckbox={selectedCheckbox}/>
                         </article>
                         <article>
                             <h6 className="font-semibold mb-5 text-heading-6">Sensory needs</h6>
-                            <CheckboxComponent data={sensoryNeeds} filterName="sensory_needs" />
+                            <CheckboxComponent data={sensoryNeeds} filterName="sensory_needs" onCheckBoxChange={handleCheckBoxChange} selectedCheckbox={selectedCheckbox}/>
                         </article>
                         <article>
                             <h6 className="font-semibold mb-5 text-heading-6">Personal assistants</h6>
-                            <CheckboxComponent data={personalAssistants} filterName="personal_assistants_features" />
+                            <CheckboxComponent data={personalAssistants} filterName="personal_assistants_features" onCheckBoxChange={handleCheckBoxChange} selectedCheckbox={selectedCheckbox}/>
                             <p className="text-pretty text-slate-400 mt-2 mb-10 w-10/12 text-body-3">Interpreters, caregivers, or other personal assistants can accompany the participants they assist without having to pay any additional fees</p>
                         </article>
                     </div>
