@@ -1,11 +1,9 @@
-"use client";
-
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import { Icon } from "leaflet"
 
 import "leaflet/dist/leaflet.css";
 
-export const Map = () => {
+export const MapLeaflet = () => {
     const position = [40.7128, -74.006] as [number, number];
     const customIcon = new Icon({
         iconUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png",
