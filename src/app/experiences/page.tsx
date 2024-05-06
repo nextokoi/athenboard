@@ -35,7 +35,10 @@ export default async function Experiences({ searchParams }: { searchParams: { [k
     })
 
     const filterByCriteria = (experiences: typeof experiencesWithImages, key: string, value: string) => {
-        return experiences.filter(item => item[key]?.includes(value))
+        const filterValues = Array.isArray(value) ? value : [value]
+        return experiences.filter(item => 
+            filterValues.every(value => item[key]?.includes(value))
+        )
     }
 
     const applyFilters = () => {
