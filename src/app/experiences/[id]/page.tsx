@@ -14,8 +14,7 @@ import { AvailableDatesSection } from "../../components/experiences-id/available
 import { CancellationPolicy } from "../../components/experiences-id/cancellation-policy"
 
 import { FaFlag } from "react-icons/fa6";
-import { fetchImageUrl, fetchOneExperience, fetchOneArtist } from "@/app/utils/supabase/dataService"
-
+import { fetchImageUrl, fetchOneExperience, fetchOneArtist, fetchReviews } from "@/app/utils/supabase/dataService"
 interface Props{
     params: { id: string}
 }
@@ -28,6 +27,7 @@ export default async function Details({ params }: Props) {
         const experience = await fetchOneExperience(id)
         const imageUrl = await fetchImageUrl(id)
         const artist = await fetchOneArtist(experience.artist_id)
+        const reviews = await fetchReviews(id)
         const artData = {
             ...experience,
             ...artist,
@@ -45,7 +45,7 @@ export default async function Details({ params }: Props) {
                     <AccesibilitySection />
                     <HostBio data={artData} />
                     <LocationSection />
-                    <ReviewsSection />
+                    <ReviewsSection data={ reviews }/>
                     <AvailableDatesSection />
                     <CancellationPolicy />
                     <Divider />

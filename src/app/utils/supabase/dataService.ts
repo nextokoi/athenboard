@@ -75,3 +75,19 @@ export async function fetchOneArtist(id: string) {
 		throw error
 	}
 }
+
+export async function fetchReviews(experienceId: string) {
+	try {
+		const { data, error } = await supabase
+			.from('reviews')
+			.select()
+			.eq('experiences_id', experienceId)
+		if (error) {
+			throw error
+		}
+		return data
+	} catch (error) {
+		console.error('Error fetching reviews', error.message)
+		throw error
+	}
+}
