@@ -76,16 +76,68 @@ export async function fetchOneArtist(id: string) {
 	}
 }
 
+interface User {
+	id: string
+	name: string
+	avatar_url: string
+}
+
+interface Review {
+	id: string
+	score: number
+	content: string
+	created_at: string
+	user: User
+}
+
 export async function fetchReviews(experienceId: string) {
 	try {
-		const { data, error } = await supabase
+		const { data: reviewsData, error: reviewsError } = await supabase
 			.from('reviews')
 			.select()
 			.eq('experiences_id', experienceId)
-		if (error) {
-			throw error
+
+		if (reviewsError) {
+			console.error('Error fetching reviews', reviewsError.message)
+			return []
 		}
-		return data
+
+		if (!reviewsData || reviewsData.length === 0) {
+			return []
+		}
+
+		const userIds = reviewsData.map((review) => review.user_id)
+
+		if (!userIds || userIds.length === 0) {
+			return reviewsData
+		}
+
+		const { data: usersData, error: usersError } = await supabase
+			.from('users')
+			.select()
+			.eq('id', userIds)
+
+		if (usersError) {
+			console.error('Error fetching users', usersError.message)
+			return []
+		}
+
+		for (const review of reviewsData) {
+			const user = usersData.find((user) => user.id === review.user_id)
+			review.user = user
+		}
+
+		const reviews: Review[] = reviewsData.map((review) => {
+			return {
+				id: review.id,
+				score: review.score,
+				content: review.content,
+				created_at: review.created_at,
+				user: review.user,
+			}
+		})
+
+		return reviews
 	} catch (error) {
 		console.error('Error fetching reviews', error.message)
 		throw error

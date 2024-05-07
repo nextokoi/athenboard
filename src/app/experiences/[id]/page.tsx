@@ -15,45 +15,72 @@ import { CancellationPolicy } from "../../components/experiences-id/cancellation
 
 import { FaFlag } from "react-icons/fa6";
 import { fetchImageUrl, fetchOneExperience, fetchOneArtist, fetchReviews } from "@/app/utils/supabase/dataService"
-interface Props{
-    params: { id: string}
+
+interface DetailsProps {
+    params: { id: string }
 }
 
 export const revalidate = 60
 
-export default async function Details({ params }: Props) {
-    const { id } = params
-    try {
-        const experience = await fetchOneExperience(id)
-        const imageUrl = await fetchImageUrl(id)
-        const reviews = await fetchReviews(id)
-        const artist = await fetchOneArtist(experience.artist_id)
-        const artData = {
+export const fetchExperienceData = async (id: string) => {
+    const experience = await fetchOneExperience(id);
+    const imageUrl = await fetchImageUrl(id);
+    const reviews = await fetchReviews(id);
+    const artist = await fetchOneArtist(experience.artist_id);
+    
+    return {
+        experience,
+        reviews,
+        artData: {
             ...experience,
             ...artist,
             imageUrl
         }
-        return (
-            <>
-                <BreadcrumbComponent data={ experience }/>
-                <CarouselComponent data={imageUrl}/>
-                <main className="pl-5 pb-10">
-                    <ExperienceHeader data={ experience }/>
-                    <HostDetails data={ artData }/>
-                    <ExperienceDescription data={ experience }/>
-                    <IncludesSection />
-                    <AccesibilitySection />
-                    <HostBio data={artData} />
-                    <LocationSection />
-                    <ReviewsSection data={ reviews }/>
-                    <AvailableDatesSection />
-                    <CancellationPolicy />
-                    <Divider />
-                    <p className="text-body-2 flex items-center gap-3 font-bold pt-5"><FaFlag className="text-xl" />Report this experience</p>
-                </main>
-            </>
-        )
+    }
+}
+
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+const  renderExperienceMainContent = (experience: any, artData: any, reviews: any) => {
+    return (
+        <>
+            <BreadcrumbComponent data={experience} />
+            <CarouselComponent data={artData.imageUrl} />
+            <main className="pl-5 pb-10">
+                <ExperienceHeader data={experience} />
+                <HostDetails data={artData} />
+                <ExperienceDescription data={experience} />
+                <IncludesSection />
+                <AccesibilitySection />
+                <HostBio data={artData} />
+                <LocationSection />
+                <ReviewsSection data={reviews} />
+                <AvailableDatesSection />
+                <CancellationPolicy />
+                <Divider />
+                <p className="text-body-2 flex items-center gap-3 font-bold pt-5"><FaFlag className="text-xl" />Report this experience</p>
+            </main>
+        </>
+    )
+}
+
+export default async function Details({ params }: DetailsProps) {
+    const { id } = params
+    
+    try {
+        const { experience, reviews, artData } = await fetchExperienceData(id)
+
+        if(!experience || !reviews || !artData) {
+            throw new Error('Missing data for the experience')
+        }
+
+        return renderExperienceMainContent(experience, artData, reviews)
     } catch (error) {
-        console.log('Error getting experience details', error.message)
+        console.error('Error fetching experience data: ', error.message)
+        return (
+            <div>
+                <h2>Error loading experience details</h2>
+                <p>Please try again</p>
+            </div>
+        )
     }
 }

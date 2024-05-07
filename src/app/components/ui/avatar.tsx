@@ -5,7 +5,7 @@ type Props = {
 }
 
 export const AvatarComponent = ({ image }: Props) => {
-  const firstImageUrl = image && image.length > 0 ? image[0] : undefined
+  const firstImageUrl = Array.isArray(image) ? image[0] : image
   return (
     <div className="relative rounded-full h-20 w-20 overflow-hidden object-center object-cover">
       {firstImageUrl && (
