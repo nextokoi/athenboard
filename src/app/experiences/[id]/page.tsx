@@ -26,8 +26,8 @@ export default async function Details({ params }: Props) {
     try {
         const experience = await fetchOneExperience(id)
         const imageUrl = await fetchImageUrl(id)
-        const artist = await fetchOneArtist(experience.artist_id)
         const reviews = await fetchReviews(id)
+        const artist = await fetchOneArtist(experience.artist_id)
         const artData = {
             ...experience,
             ...artist,
