@@ -19,7 +19,7 @@ export const MapLeaflet = () => {
           center={position}
           zoom={13}
           scrollWheelZoom={true}
-          className="w-full h-64"
+          className="w-full h-64 z-0"
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'

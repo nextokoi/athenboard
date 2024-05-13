@@ -50,7 +50,7 @@ const  renderExperienceMainContent = (experience: any, artData: any, reviews: an
                 <HostDetails data={artData} />
                 <ExperienceDescription data={experience} />
                 <IncludesSection />
-                <AccesibilitySection />
+                <AccesibilitySection data={experience} />
                 <HostBio data={artData} />
                 <LocationSection />
                 <ReviewsSection data={reviews} />
