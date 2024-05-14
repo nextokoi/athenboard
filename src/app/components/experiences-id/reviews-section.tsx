@@ -1,6 +1,11 @@
-import { ButtonComponent } from "@/app/components/ui/button";
+"use client"
+
 import { HorizontalScroll } from "@/app/components/horizontal-scroll";
 import { AvatarComponent } from "../ui/avatar";
+import { Button } from "keep-react";
+import { Drawer } from "../ui/drawer";
+import { useState } from "react";
+import { FaStar } from "react-icons/fa6";
 
 interface User {
   id: string
@@ -37,6 +42,14 @@ const formatedDate = (date: string) => {
 }
 
 export const ReviewsSection = ({ data }: ReviewProps) => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(true)
+  const handleOpenDrawer = () => {
+    setIsDrawerOpen(true)
+  }
+
+  const handleCloseDrawer = () => {
+    setIsDrawerOpen(false)
+  }
   const renderReviews = () => {
     return data.map((review) => {
       const user = review.user
@@ -63,12 +76,16 @@ export const ReviewsSection = ({ data }: ReviewProps) => {
         {data.length > 0 ? renderReviews() : <p>No reviews yet. Be the first!</p>}
       </HorizontalScroll>
       <div className="pr-5">
-        <ButtonComponent
-          title="Show more reviews"
-          width="full"
-          bgColor="#3B6939"
-        />
+        <Button className="w-full" color="success" onClick={handleOpenDrawer}>
+          Show more reviews
+        </Button>
       </div>
+      <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer}>
+        <div className="flex gap-3">
+          <FaStar className="text-4xl"/>
+          <h4 className="text-heading-5">5(100 reviews)</h4>
+        </div>
+      </Drawer>
     </div>
   );
 };

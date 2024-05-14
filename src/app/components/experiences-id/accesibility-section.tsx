@@ -2,7 +2,7 @@
 
 import { Button, Divider } from "keep-react"
 import { Drawer } from "../ui/drawer"
-import { useState } from "react"
+import { AwaitedReactNode, JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from "react"
 import { FaChevronLeft } from "react-icons/fa6";
 
 
@@ -26,16 +26,19 @@ export const AccesibilitySection = ({ data }: { data: any }) => {
     
         return (
             <ul className="flex flex-col gap-2">
-                <li>
-                    <p className="text-pretty text-body-3">This artist has highlighted suitable features for guests with accessibility requirements.</p>
-                </li>
                 {accessibilityItems.map(item => (
                     data[item.key] && (
                         <li key={item.key}>
                             <h6 className="font-medium text-heading-6">{item.label}</h6>
-                            <p className="text-pretty text-body-4">
+                            {Array.isArray(data[item.key]) ? (<ul>
+                                    {data[item.key].map((value: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined, index: Key | null | undefined) => (
+                                        <li key={index} className="text-pretty text-body-4">{value}</li>
+                                    ))}
+                                </ul>)
+                               : (<p className="text-pretty text-body-4">
                                 {data[item.key]}
-                            </p>
+                                </p>)
+                            }
                         </li>
                     )
                 ))}
@@ -60,6 +63,7 @@ export const AccesibilitySection = ({ data }: { data: any }) => {
                                 <FaChevronLeft />
                             </Button>
                             <h5 className="text-heading-5 pt-2">Accesibility</h5>
+                            <p className="text-pretty text-body-3 mt-2">This artist has highlighted suitable features for guests with accessibility requirements.</p>
                         </header>
                         <main>
                             {renderAccesibilityContent()}
