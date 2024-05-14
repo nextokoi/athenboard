@@ -54,7 +54,7 @@ const  renderExperienceMainContent = (experience: any, artData: any, reviews: an
                 <HostBio data={artData} />
                 <LocationSection />
                 <ReviewsSection data={reviews} />
-                <AvailableDatesSection />
+                <AvailableDatesSection data={experience}/>
                 <CancellationPolicy />
                 <Divider />
                 <p className="text-body-2 flex items-center gap-3 font-bold pt-5"><FaFlag className="text-xl" />Report this experience</p>

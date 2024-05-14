@@ -5,7 +5,7 @@ import { AvatarComponent } from "../ui/avatar";
 import { Button } from "keep-react";
 import { Drawer } from "../ui/drawer";
 import { useState } from "react";
-import { FaStar } from "react-icons/fa6";
+import { FaChevronLeft, FaStar } from "react-icons/fa6";
 
 interface User {
   id: string
@@ -42,7 +42,7 @@ const formatedDate = (date: string) => {
 }
 
 export const ReviewsSection = ({ data }: ReviewProps) => {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(true)
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const handleOpenDrawer = () => {
     setIsDrawerOpen(true)
   }
@@ -63,7 +63,7 @@ export const ReviewsSection = ({ data }: ReviewProps) => {
               <p className="text-body-4">{date}</p>
             </div>
           </div>
-          <div className="text-balance">{review.content}</div>
+          <div className="text-pretty">{review.content}</div>
         </div>
       );
     });
@@ -71,7 +71,10 @@ export const ReviewsSection = ({ data }: ReviewProps) => {
 
   return (
     <div className="flex flex-col gap-3 py-5">
-      <h6 className="text-heading-6 font-medium">⭐5(100 reviews)</h6>
+      <div className="flex items-center gap-3">
+          <FaStar className="text-3xl"/>
+          <h6 className="text-heading-6">5 (100 reviews)</h6>
+      </div>
       <HorizontalScroll>
         {data.length > 0 ? renderReviews() : <p>No reviews yet. Be the first!</p>}
       </HorizontalScroll>
@@ -81,9 +84,19 @@ export const ReviewsSection = ({ data }: ReviewProps) => {
         </Button>
       </div>
       <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer}>
-        <div className="flex gap-3">
-          <FaStar className="text-4xl"/>
-          <h4 className="text-heading-5">5(100 reviews)</h4>
+        <div className="p-8">
+          <header className="flex flex-col gap-5">
+            <Button className="p-2 w-fit bg-transparent hover:bg-slate-100 text-[#171D1E]" onClick={handleCloseDrawer}>
+              <FaChevronLeft className="text-2xl"/>
+            </Button>
+            <div className="flex items-center gap-3">
+              <FaStar className="text-3xl"/>
+              <h6 className="text-heading-6">5 (100 reviews)</h6>
+            </div>
+          </header>
+          <main className="mt-10">
+            {data.length > 0 ? renderReviews() : <p>No reviews yet. Be the first!</p>}
+          </main>
         </div>
       </Drawer>
     </div>
