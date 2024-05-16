@@ -23,7 +23,7 @@ export const AccesibilitySection = ({ data }: { data: any }) => {
             { key: "sensory_needs", label: "Sensory needs" },
             { key: "personal_assistants_features", label: "Personal assistants" }
         ]
-    
+
         return (
             <ul className="flex flex-col gap-2">
                 {accessibilityItems.map(item => (
@@ -31,12 +31,14 @@ export const AccesibilitySection = ({ data }: { data: any }) => {
                         <li key={item.key}>
                             <h6 className="font-medium text-heading-6">{item.label}</h6>
                             {Array.isArray(data[item.key]) ? (<ul>
-                                    {data[item.key].map((value: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined, index: Key | null | undefined) => (
-                                        <li key={index} className="text-pretty text-body-4">{value}</li>
-                                    ))}
-                                </ul>)
-                               : (<p className="text-pretty text-body-4">
-                                {data[item.key]}
+                                {/* biome-ignore lint/suspicious/noExplicitAny: <explanation> */}
+                                {data[item.key].map((value: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined, index: Key | null | undefined) => (
+                                    // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                                    <li key={index} className="text-pretty text-body-4">{value}</li>
+                                ))}
+                            </ul>)
+                                : (<p className="text-pretty text-body-4">
+                                    {data[item.key]}
                                 </p>)
                             }
                         </li>
@@ -45,7 +47,7 @@ export const AccesibilitySection = ({ data }: { data: any }) => {
             </ul>
         );
     };
-    
+
 
     return (
         <div className="pr-5">

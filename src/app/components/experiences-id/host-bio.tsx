@@ -19,7 +19,7 @@ type Props = {
 
 export const HostBio = ({data} : Props) => {
     const { name, biography, imageUrl } = data
-    const [isDrawerOpen, setIsDrawerOpen] = useState(true)
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
     const handleOpenDrawer = () => {
         setIsDrawerOpen(true)

@@ -95,7 +95,7 @@ export async function fetchReviews(experienceId: string) {
 		const { data: reviewsData, error: reviewsError } = await supabase
 			.from('reviews')
 			.select()
-			.eq('experiences_id', experienceId)
+			.eq('experience_id', experienceId)
 
 		if (reviewsError) {
 			console.error('Error fetching reviews', reviewsError.message)
