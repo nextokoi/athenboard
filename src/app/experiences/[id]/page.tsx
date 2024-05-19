@@ -14,7 +14,7 @@ import { AvailableDatesSection } from "../../components/experiences-id/available
 import { CancellationPolicy } from "../../components/experiences-id/cancellation-policy"
 
 import { FaFlag } from "react-icons/fa6";
-import { fetchImageUrl, fetchOneExperience, fetchOneArtist, fetchReviews } from "@/app/utils/supabase/dataService"
+import { fetchImageUrl, fetchOneExperience, fetchOneArtist, fetchReviews, fetchScheduleDates } from "@/app/utils/supabase/dataService"
 
 interface DetailsProps {
     params: { id: string }
@@ -27,10 +27,12 @@ export const fetchExperienceData = async (id: string) => {
     const imageUrl = await fetchImageUrl(id);
     const reviews = await fetchReviews(id);
     const artist = await fetchOneArtist(experience.artist_id);
+    const schedule_dates = await fetchScheduleDates(id)
     
     return {
         experience,
         reviews,
+        schedule_dates,
         artData: {
             ...experience,
             ...artist,
@@ -40,7 +42,7 @@ export const fetchExperienceData = async (id: string) => {
 }
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-const  renderExperienceMainContent = (experience: any, artData: any, reviews: any) => {
+const  renderExperienceMainContent = (experience: any, artData: any, reviews: any, schedule_dates: any) => {
     return (
         <>
             <BreadcrumbComponent data={experience} />
@@ -54,7 +56,7 @@ const  renderExperienceMainContent = (experience: any, artData: any, reviews: an
                 <HostBio data={artData} />
                 <LocationSection />
                 <ReviewsSection data={reviews} />
-                <AvailableDatesSection data={experience}/>
+                <AvailableDatesSection data={schedule_dates}/>
                 <CancellationPolicy />
                 <Divider />
                 <p className="text-body-2 flex items-center gap-3 font-bold pt-5"><FaFlag className="text-xl" />Report this experience</p>
@@ -67,13 +69,13 @@ export default async function Details({ params }: DetailsProps) {
     const { id } = params
     
     try {
-        const { experience, reviews, artData } = await fetchExperienceData(id)
+        const { experience, reviews, artData, schedule_dates } = await fetchExperienceData(id)
 
         if(!experience || !reviews || !artData) {
             throw new Error('Missing data for the experience')
         }
 
-        return renderExperienceMainContent(experience, artData, reviews)
+        return renderExperienceMainContent(experience, artData, reviews, schedule_dates)
     } catch (error) {
         console.error('Error fetching experience data: ', error.message)
         return (

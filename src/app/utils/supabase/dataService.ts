@@ -143,3 +143,66 @@ export async function fetchReviews(experienceId: string) {
 		throw error
 	}
 }
+
+interface Schedule {
+	hour: string
+}
+
+interface Date {
+	date: string
+}
+
+interface ScheduleDate {
+	schedule_date_id: number
+	schedule_id: number
+	date_id: number
+	hour: Schedule
+	date: Date
+}
+
+export async function fetchScheduleDates(experienceId: string) {
+	try {
+		const { data, error } = await supabase
+			.from('experiences_schedule_date')
+			.select(`
+		  schedule_date_id,
+		  schedule_date (
+			schedule_id,
+			date_id,
+			schedule (
+			  hour
+			),
+			date (
+			  date
+			)
+		  )
+		`)
+			.eq('experience_id', experienceId)
+
+		if (error) {
+			throw error
+		}
+
+		if (!data) {
+			return []
+		}
+
+		const scheduleDates: ScheduleDate[] = data.map((item) => {
+			const scheduleDate = item.schedule_date
+			const schedule = scheduleDate.schedule
+			const date = scheduleDate.date
+			return {
+				schedule_date_id: item.schedule_date_id,
+				schedule_id: scheduleDate.schedule_id,
+				date_id: scheduleDate.date_id,
+				hour: schedule.hour,
+				date: date.date,
+			}
+		})
+
+		return scheduleDates
+	} catch (error) {
+		console.error('Error fetching schedule dates', error.message)
+		throw error
+	}
+}
