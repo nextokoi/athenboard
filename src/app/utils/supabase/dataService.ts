@@ -145,24 +145,33 @@ export async function fetchReviews(experienceId: string) {
 }
 
 interface Schedule {
-	hour: string
+    id: number;
+    hour: string;
 }
 
-interface Date {
-	date: string
+interface DateItem {
+    id: number;
+    date: string;
 }
 
 interface ScheduleDate {
-	schedule_date_id: number
-	schedule_id: number
-	date_id: number
-	hour: Schedule
-	date: Date
+    date: DateItem[];
+    date_id: number;
+    schedule: Schedule[];
+    schedule_id: number;
+}
+
+interface MappedSchedule {
+    scheduleDateId: number;
+    schedule_id: number;
+    date_id: number;
+    hour: string;
+    date: string;
 }
 
 export async function fetchScheduleDates(experienceId: string) {
 	try {
-		const { data, error } = await supabase
+		const { data: responseData, error } = await supabase
 			.from('experiences_schedule_date')
 			.select(`
 		  schedule_date_id,
@@ -183,11 +192,11 @@ export async function fetchScheduleDates(experienceId: string) {
 			throw error
 		}
 
-		if (!data) {
+		if (!responseData) {
 			return []
 		}
 
-		const scheduleDates: ScheduleDate[] = data.map((item) => {
+		const scheduleDates : { schedule_date_id: number, schedule_date: ScheduleDate } [] = responseData.map((item: any) => {
 			const scheduleDate = item.schedule_date
 			const schedule = scheduleDate.schedule
 			const date = scheduleDate.date

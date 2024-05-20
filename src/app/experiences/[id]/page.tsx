@@ -28,6 +28,7 @@ export const fetchExperienceData = async (id: string) => {
     const reviews = await fetchReviews(id);
     const artist = await fetchOneArtist(experience.artist_id);
     const schedule_dates = await fetchScheduleDates(id)
+    console.log(schedule_dates)
     
     return {
         experience,
