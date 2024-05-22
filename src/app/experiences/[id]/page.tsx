@@ -28,22 +28,21 @@ export const fetchExperienceData = async (id: string) => {
     const reviews = await fetchReviews(id);
     const artist = await fetchOneArtist(experience.artist_id);
     const schedule_dates = await fetchScheduleDates(id)
-    console.log(schedule_dates)
     
     return {
         experience,
         reviews,
-        schedule_dates,
         artData: {
             ...experience,
             ...artist,
+            schedule_dates,
             imageUrl
         }
     }
 }
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-const  renderExperienceMainContent = (experience: any, artData: any, reviews: any, schedule_dates: any) => {
+const  renderExperienceMainContent = (experience: any, artData: any, reviews: any ) => {
     return (
         <>
             <BreadcrumbComponent data={experience} />
@@ -57,7 +56,7 @@ const  renderExperienceMainContent = (experience: any, artData: any, reviews: an
                 <HostBio data={artData} />
                 <LocationSection />
                 <ReviewsSection data={reviews} />
-                <AvailableDatesSection data={schedule_dates}/>
+                <AvailableDatesSection data={artData}/>
                 <CancellationPolicy />
                 <Divider />
                 <p className="text-body-2 flex items-center gap-3 font-bold pt-5"><FaFlag className="text-xl" />Report this experience</p>
@@ -70,13 +69,13 @@ export default async function Details({ params }: DetailsProps) {
     const { id } = params
     
     try {
-        const { experience, reviews, artData, schedule_dates } = await fetchExperienceData(id)
+        const { experience, reviews, artData } = await fetchExperienceData(id)
 
         if(!experience || !reviews || !artData) {
             throw new Error('Missing data for the experience')
         }
 
-        return renderExperienceMainContent(experience, artData, reviews, schedule_dates)
+        return renderExperienceMainContent(experience, artData, reviews)
     } catch (error) {
         console.error('Error fetching experience data: ', error.message)
         return (

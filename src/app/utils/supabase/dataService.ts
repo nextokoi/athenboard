@@ -144,29 +144,12 @@ export async function fetchReviews(experienceId: string) {
 	}
 }
 
-interface Schedule {
-    id: number;
-    hour: string;
-}
-
-interface DateItem {
-    id: number;
-    date: string;
-}
-
-interface ScheduleDate {
-    date: DateItem[];
-    date_id: number;
-    schedule: Schedule[];
-    schedule_id: number;
-}
-
 interface MappedSchedule {
-    scheduleDateId: number;
-    schedule_id: number;
-    date_id: number;
-    hour: string;
-    date: string;
+	schedule_date_id: number
+	schedule_id: number
+	date_id: number
+	hour: string
+	date: string
 }
 
 export async function fetchScheduleDates(experienceId: string) {
@@ -196,7 +179,8 @@ export async function fetchScheduleDates(experienceId: string) {
 			return []
 		}
 
-		const scheduleDates : { schedule_date_id: number, schedule_date: ScheduleDate } [] = responseData.map((item: any) => {
+		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+		const scheduleDates: MappedSchedule[] = responseData.map((item: any) => {
 			const scheduleDate = item.schedule_date
 			const schedule = scheduleDate.schedule
 			const date = scheduleDate.date
