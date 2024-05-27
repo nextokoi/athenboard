@@ -1,11 +1,6 @@
-import { createClient } from '@supabase/supabase-js'
+import { supabase } from './supabaseClient'
 
-const supabase = createClient(
-	process.env.NEXT_PUBLIC_SUPABASE_URL as string,
-	process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string,
-)
-
-export async function fetchDataFromSupabase() {
+export async function fetchAllExperiences() {
 	try {
 		const { data, error } = await supabase.from('experiences').select()
 		if (error) {
@@ -115,7 +110,7 @@ export async function fetchReviews(experienceId: string) {
 		const { data: usersData, error: usersError } = await supabase
 			.from('users')
 			.select()
-			.eq('id', userIds)
+			.in('id', userIds)
 
 		if (usersError) {
 			console.error('Error fetching users', usersError.message)
@@ -161,23 +156,15 @@ export async function fetchScheduleDates(experienceId: string) {
 		  schedule_date (
 			schedule_id,
 			date_id,
-			schedule (
-			  hour
-			),
-			date (
-			  date
-			)
+			schedule (hour),
+			date (date)
 		  )
 		`)
 			.eq('experience_id', experienceId)
 
-		if (error) {
-			throw error
-		}
+		if (error) throw error
 
-		if (!responseData) {
-			return []
-		}
+		if (!responseData) return []
 
 		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 		const scheduleDates: MappedSchedule[] = responseData.map((item: any) => {

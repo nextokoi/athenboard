@@ -21,8 +21,13 @@ export const AvailableDatesSection = ({ data }: { data: any }) => {
     }
 
     const renderDateCard = () => {
+
+        const sortedSchedule = schedule_dates.sort((a: { date: string | Date }, b: { date: string | Date }) => {
+            return new Date(a.date).getTime() - new Date(b.date).getTime();
+        })
+
         // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-        return schedule_dates.map((schedule: any, index: any) => {
+        return sortedSchedule.map((schedule: any, index: any) => {
             const infoCard = {
                 date: schedule.date,
                 hour: schedule.hour,
@@ -33,9 +38,9 @@ export const AvailableDatesSection = ({ data }: { data: any }) => {
             return (
                 // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
                 <DateCard data={infoCard} key={index} id={schedule.id} />
-            );
-        });
-    };
+            )
+        })
+    }
 
     return (
         <div className="pr-5">
@@ -46,12 +51,12 @@ export const AvailableDatesSection = ({ data }: { data: any }) => {
                     Show more dates
                 </Button>
                 <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer}>
-                    <div className="p-8">
-                        <header className="flex flex-col gap-5">
+                    <div className="px-6 pb-8">
+                        <header className="flex flex-col gap-5 mb-5 sticky top-0 bg-white pt-8 pb-8">
                             <Button className="p-2 w-fit bg-transparent hover:bg-slate-100 text-[#171D1E]" onClick={handleCloseDrawer}>
                                 <FaChevronLeft className="text-2xl" />
                             </Button>
-                            <h5 className="text-heading-5">Choose from the available dates</h5>
+                            <h5 className="text-heading-5 text-balance">Choose from the available dates</h5>
                         </header>
                         <main>
                             {renderDateCard()}
