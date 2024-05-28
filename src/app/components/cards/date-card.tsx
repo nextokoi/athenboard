@@ -48,6 +48,7 @@ export const DateCard: FunctionComponent<Props> = ({ data, id }) => {
     const cancelDate = subDays(date, 1)
     const cancelDateTime = format(cancelDate, `dd MMM. ${startTime}`)
 
+    console.log("DateCard: ", data)
     return (
         <div id={id} className="mb-5">
             <h6 className="text-heading-6 mb-3">{formattedDate}</h6>

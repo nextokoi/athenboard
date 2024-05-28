@@ -11,6 +11,7 @@ import { DateCard } from "../cards/date-card"
 export const AvailableDatesSection = ({ data }: { data: any }) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(true)
     const { schedule_dates, price, available_languages, duration } = data
+    console.log("AvailableDatesSection: ", data)
 
     const handleOpenDrawer = () => {
         setIsDrawerOpen(true)

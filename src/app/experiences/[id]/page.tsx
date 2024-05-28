@@ -87,6 +87,8 @@ export default async function Details({ params }: DetailsProps) {
     try {
         const { experience, reviews, artData } = await fetchExperienceData(id);
 
+        console.log("PageDetails: ", artData)
+
         if (!experience || !reviews || !artData) {
             throw new Error('Missing data for the experience');
         }
