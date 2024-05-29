@@ -67,7 +67,6 @@ export const SearchFilters = () => {
     }
 
     const handleRemoveFilters = () => {
-        setIsDrawerOpen(false)
         setSelectedDate(undefined)
         setSelectedCheckbox([])
         setRangeValues([25, 100])

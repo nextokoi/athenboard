@@ -10,12 +10,12 @@ import 'swiper/css/pagination'
 
 
 type Props = {
-  data: string[]
+  images: string[]
 }
 
-export const CarouselComponent = ({ data }: Props) => {
+export const CarouselComponent = ({ images }: Props) => {
   const renderItemCarousel = () => {
-    return data.map((image, index) => {
+    return images.map((image, index) => {
       return (
         // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
         <SwiperSlide key={index}>

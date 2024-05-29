@@ -9,16 +9,13 @@ import { Drawer } from "../ui/drawer";
 import { useState } from "react";
 import { HiXMark } from "react-icons/hi2";
 
-type Props = {
-    data:{
-        name: string
-        biography: string
-        imageUrl: string
-    }
+interface Props {
+    name: string
+    biography: string
+    image: string
 }
 
-export const HostBio = ({data} : Props) => {
-    const { name, biography, imageUrl } = data
+export const HostBio = ({ name, biography, image } : Props) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
     const handleOpenDrawer = () => {
@@ -36,7 +33,7 @@ export const HostBio = ({data} : Props) => {
                     <h6 className="text-heading-6 font-medium">
                         Meet {name}, your artist
                     </h6>
-                    <AvatarComponent image={imageUrl}/>
+                    <AvatarComponent image={image}/>
                 </div>
                 <div className="flex flex-col gap-2">
                     <div className="flex items-center gap-2">

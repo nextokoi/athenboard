@@ -2,14 +2,11 @@ import { Divider } from "keep-react"
 import { FaStar } from "react-icons/fa6"
 
 interface Props {
-    data:{
-        title: string,
-        address: string
-    } 
+    title: string,
+    address: string 
 }
 
-export const ExperienceHeader = ({ data } : Props) => {
-    const { title, address } = data
+export const ExperienceHeader = ({ title, address } : Props) => {
     return (
         <div className="py-5 flex flex-col gap-3 pr-5">
             <h5 className="text-heading-5">{title}</h5>

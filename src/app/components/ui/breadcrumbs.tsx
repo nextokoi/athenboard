@@ -4,19 +4,10 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { House } from 'phosphor-react'
 
-interface Props {
-  data?: {
-    title: string
-  }
-}
-
-export const BreadcrumbComponent = ({ data } : Props) => {
+export const BreadcrumbComponent = ({ title } : { title: string }) => {
   const currentRoute = usePathname()
   const namePage = currentRoute.substring(1).charAt(0).toUpperCase() + currentRoute.slice(2)
   const breadPieces = namePage.split('/')
-
-  const title = data?.title
-  const itemTitle = data ? title : ''
   
   const breadItems = () => {
     const lastIndex = breadPieces.length - 1
@@ -25,7 +16,7 @@ export const BreadcrumbComponent = ({ data } : Props) => {
       return(
         // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
         <Breadcrumb.Item key={index} activeType={index === lastIndex ? 'base' : undefined} href={index !== lastIndex ? `/${item.toLowerCase()}` : null as unknown as string}>
-          {isUUID ? itemTitle : item}
+          {isUUID ? title : item}
         </Breadcrumb.Item>
       )
     })

@@ -7,11 +7,18 @@ import { Drawer } from "../ui/drawer"
 import { FaChevronLeft } from "react-icons/fa6"
 import { DateCard } from "../cards/date-card"
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-export const AvailableDatesSection = ({ data }: { data: any }) => {
-    const [isDrawerOpen, setIsDrawerOpen] = useState(true)
-    const { schedule_dates, price, available_languages, duration } = data
-    console.log("AvailableDatesSection: ", data)
+interface Props {
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+    experience: any
+    image: string
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+    schedules: any
+    available_languages: string
+}
+
+
+export const AvailableDatesSection = ({ experience, image, available_languages, schedules }: Props) => {
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
     const handleOpenDrawer = () => {
         setIsDrawerOpen(true)
@@ -21,24 +28,44 @@ export const AvailableDatesSection = ({ data }: { data: any }) => {
         setIsDrawerOpen(false)
     }
 
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+    const handleDateSelect = async (data: any) => {
+        const res = await fetch('/api/checkout', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+
+        if (!res.ok) {
+            console.log(res)
+            return
+        }
+
+        const session = await res.json()
+
+        window.location.href = session.url
+    }
+
     const renderDateCard = () => {
 
-        const sortedSchedule = schedule_dates.sort((a: { date: string | Date }, b: { date: string | Date }) => {
+        const sortedSchedule = schedules.sort((a: { date: string | Date }, b: { date: string | Date }) => {
             return new Date(a.date).getTime() - new Date(b.date).getTime();
         })
 
         // biome-ignore lint/suspicious/noExplicitAny: <explanation>
         return sortedSchedule.map((schedule: any, index: any) => {
-            const infoCard = {
+            const data = {
                 date: schedule.date,
                 hour: schedule.hour,
-                price,
+                image,
                 available_languages,
-                duration
+                ...experience
             }
             return (
                 // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-                <DateCard data={infoCard} key={index} id={schedule.id} />
+                <DateCard data={data} key={index} id={schedule.id} onSelect={handleDateSelect} />
             )
         })
     }

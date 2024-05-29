@@ -9,7 +9,7 @@ import { FaChevronLeft, FaStar } from "react-icons/fa6";
 
 interface User {
   id: string
-  name: string
+  username: string
   avatar_url: string
 }
 
@@ -22,7 +22,7 @@ interface ReviewData {
 }
 
 interface ReviewProps {
-  data: ReviewData[]
+  reviews: ReviewData[]
 }
 
 const formatedDate = (date: string) => {
@@ -41,7 +41,7 @@ const formatedDate = (date: string) => {
   return `${formattedDate} - ${formattedTime}`
 }
 
-export const ReviewsSection = ({ data }: ReviewProps) => {
+export const ReviewsSection = ({ reviews }: ReviewProps) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
   const handleOpenDrawer = () => {
     setIsDrawerOpen(true)
@@ -51,7 +51,7 @@ export const ReviewsSection = ({ data }: ReviewProps) => {
     setIsDrawerOpen(false)
   }
   const renderReviews = () => {
-    return data.map((review) => {
+    return reviews.map((review) => {
       const user = review.user
       const date = formatedDate(review.created_at)
       return (
@@ -59,7 +59,7 @@ export const ReviewsSection = ({ data }: ReviewProps) => {
           <div className="flex items-center gap-6 mb-3">
             <AvatarComponent image={user.avatar_url}/>
             <div>
-              <h6 className="text-heading-6 font-medium">{user.name}</h6>
+              <h6 className="text-heading-6 font-medium">{user.username}</h6>
               <p className="text-body-4">{date}</p>
             </div>
           </div>
@@ -76,7 +76,7 @@ export const ReviewsSection = ({ data }: ReviewProps) => {
           <h6 className="text-heading-6">5 (100 reviews)</h6>
       </div>
       <HorizontalScroll>
-        {data.length > 0 ? renderReviews() : <p>No reviews yet. Be the first!</p>}
+        {reviews.length > 0 ? renderReviews() : <p>No reviews yet. Be the first!</p>}
       </HorizontalScroll>
       <div className="pr-5">
         <Button className="w-full" color="success" onClick={handleOpenDrawer}>
@@ -95,7 +95,7 @@ export const ReviewsSection = ({ data }: ReviewProps) => {
             </div>
           </header>
           <main className="mt-10">
-            {data.length > 0 ? renderReviews() : <p>No reviews yet. Be the first!</p>}
+            {reviews.length > 0 ? renderReviews() : <p>No reviews yet. Be the first!</p>}
           </main>
         </div>
       </Drawer>

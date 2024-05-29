@@ -3,11 +3,16 @@
 import { Button, Divider } from "keep-react"
 import { Drawer } from "../ui/drawer"
 import { AwaitedReactNode, JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from "react"
-import { FaChevronLeft } from "react-icons/fa6";
+import { FaChevronLeft } from "react-icons/fa6"
 
+interface Props {
+    mobility_features: string[]
+    communication_features: string[]
+    sensory_needs: string[]
+    personal_assistants_features: string[]
+}
 
-// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-export const AccesibilitySection = ({ data }: { data: any }) => {
+export const AccesibilitySection = ({ mobility_features, communication_features, sensory_needs, personal_assistants_features }: Props) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
     const handleOpenDrawer = () => {
         setIsDrawerOpen(true)
@@ -18,29 +23,30 @@ export const AccesibilitySection = ({ data }: { data: any }) => {
 
     const renderAccesibilityContent = () => {
         const accessibilityItems = [
-            { key: "mobility_features", label: "Mobility" },
-            { key: "communication_features", label: "Communication" },
-            { key: "sensory_needs", label: "Sensory needs" },
-            { key: "personal_assistants_features", label: "Personal assistants" }
+            { key: "mobility_features", label: "Mobility", data: mobility_features },
+            { key: "communication_features", label: "Communication", data: communication_features },
+            { key: "sensory_needs", label: "Sensory needs", data: sensory_needs },
+            { key: "personal_assistants_features", label: "Personal assistants", data: personal_assistants_features },
         ]
 
         return (
             <ul className="flex flex-col gap-2">
                 {accessibilityItems.map(item => (
-                    data[item.key] && (
+                    item.data && (
                         <li key={item.key}>
                             <h6 className="font-medium text-heading-6">{item.label}</h6>
-                            {Array.isArray(data[item.key]) ? (<ul>
-                                {/* biome-ignore lint/suspicious/noExplicitAny: <explanation> */}
-                                {data[item.key].map((value: string | number | bigint | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<AwaitedReactNode> | null | undefined, index: Key | null | undefined) => (
-                                    // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-                                    <li key={index} className="text-pretty text-body-4">{value}</li>
-                                ))}
-                            </ul>)
-                                : (<p className="text-pretty text-body-4">
-                                    {data[item.key]}
-                                </p>)
-                            }
+                            {Array.isArray(item.data) ? (
+                                <ul>
+                                    {item.data.map((value, index) => (
+                                        // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+                                        <li key={index} className="text-pretty text-body-4">{value}</li>
+                                    ))}
+                                </ul>
+                            ) : (
+                                <p className="text-pretty text-body-4">
+                                    {item.data}
+                                </p>
+                            )}
                         </li>
                     )
                 ))}

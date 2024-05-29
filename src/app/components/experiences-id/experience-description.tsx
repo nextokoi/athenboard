@@ -1,13 +1,7 @@
 import { Divider } from "keep-react"
 
-type Props = {
-    data: {
-        description: string
-    }
-}
-
-export const ExperienceDescription = ({ data } : Props) => {
-    const { description } = data
+export const ExperienceDescription = ({ description } : {description: string}) => {
+    
     return (
         <div className="pr-5">
             <div className="flex flex-col gap-3 py-5">
