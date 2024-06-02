@@ -4,8 +4,8 @@ import './navbar.css'
 
 import Image from "next/image";
 import Link from "next/link";
-
 import { Navbar } from "keep-react";
+import LoginNav from './login-nav';
 
 export const NavbarComponent = () => {
   return (
@@ -27,22 +27,22 @@ export const NavbarComponent = () => {
             tag="ul"
             className="lg:flex hidden items-center justify-between gap-8 link-color"
           >
-            <Navbar.Link linkName="Home"/>
-            <Navbar.Link linkName="Projects" />
+            <Navbar.Link linkName="Home" />
+            <Navbar.Link linkName="Profile" href='/profile' />
             <Navbar.Link linkName="About" />
           </Navbar.Container>
           <Navbar.Collapse collapseType="sidebar">
             <Navbar.Container tag="ul" className="flex flex-col gap-5">
               <Navbar.Link linkName="Home" />
-              <Navbar.Link linkName="Projects" />
-              <Navbar.Link linkName="Blogs" />
+              <Navbar.Link linkName="Profile" href='/profile' />
               <Navbar.Link linkName="News" />
               <Navbar.Link linkName="Resources" />
             </Navbar.Container>
           </Navbar.Collapse>
         </Navbar.Container>
-        <Navbar.Container className="flex gap-2">
-          <Navbar.Toggle className="toggle-svg-color"/>
+        <Navbar.Container className="flex gap-3">
+          <LoginNav />
+          <Navbar.Toggle className="toggle-svg-color" />
         </Navbar.Container>
       </Navbar.Container>
     </Navbar>

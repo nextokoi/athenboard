@@ -1,8 +1,3 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
-import { AuthButtonServer } from '@/app/components/auth/auth-button-server'
-import { redirect } from 'next/navigation'
-
 import { FaPalette } from "react-icons/fa6";
 import { FaPaintbrush } from "react-icons/fa6";
 import { FaCircleCheck } from "react-icons/fa6";
@@ -18,18 +13,8 @@ import { HorizontalScroll } from './components/horizontal-scroll';
 import Link from 'next/link';
 
 export default async function Home() {
-	const supabase = createServerComponentClient({ cookies })
-	const { data: { session } } = await supabase.auth.getSession()
-
-	/* 	if (session === null ){
-			redirect('/login')
-		} */
-
-	/* const { data: activities } = await supabase.from('activities').select() */
 	return (
 		<main>
-			{/* <AuthButtonServer /> */}
-			{/* <pre>{JSON.stringify(activities, null, 2)}</pre> */}
 			<header className="bg-[url('https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/hero.webp?t=2024-03-28T14%3A50%3A12.791Z')] w-full h-screen bg-cover flex flex-col justify-around">
 				<h4 className="text-4xl font-medium text-balanc text-[#261A00] ml-5" >
 					Find the experiences that appeal to you

@@ -1,21 +1,19 @@
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
-import { type NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
+import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 
-// esto es una opción de Next.js, para evitar que cachee de forma
-// estática la ruta, y que siempre se ejecute en el servidor
-export const dynamic = 'force-dynamic'
+export async function GET(req: NextRequest) {
+	const url = new URL(req.url)
+	const code = url.searchParams.get('code')
 
-export async function GET(request: NextRequest) {
-	const requestUrl = new URL(request.url)
-	const code = requestUrl.searchParams.get('code')
+	if (code) {
+		const cookieStore = cookies()
+		const supabase = createRouteHandlerClient({
+			cookies: () => cookieStore,
+		})
 
-	if (code !== null) {
-		const supabase = createRouteHandlerClient({ cookies })
-		//usando el código que le hemos pasado por URL
-		//nos devuelve la sesión del usuario
 		await supabase.auth.exchangeCodeForSession(code)
 	}
 
-	return NextResponse.redirect(requestUrl.origin)
+	return NextResponse.redirect(url.origin)
 }
