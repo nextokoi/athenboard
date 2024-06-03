@@ -1,3 +1,5 @@
+"use client"
+
 import { Button, Dropdown, Input } from "keep-react";
 import { FaUserCircle } from "react-icons/fa";
 

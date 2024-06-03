@@ -5,9 +5,8 @@ import './navbar.css'
 import Image from "next/image";
 import Link from "next/link";
 import { Navbar } from "keep-react";
-import LoginNav from './login-nav';
 
-export const NavbarComponent = () => {
+export const NavbarComponent = ({ children } : {children: React.ReactNode}) => {
   return (
     <Navbar fluid={true} className="bg-[#006876]">
       <Navbar.Container className="flex items-center justify-between">
@@ -41,7 +40,7 @@ export const NavbarComponent = () => {
           </Navbar.Collapse>
         </Navbar.Container>
         <Navbar.Container className="flex gap-3">
-          <LoginNav />
+          {children}
           <Navbar.Toggle className="toggle-svg-color" />
         </Navbar.Container>
       </Navbar.Container>
