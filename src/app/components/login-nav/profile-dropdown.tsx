@@ -25,15 +25,20 @@ export default function ProfileDropdown() {
         }
     }
 
+    const handleProfile = () => {
+        router.push('/profile')
+        router.refresh()
+    }
+
 
   return (
     <Dropdown action={
         <Button className='bg-transparent hover:bg-transparent text-white p-0'>
             <FaUserCircle className="text-2xl" />
         </Button>
-    } actionClassName='border-none bg-transparent p-0' className='w-44'>
+    } actionClassName='border-none bg-transparent p-0' className='w-44 z-50'>
         <Dropdown.List>
-            <Dropdown.Item href="/profile">
+            <Dropdown.Item onClick={handleProfile}>
                 <FaUserCircle className="text-xl" />
                 Profile
             </Dropdown.Item>

@@ -10,7 +10,7 @@ export default function LoginDropdown() {
                 <FaUserCircle className="text-2xl mr-2" />
                 Sign in
             </Button>
-        } actionClassName='border-none bg-transparent p-0' >
+        } actionClassName='border-none bg-transparent p-0' className='z-50'>
             <form action="/auth/login" method="post">
                 <div className="flex flex-col gap-5">
                     <div className="flex flex-col gap-3">

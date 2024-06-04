@@ -186,3 +186,21 @@ export async function fetchScheduleDates(experienceId: string) {
 		throw error
 	}
 }
+
+export async function fetchUserProfile(userId: string) {
+	try {
+		const { data, error } = await supabase
+			.from('users')
+			.select('username, avatar_url')
+			.eq('id', userId)
+			.single()
+
+		if (error) {
+			throw error
+		}
+		return data
+	} catch (error) {
+		console.error('Error fetching user profile', error.message)
+		throw error
+	}
+}

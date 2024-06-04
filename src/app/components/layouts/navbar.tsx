@@ -33,9 +33,8 @@ export const NavbarComponent = ({ children } : {children: React.ReactNode}) => {
           <Navbar.Collapse collapseType="sidebar">
             <Navbar.Container tag="ul" className="flex flex-col gap-5">
               <Navbar.Link linkName="Home" />
-              <Navbar.Link linkName="Profile" href='/profile' />
-              <Navbar.Link linkName="News" />
-              <Navbar.Link linkName="Resources" />
+              <Navbar.Link linkName="Experiences" href='/experiences' />
+              <Navbar.Link linkName="About" />
             </Navbar.Container>
           </Navbar.Collapse>
         </Navbar.Container>

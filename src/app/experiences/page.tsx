@@ -95,7 +95,7 @@ export default async function Experiences({ searchParams }: { searchParams: { [k
             <header className='py-8 flex flex-col gap-3 px-5'>
                 <SearchBarComponent />
                 <BreadcrumbComponent />
-                <div className='flex justify-between sm:justify-center sm:gap-5'>
+                <div className='flex justify-center gap-4 md:gap-8'>
                     <TagComponent label='Activity type' />
                     <TagComponent label='Price' />
                     <TagComponent label='Available languages' />

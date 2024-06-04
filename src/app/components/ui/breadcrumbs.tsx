@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { House } from 'phosphor-react'
 
-export const BreadcrumbComponent = ({ title } : { title: string }) => {
+export const BreadcrumbComponent = ({ title } : { title?: string }) => {
   const currentRoute = usePathname()
   const namePage = currentRoute.substring(1).charAt(0).toUpperCase() + currentRoute.slice(2)
   const breadPieces = namePage.split('/')
