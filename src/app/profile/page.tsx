@@ -22,12 +22,18 @@ export default async function Page() {
         throw new Error('Session not found')
     }
 
-    const { id: userId, email } = session.user
+    const { id: userId, email, phone } = session.user
 
     if (userId === undefined) {
         throw new Error('User ID not found')
     }
-    const user = await fetchUserProfile(userId)
+    const userInfo = await fetchUserProfile(userId)
+ 
+    const user = {
+        email,
+        phone,
+        ...userInfo
+    }
 
     return (
         <div className="px-5">
@@ -41,7 +47,7 @@ export default async function Page() {
                     </div>
                 </div>
             </div>
-            <PersonalInformation />
+            <PersonalInformation user={user}/>
             <Transactions />
             <Favorites />
             <Assistance />
