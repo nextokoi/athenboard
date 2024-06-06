@@ -9,9 +9,6 @@ export default function Assistance() {
             <HelpCenter />
             <FAQs />
             <Divider className="border border-slate-300 my-5" />
-            <div className="flex items-center justify-between gap-3 my-10">
-                <Button className="w-full bg-red-500 text-white hover:bg-red-600">Log out</Button>
-            </div>
         </>
     )
 }

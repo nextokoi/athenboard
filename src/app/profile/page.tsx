@@ -3,36 +3,18 @@ import PersonalInformation from "../components/profile/personal-information"
 import Transactions from "../components/profile/transactions"
 import Favorites from "../components/profile/favorites"
 import Assistance from "../components/profile/assistance"
-import { fetchUserProfile } from "../utils/supabase/dataService"
-import { cookies } from "next/headers"
-import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs"
-
+import { createClient } from "../utils/supabase/server"
+import { redirect } from "next/navigation"
+import { LogoutButton } from "../components/profile/logout-button"
 
 export default async function Page() {
 
-    const cookieStore = cookies()
-    const supabase = createRouteHandlerClient({
-        cookies: () => cookieStore,
-    })
+    const supabase = createClient()
 
-    const { data: { session }} = await supabase.auth.getSession()
+    const { data, error } = await supabase.auth.getUser()
 
-    
-    if (!session || !session.user) {
-        throw new Error('Session not found')
-    }
-
-    const { id: userId, email, phone } = session.user
-
-    if (userId === undefined) {
-        throw new Error('User ID not found')
-    }
-    const userInfo = await fetchUserProfile(userId)
- 
-    const user = {
-        email,
-        phone,
-        ...userInfo
+    if (error || !data?.user){
+        redirect('/')
     }
 
     return (
@@ -40,17 +22,18 @@ export default async function Page() {
             <h4 className="text-heading-4 my-8">Profile</h4>
             <div className="flex items-center justify-between gap-3 mt-5">
                 <div className="flex items-center gap-5">
-                    <Image src={user.avatar_url} alt="avatar" width={75} height={75} className="rounded-full" />
+                    <Image src={"https://via.placeholder.com/75"} alt="avatar" width={75} height={75} className="rounded-full" />
                     <div>
-                        <span className="text-body-1 font-semibold">{user.username}</span>
+                        <span className="text-body-1 font-semibold">{"Name"}</span>
                         <p className="text-body-2 text-slate-500">Welcome back!</p>
                     </div>
                 </div>
             </div>
-            <PersonalInformation user={user}/>
+            <PersonalInformation />
             <Transactions />
             <Favorites />
             <Assistance />
+            <LogoutButton />
         </div>
     )
 }

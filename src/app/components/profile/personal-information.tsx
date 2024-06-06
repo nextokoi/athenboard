@@ -6,17 +6,8 @@ import { Drawer } from "../ui/drawer"
 import { FaChevronRight, FaChevronLeft, FaRegCircleUser } from "react-icons/fa6"
 import { EditableField } from "./editable-field"
 
-interface PersonalInformationProps {
-    user: {
-        username: string
-        phone: string | undefined
-        email: string | undefined
-    }
-}
+export default function PersonalInformation() {
 
-export default function PersonalInformation({ user }: PersonalInformationProps) {
-
-    const { username, phone, email } = user
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
     const handleOpenDrawer = () => {
@@ -49,11 +40,11 @@ export default function PersonalInformation({ user }: PersonalInformationProps) 
                             <Divider className="mb-5"/>
                         </div>
                         <div className="p-5">
-                            <EditableField label="Name" value={username}/>
+{/*                             <EditableField label="Name" value={username}/>
                             <EditableField label="Email" value={email === undefined ? "Not provided" : email}/>
                             <EditableField label="Phone number" value={(phone === undefined || phone === '') ? "Add a number so they can contact you" : phone}/>
                             <EditableField label="Address" value="Not provided"/>
-                            <EditableField label="Emergency contact" value="Not provided"/>
+                            <EditableField label="Emergency contact" value="Not provided"/> */}
                         </div>
                     </div>
                 </Drawer>

@@ -1,19 +1,17 @@
 import ProfileDropdown from "../login-nav/profile-dropdown";
 import LoginDropdown from "../login-nav/login-dropdown";
-import { cookies } from "next/headers";
-import { createRouteHandlerClient } from "@supabase/auth-helpers-nextjs";
+import { createClient } from "@/app/utils/supabase/server";
 
 export async function LoginNav() {
-    const cookieStore = cookies()
+    const supabase = createClient()
 
-    const supabase = createRouteHandlerClient({
-        cookies: () => cookieStore,
-    })
+    const { data } = await supabase.auth.getSession()
 
-    const { data: { session } } = await supabase.auth.getSession()
+    const session = data.session
+
     return (
         <>
-            { session === null ? <LoginDropdown /> : <ProfileDropdown /> }
+            { session ? <ProfileDropdown /> : <LoginDropdown /> }
         </>
     )
 }

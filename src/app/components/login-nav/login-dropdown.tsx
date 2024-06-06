@@ -2,6 +2,7 @@
 
 import { Button, Dropdown, Input } from "keep-react";
 import { FaUserCircle } from "react-icons/fa";
+import { login, signup } from "@/app/login/action";
 
 export default function LoginDropdown() {
     return (
@@ -11,14 +12,15 @@ export default function LoginDropdown() {
                 Sign in
             </Button>
         } actionClassName='border-none bg-transparent p-0' className='z-50'>
-            <form action="/auth/login" method="post">
+            <form>
                 <div className="flex flex-col gap-5">
                     <div className="flex flex-col gap-3">
                         <Input type="email" name="email" placeholder='Email' className='w-full' />
                         <Input type="password" name="password" placeholder='Password' className='w-full' />
                     </div>
                     <div className="flex flex-col gap-3 ">
-                        <Button className='w-full bg-[#006876] hover:bg-[#007a8a]'>Log In</Button>
+                        <Button className='w-full bg-[#006876] hover:bg-[#007a8a]' formAction={login}>Log In</Button>
+                        <Button className='w-full bg-transparent hover:bg-transparent text-[#006876] border border-[#006876]' formAction={signup}>Sign Up</Button>
                     </div>
                 </div>
             </form>

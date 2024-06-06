@@ -1,35 +1,23 @@
 "use client"
 
-import { Button, Dropdown } from "keep-react";
+import { createClient } from "@/app/utils/supabase/client";
 import { useRouter } from "next/navigation";
+import { Button, Dropdown } from "keep-react";
 import { FaUserCircle } from "react-icons/fa";
 import { RiLogoutBoxLine } from "react-icons/ri";
 
 export default function ProfileDropdown() {
     const router = useRouter()
+    const supabase = createClient()
 
-    const handleLogout = async () => {
-        try {
-            const response = await fetch('/auth/logout', {
-                method: 'POST',
-                credentials: 'same-origin'
-            })
-
-            if (response.ok){
-                router.refresh()
-            } else {
-                console.error('Logout failed')
-            }
-        } catch (error) {
-            console.error('An error ocurred during logout', error)
-        }
+    async function signOut() {
+        await supabase.auth.signOut()
+        router.refresh()
     }
 
     const handleProfile = () => {
         router.push('/profile')
-        router.refresh()
     }
-
 
   return (
     <Dropdown action={
@@ -42,7 +30,7 @@ export default function ProfileDropdown() {
                 <FaUserCircle className="text-xl" />
                 Profile
             </Dropdown.Item>
-            <Dropdown.Item onClick={handleLogout}>
+            <Dropdown.Item onClick={signOut}>
                 <RiLogoutBoxLine className="text-xl" />
                 Log out
             </Dropdown.Item>
