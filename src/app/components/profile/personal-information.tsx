@@ -51,7 +51,7 @@ export default function PersonalInformation({ user }: PersonalInformationProps) 
                         <div className="p-5">
                             <EditableField label="Name" value={username}/>
                             <EditableField label="Email" value={email === undefined ? "Not provided" : email}/>
-                            <EditableField label="Phone number" value={phone === undefined ? "Add a number so they can contact you" : phone}/>
+                            <EditableField label="Phone number" value={(phone === undefined || phone === '') ? "Add a number so they can contact you" : phone}/>
                             <EditableField label="Address" value="Not provided"/>
                             <EditableField label="Emergency contact" value="Not provided"/>
                         </div>

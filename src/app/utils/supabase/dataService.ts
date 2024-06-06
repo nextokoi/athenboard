@@ -1,4 +1,6 @@
-import { supabase } from './supabaseClient'
+import { createClient } from './server'
+
+const supabase = createClient()
 
 export async function fetchAllExperiences() {
 	try {
