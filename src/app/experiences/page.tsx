@@ -1,4 +1,4 @@
-import { fetchAllExperiences, fetchImageUrl } from '../dataService'
+import { fetchAllExperiences, fetchImageUrl } from '../supabaseServerData'
 import { ExperienceCard } from '../components/cards/experience-card'
 import { SearchBarComponent } from '../components/ui/searchbar'
 import { BreadcrumbComponent } from '../components/ui/breadcrumbs'

@@ -12,7 +12,7 @@ import { ReviewsSection } from "../../components/experiences-id/reviews-section"
 import { AvailableDatesSection } from "../../components/experiences-id/available-dates-section"
 import { CancellationPolicy } from "../../components/experiences-id/cancellation-policy"
 import { FaFlag } from "react-icons/fa6"
-import { fetchImageUrl, fetchOneExperience, fetchOneArtist, fetchReviews, fetchScheduleDates } from "@/app/utils/supabase/dataService"
+import { fetchImageUrl, fetchOneExperience, fetchOneArtist, fetchReviews, fetchScheduleDates } from "@/app/supabaseClientData"
 
 interface DetailsProps {
     params: { id: string }

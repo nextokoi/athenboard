@@ -15,8 +15,8 @@ export default function LoginDropdown() {
             <form>
                 <div className="flex flex-col gap-5">
                     <div className="flex flex-col gap-3">
-                        <Input type="email" name="email" placeholder='Email' className='w-full' />
-                        <Input type="password" name="password" placeholder='Password' className='w-full' />
+                        <Input type="email" name="email" placeholder='Email' className='w-full' required/>
+                        <Input type="password" name="password" placeholder='Password' className='w-full' required/>
                     </div>
                     <div className="flex flex-col gap-3 ">
                         <Button className='w-full bg-[#006876] hover:bg-[#007a8a]' formAction={login}>Log In</Button>
