@@ -9,7 +9,7 @@ type Props = {
     data: {
         date: string
         price: number
-        available_languages: string
+        availableLanguages: string
         duration: number
         hour: string
     }
@@ -35,7 +35,7 @@ export const DateCard: FunctionComponent<Props> = ({ data, id, onSelect }) => {
     const cancelDate = subDays(date, 1)
     const cancelDateTime = format(cancelDate, `dd MMM. ${startTime}`)
     
-    const { available_languages, price } = data
+    const { availableLanguages, price } = data
     
     return (
         <div id={id} className="mb-5">
@@ -48,7 +48,7 @@ export const DateCard: FunctionComponent<Props> = ({ data, id, onSelect }) => {
                     </div>
                     <Button onClick={() => onSelect(data)}>Choose</Button>
                 </div>
-                <p className="text-body-2 text-pretty">Available in {available_languages}</p>
+                <p className="text-body-2 text-pretty">Available in {availableLanguages}</p>
                 <p className="text-body-2 text-pretty">If you cancel before {cancelDateTime} (CEST), you will receive a full refund.</p>
             </div>
         </div>

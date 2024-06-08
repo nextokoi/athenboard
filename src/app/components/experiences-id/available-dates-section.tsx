@@ -60,7 +60,7 @@ export const AvailableDatesSection = ({ experience, image, available_languages, 
                 date: schedule.date,
                 hour: schedule.hour,
                 image,
-                available_languages,
+                availableLanguages: available_languages,
                 ...experience
             }
             return (
