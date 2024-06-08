@@ -27,7 +27,7 @@ export const NavbarComponent = ({ children } : {children: React.ReactNode}) => {
             className="lg:flex hidden items-center justify-between gap-8 link-color"
           >
             <Navbar.Link linkName="Home" />
-            <Navbar.Link linkName="Profile" href='/profile' />
+            <Navbar.Link linkName="Experiences" href='/experiences' />
             <Navbar.Link linkName="About" />
           </Navbar.Container>
           <Navbar.Collapse collapseType="sidebar">

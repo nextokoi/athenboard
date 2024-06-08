@@ -40,7 +40,7 @@ export default function PersonalInformation() {
                             <Divider className="mb-5"/>
                         </div>
                         <div className="p-5">
-{/*                             <EditableField label="Name" value={username}/>
+{/*                         <EditableField label="Name" value={username}/>
                             <EditableField label="Email" value={email === undefined ? "Not provided" : email}/>
                             <EditableField label="Phone number" value={(phone === undefined || phone === '') ? "Add a number so they can contact you" : phone}/>
                             <EditableField label="Address" value="Not provided"/>
