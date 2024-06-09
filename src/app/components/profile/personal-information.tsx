@@ -5,10 +5,30 @@ import { useState } from "react"
 import { Drawer } from "../ui/drawer"
 import { FaChevronRight, FaChevronLeft, FaRegCircleUser } from "react-icons/fa6"
 import { EditableField } from "./editable-field"
+import { createClient } from "@/app/utils/supabase/client"
+import { useRouter } from "next/navigation"
 
-export default function PersonalInformation() {
+interface UserMetadata {
+    user_name?: string
+    email?: string
+    address?: string
+    phone?: string
+    emergency_contact?: string
+}
 
+interface PersonalInformationProps {
+    data: UserMetadata | undefined
+}
+
+export default function PersonalInformation({ data } : PersonalInformationProps) {
+
+    const supabase = createClient()
+    const router = useRouter()
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+    const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState<string | null>(null)
+
+    const { user_name, email, address, phone, emergency_contact } = data || {}
 
     const handleOpenDrawer = () => {
         setIsDrawerOpen(true)
@@ -17,6 +37,34 @@ export default function PersonalInformation() {
     const handleCloseDrawer = () => {
         setIsDrawerOpen(false)
     }
+
+    const handleFieldChange = async (field: keyof UserMetadata, value: string) => {
+
+        setIsLoading(true)
+        setError(null)
+
+        const { error } = await supabase.auth.updateUser({
+            data: {
+                [field]: value
+            }
+        })
+
+        router.refresh()
+
+        if (error) {
+            console.error("Error updating user data:", error.message)
+        } 
+
+        setIsLoading(false)
+    }
+
+    const fields = [
+        { label: "Username", value: user_name, key: "user_name"},
+        { label: "Email", value: email, key: "email"},
+        { label: "Address", value: address, key: "address"},
+        { label: "Phone number", value: phone, key: "phone"},
+        { label: "Emergency contact", value: emergency_contact, key: "emergency_contact"},
+    ]
 
     return (
         <>
@@ -40,11 +88,16 @@ export default function PersonalInformation() {
                             <Divider className="mb-5"/>
                         </div>
                         <div className="p-5">
-{/*                         <EditableField label="Name" value={username}/>
-                            <EditableField label="Email" value={email === undefined ? "Not provided" : email}/>
-                            <EditableField label="Phone number" value={(phone === undefined || phone === '') ? "Add a number so they can contact you" : phone}/>
-                            <EditableField label="Address" value="Not provided"/>
-                            <EditableField label="Emergency contact" value="Not provided"/> */}
+                            {isLoading && <p>Updating...</p>}
+                            {error && <p className="text-red-500">{error}</p>}
+                            {fields.map((field) => (
+                                <EditableField
+                                    key={field.key}
+                                    label={field.label}
+                                    value={field.value || "Not provided"}
+                                    onChange={(value) => handleFieldChange(field.key as keyof UserMetadata, value)}
+                                />
+                            ))}
                         </div>
                     </div>
                 </Drawer>

@@ -6,9 +6,10 @@ import { useState } from "react";
 interface EditableFieldProps {
     label: string
     value: string
+    onChange?: (value: string) => void
 }
 
-export const EditableField = ({ label, value }: EditableFieldProps) => {
+export const EditableField = ({ label, value, onChange }: EditableFieldProps) => {
     const [isEditing, setIsEditing] = useState(false)
     const [inputValue, setInputValue] = useState(value)
 
@@ -23,11 +24,13 @@ export const EditableField = ({ label, value }: EditableFieldProps) => {
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === 'Enter') {
             setIsEditing(false)
+            onChange?.(inputValue)
         }
     }
 
     const handleBlur = () => {
         setIsEditing(false)
+        onChange?.(inputValue)
     }
 
     return (
