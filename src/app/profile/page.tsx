@@ -13,9 +13,15 @@ export default async function Page() {
 
     const { data, error } = await supabase.auth.getUser()
 
-    const user_data = data?.user?.user_metadata
+    console.log(data)
+
+    const userData = {
+        id: data?.user?.id,
+        email: data?.user?.email,
+        user_data: data?.user?.user_metadata
+    }
     
-    const { user_name, avatar_url } = user_data || {}
+    const { user_name, avatar_url} = userData.user_data || {}
 
     if (error || !data?.user){
         redirect('/')
@@ -33,7 +39,7 @@ export default async function Page() {
                     </div>
                 </div>
             </div>
-            <PersonalInformation data={user_data}/>
+            <PersonalInformation data={userData}/>
             <Transactions />
             <Favorites />
             <Assistance />
