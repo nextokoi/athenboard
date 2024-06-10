@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
 			mode: 'payment',
 			customer: customer.id,
 			metadata: {
-				experienceId: body.id,
+				experience_id: body.id,
 			},
 		})
 
