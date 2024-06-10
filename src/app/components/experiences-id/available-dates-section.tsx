@@ -6,6 +6,7 @@ import { useState } from "react"
 import { Drawer } from "../ui/drawer"
 import { FaChevronLeft } from "react-icons/fa6"
 import { DateCard } from "../cards/date-card"
+import { useRouter } from "next/navigation"
 
 interface Props {
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -27,6 +28,8 @@ export const AvailableDatesSection = ({ experience, image, available_languages, 
     const handleCloseDrawer = () => {
         setIsDrawerOpen(false)
     }
+
+    const router = useRouter()
 
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     const handleDateSelect = async (data: any) => {

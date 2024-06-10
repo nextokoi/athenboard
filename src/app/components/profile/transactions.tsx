@@ -5,7 +5,8 @@ import { useState } from "react"
 import { Drawer } from "../ui/drawer"
 import { FaChevronRight } from "react-icons/fa6"
 import { TbInvoice } from "react-icons/tb"
-export default function Transactions() {
+
+export  default function Transactions() {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
     const handleOpenDrawer = () => {
@@ -27,7 +28,15 @@ export default function Transactions() {
                             <p className="text-body-2 font-semibold">Invoices</p>
                         </div>
                     </div>
-                    <Button className="bg-transparent hover:bg-transparent text-[#333] p-0"><FaChevronRight className="text-xl" /></Button>
+                    <Button className="bg-transparent hover:bg-transparent text-[#333] p-0" onClick={handleOpenDrawer}><FaChevronRight className="text-xl" /></Button>
+                    <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer}>
+                        <div>
+                            <h5 className="text-heading-5">Invoices</h5>
+                            <Divider className="border border-slate-300 my-5" />
+ {/*                            <div>{ JSON.stringify(data, null, 2) }</div>
+                            {data.length === 0 && <p className="text-body-2">No invoices yet</p>} */}
+                        </div>
+                    </Drawer>
                 </div>
             </div>
             <Divider className="border border-slate-300 my-5" />
