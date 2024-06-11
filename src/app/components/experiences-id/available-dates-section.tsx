@@ -6,7 +6,6 @@ import { useState } from "react"
 import { Drawer } from "../ui/drawer"
 import { FaChevronLeft } from "react-icons/fa6"
 import { DateCard } from "../cards/date-card"
-import { useRouter } from "next/navigation"
 
 interface Props {
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
@@ -15,10 +14,11 @@ interface Props {
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     schedules: any
     available_languages: string
+    userAuthenticated: boolean
 }
 
 
-export const AvailableDatesSection = ({ experience, image, available_languages, schedules }: Props) => {
+export const AvailableDatesSection = ({ experience, image, available_languages, schedules, userAuthenticated }: Props) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
     const handleOpenDrawer = () => {
@@ -28,8 +28,6 @@ export const AvailableDatesSection = ({ experience, image, available_languages, 
     const handleCloseDrawer = () => {
         setIsDrawerOpen(false)
     }
-
-    const router = useRouter()
 
     // biome-ignore lint/suspicious/noExplicitAny: <explanation>
     const handleDateSelect = async (data: any) => {
@@ -68,7 +66,7 @@ export const AvailableDatesSection = ({ experience, image, available_languages, 
             }
             return (
                 // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-                <DateCard data={data} key={index} id={schedule.id} onSelect={handleDateSelect} />
+                <DateCard data={data} key={index} id={schedule.id} onSelect={handleDateSelect} userAuthenticated={userAuthenticated} />
             )
         })
     }

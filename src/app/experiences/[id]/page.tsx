@@ -13,6 +13,7 @@ import { AvailableDatesSection } from "../../components/experiences-id/available
 import { CancellationPolicy } from "../../components/experiences-id/cancellation-policy"
 import { FaFlag } from "react-icons/fa6"
 import { fetchImageUrl, fetchOneExperience, fetchOneArtist, fetchReviews, fetchScheduleDates } from "@/app/supabaseClientData"
+import { createClient } from "@/app/utils/supabase/server"
 
 interface DetailsProps {
     params: { id: string }
@@ -69,7 +70,7 @@ export const fetchExperienceData = async (id: string) => {
 }
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-const renderExperienceMainContent = (experience: any,reviews: any, imageUrl: any, artist: any, schedule_dates: any) => {
+const renderExperienceMainContent = (experience: any,reviews: any, imageUrl: any, artist: any, schedule_dates: any, userAuthenticated: boolean) => {
     const {
         title,
         description,
@@ -111,7 +112,7 @@ const renderExperienceMainContent = (experience: any,reviews: any, imageUrl: any
                 <HostBio name={name} biography={biography} image={imageUrl} />
                 <LocationSection />
                 <ReviewsSection reviews={reviews} />
-                <AvailableDatesSection experience={experience} image={imageUrl[0]} available_languages={availableLanguages} schedules={schedules} />
+                <AvailableDatesSection experience={experience} image={imageUrl[0]} available_languages={availableLanguages} schedules={schedules} userAuthenticated={userAuthenticated} />
                 <CancellationPolicy />
                 <Divider />
                 <p className="text-body-2 flex items-center gap-3 font-bold pt-5">
@@ -124,6 +125,11 @@ const renderExperienceMainContent = (experience: any,reviews: any, imageUrl: any
 
 export default async function Details({ params }: DetailsProps) {
     const { id } = params
+    const supabase = createClient()
+
+    const { data: userData } = await supabase.auth.getUser()
+
+    const userAuthenticated = userData?.user !== null
 
     try {
         const { experience, reviews, imageUrl, artist, schedule_dates } = await fetchExperienceData(id)
@@ -132,7 +138,7 @@ export default async function Details({ params }: DetailsProps) {
             throw new Error('Missing data for the experience')
         }
 
-        return renderExperienceMainContent(experience, reviews, imageUrl, artist, schedule_dates)
+        return renderExperienceMainContent(experience, reviews, imageUrl, artist, schedule_dates, userAuthenticated)
     } catch (error) {
         return (
             <div>

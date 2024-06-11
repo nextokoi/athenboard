@@ -3,7 +3,7 @@ import { Icon } from "leaflet"
 
 import "leaflet/dist/leaflet.css";
 
-export const MapLeaflet = () => {
+export const MapLeaflet = ({ onLoad } : { onLoad: () => void }) => {
     const position = [40.7128, -74.006] as [number, number];
     const customIcon = new Icon({
         iconUrl: "https://unpkg.com/leaflet@1.9.3/dist/images/marker-icon.png",
@@ -20,6 +20,7 @@ export const MapLeaflet = () => {
           zoom={13}
           scrollWheelZoom={true}
           className="w-full h-64 z-0"
+          whenReady={onLoad}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
