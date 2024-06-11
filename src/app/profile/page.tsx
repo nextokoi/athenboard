@@ -7,6 +7,9 @@ import { createClient } from "../utils/supabase/server"
 import { redirect } from "next/navigation"
 import { LogoutButton } from "../components/profile/logout-button"
 
+
+export const revalidate = 0
+
 export default async function Page() {
 
     const supabase = createClient()
@@ -23,7 +26,46 @@ export default async function Page() {
 
     if (error || !data?.user) {
         redirect('/')
-    }  
+    }
+
+    const { data: invoicesData, error: invoicesError } = await supabase
+        .from('invoices')
+        .select(`
+            *,
+            experiences(
+                title,
+                description,
+                address,
+                duration,
+                artist_id
+            )
+        `)
+        .eq('user_id', userData.id)
+
+    if (invoicesError) {
+        console.error('Error fetching invoices: ', invoicesError)
+    }
+
+    const experienceArtistIDs = invoicesData?.map((invoice) => invoice.experiences.artist_id) || []
+    const { data: artistsData, error: artistsError } = await supabase
+        .from('artists')
+        .select('id, email')
+        .in('id', experienceArtistIDs)
+    
+    if (artistsError) {
+        console.error('Error fetching artists: ', artistsError)
+    }
+
+    const invoicesWithArtistEmail = invoicesData?.map((invoice) => {
+        const artist = artistsData?.find((artist) => artist.id === invoice.experiences.artist_id)
+        return {
+            ...invoice,
+            experiences: {
+                ...invoice.experiences,
+                artist_email: artist?.email
+            }
+        }
+    })
 
     return (
         <div className="px-5">
@@ -38,7 +80,7 @@ export default async function Page() {
                 </div>
             </div>
             <PersonalInformation data={userData} />
-            <Transactions />
+            <Transactions data={invoicesWithArtistEmail} />
             <Favorites />
             <Assistance />
             <LogoutButton />

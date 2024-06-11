@@ -1,6 +1,7 @@
 import { createClient } from '@/app/utils/supabase/server'
 import { headers } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
+import { UUID, randomUUID } from 'crypto'
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 const Joi = require('joi')
@@ -34,8 +35,9 @@ export async function POST(request: NextRequest) {
 		}
 
 		const schema = Joi.object({
-			id: Joi.string().required(),
+			id: Joi.string().length(7).required(),
 			customer: Joi.string().required(),
+			user_id: Joi.string().required(),
 			experience_id: Joi.string().required(),
 			image: Joi.string().required(),
 			available_languages: Joi.string().required(),
@@ -62,9 +64,12 @@ export async function POST(request: NextRequest) {
 
 				const amountTotal = checkoutSessionCompleted.amount_total / 100
 
+				const shortUUID = randomUUID().slice(0, 7)
+
 				const { error: validationError, value } = schema.validate({
-					id: checkoutSessionCompleted.id,
+					id: shortUUID,
 					customer: checkoutSessionCompleted.customer,
+					user_id: checkoutSessionCompleted.metadata.user_id,
 					experience_id: checkoutSessionCompleted.metadata.experience_id,
 					image: checkoutSessionCompleted.metadata.image,
 					available_languages:
@@ -88,6 +93,7 @@ export async function POST(request: NextRequest) {
 						{
 							id: value.id,
 							customer: value.customer,
+							user_id: value.user_id,
 							experience_id: value.experience_id,
 							image: value.image,
 							available_languages: value.available_languages,

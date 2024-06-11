@@ -12,6 +12,7 @@ export async function POST(request: NextRequest) {
 		if (!supabaseSession) {
 			return new Response(null, { status: 401 })
 		}
+
 		const { data: userData, error: userError } = await supabase.auth.getUser()
 
 		const body = await request.json()
@@ -58,8 +59,8 @@ export async function POST(request: NextRequest) {
 		}
 
 		const session = await stripe.checkout.sessions.create({
-			success_url: 'https://tasty-rules-repair.loca.lt/checkout/success',
-			cancel_url: 'https://tasty-rules-repair.loca.lt/checkout/cancel',
+			success_url: 'https://violet-icons-greet.loca.lt/checkout/success',
+			cancel_url: 'https://violet-icons-greet.loca.lt/checkout/cancel',
 			line_items: [
 				{
 					price_data: {
@@ -77,6 +78,7 @@ export async function POST(request: NextRequest) {
 			customer: customerId,
 			metadata: {
 				experience_id: body.id,
+				user_id: userData.user?.id,
 				image: body.image,
 				date: body.date,
 				hour: body.hour,

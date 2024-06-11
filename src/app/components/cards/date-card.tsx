@@ -21,7 +21,7 @@ type Props = {
     userAuthenticated?: boolean
 }
 
-const calculateEndTime = (hour: string, duration: number) => {
+export const calculateEndTime = (hour: string, duration: number) => {
     const [hours, minutes, seconds] = hour.split(':').map(Number)
     const startTime = new Date()
     startTime.setHours(hours, minutes, seconds)
