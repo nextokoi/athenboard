@@ -72,6 +72,7 @@ export const fetchExperienceData = async (id: string) => {
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
 const renderExperienceMainContent = (experience: any,reviews: any, imageUrl: any, artist: any, schedule_dates: any, userAuthenticated: boolean) => {
     const {
+        id,
         title,
         description,
         address,
@@ -104,7 +105,7 @@ const renderExperienceMainContent = (experience: any,reviews: any, imageUrl: any
             <BreadcrumbComponent title={title} />
             <CarouselComponent images={imageUrl} />
             <main className="pl-5 pb-10">
-                <ExperienceHeader title={title} address={address} />
+                <ExperienceHeader id={id} title={title} address={address} />
                 <HostDetails artistName={name} image={imageUrl} available_languages={availableLanguages} duration={duration} />
                 <ExperienceDescription description={description} />
                 <IncludesSection />

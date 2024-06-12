@@ -1,6 +1,5 @@
 "use client";
 
-import { FunctionComponent } from 'react';
 import Link from 'next/link';
 
 import { FaStar } from "react-icons/fa6";
@@ -16,7 +15,9 @@ type Props = {
     id?: string
 }
 
-export const ExperienceCard: FunctionComponent<Props> = ({ score, title, description, sourceImg, size, id }) => {
+export const ExperienceCard = ({ score, title, description, sourceImg, size, id } : Props) => {
+
+
     return (
         <article className={`rounded-lg text-[#171D1E] w-${size}`}>
             <Link href={`/experiences/${id}`}>
@@ -29,7 +30,7 @@ export const ExperienceCard: FunctionComponent<Props> = ({ score, title, descrip
                     <FaStar className='text-xl text-yellow-500' /> 
                     {score}
                 </div>
-                <FavoriteButton />
+                <FavoriteButton id={id} />
             </div>
             <div>
                 <Link href={`/experiences/${id}`}>

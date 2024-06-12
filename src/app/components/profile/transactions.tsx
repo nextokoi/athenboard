@@ -35,7 +35,7 @@ interface Invoice {
 }
 
 export default function Transactions({ data }: {data: Invoice[] | undefined}) {
-    const [isDrawerOpen, setIsDrawerOpen] = useState(true)
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false)
     const [selectedInvoice, setSelectedInvoice] = useState<Invoice | null>(null)
 
 
