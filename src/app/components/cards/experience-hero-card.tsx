@@ -1,6 +1,6 @@
 'use client'
 
-import { FavoriteButton } from '../ui/favorite-button';
+import { FavoriteButtonClient } from '../ui/favorite-button-client';
 
 import { FaStar } from "react-icons/fa6";
 import { FunctionComponent } from 'react';
@@ -30,7 +30,7 @@ export const ExperienceHeroCard: FunctionComponent<Props> = ({ sourceImg, score,
                     <h3 className='heading-text-3'>
                         {duration}
                     </h3>
-                    <FavoriteButton />
+                    <FavoriteButtonClient />
                 </div>
                 <p className='body-text-2 text-pretty font-semibold'>
                     {title}

@@ -3,7 +3,7 @@
 import Link from 'next/link';
 
 import { FaStar } from "react-icons/fa6";
-import { FavoriteButton } from '../ui/favorite-button';
+import { FavoriteButtonClient } from '../ui/favorite-button-client';
 import Image from 'next/image';
 
 type Props = {
@@ -16,8 +16,6 @@ type Props = {
 }
 
 export const ExperienceCard = ({ score, title, description, sourceImg, size, id } : Props) => {
-
-
     return (
         <article className={`rounded-lg text-[#171D1E] w-${size}`}>
             <Link href={`/experiences/${id}`}>
@@ -30,7 +28,7 @@ export const ExperienceCard = ({ score, title, description, sourceImg, size, id 
                     <FaStar className='text-xl text-yellow-500' /> 
                     {score}
                 </div>
-                <FavoriteButton id={id} />
+                <FavoriteButtonClient id={id} />
             </div>
             <div>
                 <Link href={`/experiences/${id}`}>

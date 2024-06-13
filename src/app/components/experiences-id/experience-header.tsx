@@ -1,6 +1,6 @@
 import { Divider } from "keep-react"
 import { FaStar } from "react-icons/fa6"
-import { FavoriteButton } from "../ui/favorite-button"
+import { FavoriteButtonClient } from "../ui/favorite-button-client"
 
 interface Props {
     title: string,
@@ -13,7 +13,7 @@ export const ExperienceHeader = ({ id, title, address } : Props) => {
         <div className="py-5 flex flex-col gap-3 pr-5">
             <div className="flex items-center justify-between">
                 <h5 className="text-heading-5 text-balance">{title}</h5>
-                <FavoriteButton id={id || ''}/>
+                <FavoriteButtonClient id={id || ''}/>
             </div>
             <div className="flex gap-4 font-medium">
                 <div className="flex gap-2">
