@@ -1,25 +1,56 @@
+// app/components/favorite-button-client.tsx
 'use client'
 
-import { useFavorites } from '@/app/context/favorite-context';
-import { Button } from 'keep-react';
-import { useState, useEffect } from 'react';
-import { FaHeart, FaRegHeart } from "react-icons/fa6";
+import { useState, useEffect } from 'react'
+import { Button } from 'keep-react'
+import { FaHeart, FaRegHeart } from "react-icons/fa6"
 
-export const FavoriteButtonClient = ({ id }: { id?: string }) => {
-    const { favorites, addFavorite, removeFavorite, loading } = useFavorites()
-    const [isFavorite, setIsFavorite] = useState(false)
+interface FavoriteButtonClientProps {
+    id: string
+    initialFavorites: string[]
+}
+
+export const FavoriteButtonClient = ({ id, initialFavorites }: FavoriteButtonClientProps) => {
+    const [favorites, setFavorites] = useState<string[]>(initialFavorites)
+    const [loading, setLoading] = useState<boolean>(false)
+    const [isFavorite, setIsFavorite] = useState<boolean>(initialFavorites.includes(id))
 
     useEffect(() => {
-        setIsFavorite(favorites.includes(id || ''))
+        setIsFavorite(favorites.includes(id))
     }, [favorites, id])
 
-    const handleClick = () => {
-        return (isFavorite) ? removeFavorite(id || '') : addFavorite(id || '')
+    const handleClick = async () => {
+        setLoading(true)
+        try {
+            const response = await fetch('/api/favorite-action', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id, isFavorite })
+            })
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok')
+            }
+
+            const updatedFavorites = await response.json()
+            setFavorites(updatedFavorites)
+        } catch (error) {
+            console.error('Error updating favorites:', error)
+        } finally {
+            setLoading(false)
+        }
     }
 
     return (
-        <Button shape='circle' className='bg-transparent hover:bg-transparent text-[#171D1E]' onClick={handleClick} disabled={loading}>
+        <Button
+            shape='circle'
+            className='bg-transparent hover:bg-transparent text-[#171D1E]'
+            onClick={handleClick}
+            disabled={loading}
+        >
             {isFavorite ? <FaHeart className='text-xl text-red-500' /> : <FaRegHeart className='text-xl' />}
         </Button>
-    );
+    )
 }
