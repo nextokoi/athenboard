@@ -1,10 +1,8 @@
-"use client";
-
 import Link from 'next/link';
 
 import { FaStar } from "react-icons/fa6";
-import { FavoriteButtonClient } from '../ui/favorite-button-client';
 import Image from 'next/image';
+import { FavoriteButtonServer } from '../ui/favorite-button-server';
 
 type Props = {
     sourceImg: string
@@ -12,7 +10,7 @@ type Props = {
     title: string
     description: string
     size: string
-    id?: string
+    id: string
 }
 
 export const ExperienceCard = ({ score, title, description, sourceImg, size, id } : Props) => {
@@ -28,7 +26,7 @@ export const ExperienceCard = ({ score, title, description, sourceImg, size, id 
                     <FaStar className='text-xl text-yellow-500' /> 
                     {score}
                 </div>
-                <FavoriteButtonClient id={id} />
+                <FavoriteButtonServer id={id} />
             </div>
             <div>
                 <Link href={`/experiences/${id}`}>
