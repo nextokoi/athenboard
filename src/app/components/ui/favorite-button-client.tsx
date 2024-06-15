@@ -1,3 +1,4 @@
+// app/components/favorite-button-client.tsx
 'use client'
 
 import { useState, useEffect } from 'react'
