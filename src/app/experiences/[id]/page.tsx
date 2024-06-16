@@ -14,6 +14,7 @@ import { CancellationPolicy } from "../../components/experiences-id/cancellation
 import { FaFlag } from "react-icons/fa6"
 import { fetchImageUrl, fetchOneExperience, fetchOneArtist, fetchReviews, fetchScheduleDates } from "@/app/supabaseClientData"
 import { createClient } from "@/app/utils/supabase/server"
+import { redirect } from "next/navigation"
 
 interface DetailsProps {
     params: { id: string }
@@ -70,7 +71,7 @@ export const fetchExperienceData = async (id: string) => {
 }
 
 // biome-ignore lint/suspicious/noExplicitAny: <explanation>
-const renderExperienceMainContent = (experience: any,reviews: any, imageUrl: any, artist: any, schedule_dates: any, userAuthenticated: boolean) => {
+const renderExperienceMainContent = (experience: any,reviews: any, imageUrl: any, artist: any, schedule_dates: any, userAuthenticated: boolean, user: any ) => {
     const {
         id,
         title,
@@ -112,7 +113,7 @@ const renderExperienceMainContent = (experience: any,reviews: any, imageUrl: any
                 <AccesibilitySection mobility_features={mobility_features} communication_features={communication_features} sensory_needs={sensory_needs} personal_assistants_features={personal_assistants_features} />
                 <HostBio name={name} biography={biography} image={imageUrl} />
                 <LocationSection />
-                <ReviewsSection reviews={reviews} />
+                <ReviewsSection reviews={reviews} user={user} experienceId={experience.id}/>
                 <AvailableDatesSection experience={experience} image={imageUrl[0]} available_languages={availableLanguages} schedules={schedules} userAuthenticated={userAuthenticated} />
                 <CancellationPolicy />
                 <Divider />
@@ -128,18 +129,24 @@ export default async function Details({ params }: DetailsProps) {
     const { id } = params
     const supabase = createClient()
 
-    const { data: userData } = await supabase.auth.getUser()
+    const { data: { user } } = await supabase.auth.getUser()
 
-    const userAuthenticated = userData?.user !== null
+    const userMetadata = user?.user_metadata
+
+    console.log('userMetadata: ', userMetadata)
+
+    const userAuthenticated = userMetadata !== null
+
+    if (!userAuthenticated) redirect('/')
 
     try {
         const { experience, reviews, imageUrl, artist, schedule_dates } = await fetchExperienceData(id)
 
-        if (!experience || !reviews || !imageUrl || !artist || !schedule_dates) {
+        if (!experience || !reviews || !imageUrl || !artist || !schedule_dates || !userAuthenticated ) { 
             throw new Error('Missing data for the experience')
         }
 
-        return renderExperienceMainContent(experience, reviews, imageUrl, artist, schedule_dates, userAuthenticated)
+        return renderExperienceMainContent(experience, reviews, imageUrl, artist, schedule_dates, userAuthenticated, userMetadata )
     } catch (error) {
         return (
             <div>

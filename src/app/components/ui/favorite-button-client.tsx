@@ -3,16 +3,20 @@
 import { useState, useEffect } from 'react'
 import { Button } from 'keep-react'
 import { FaHeart, FaRegHeart } from "react-icons/fa6"
+import { Spin, message } from 'antd'
 
 interface FavoriteButtonClientProps {
     id: string
     initialFavorites: string[]
+    // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+    user: any
 }
 
-export const FavoriteButtonClient = ({ id, initialFavorites }: FavoriteButtonClientProps) => {
-    const [favorites, setFavorites] = useState<string[]>(initialFavorites)
+export const FavoriteButtonClient = ({ id, initialFavorites, user }: FavoriteButtonClientProps) => {
+    const [favorites, setFavorites] = useState<string[]>(initialFavorites || [])
     const [loading, setLoading] = useState<boolean>(false)
-    const [isFavorite, setIsFavorite] = useState<boolean>(initialFavorites.includes(id))
+    const [isFavorite, setIsFavorite] = useState<boolean>((initialFavorites || []).includes(id))
+    const [messageApi, contextHolder] = message.useMessage()
 
     useEffect(() => {
         setIsFavorite(favorites.includes(id))
@@ -42,14 +46,20 @@ export const FavoriteButtonClient = ({ id, initialFavorites }: FavoriteButtonCli
         }
     }
 
+    const info = () => {
+        messageApi.info('Need to be logged in to add favorites')
+    }
+
     return (
-        <Button
-            shape='circle'
-            className='bg-transparent hover:bg-transparent text-[#171D1E]'
-            onClick={handleClick}
-            disabled={loading}
-        >
-            {isFavorite ? <FaHeart className='text-xl text-red-500' /> : <FaRegHeart className='text-xl' />}
-        </Button>
+        <>
+            {contextHolder}
+            <Button
+                shape='circle'
+                className='bg-transparent hover:bg-transparent text-[#171D1E]'
+                onClick={user !== null ? handleClick : info}
+            >
+                {loading ? <Spin /> : (isFavorite && user !== null ? <FaHeart className='text-xl text-red-500' /> : <FaRegHeart className='text-xl' />)}
+            </Button>
+        </>
     )
 }
