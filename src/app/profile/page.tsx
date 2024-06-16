@@ -8,7 +8,7 @@ import { redirect } from "next/navigation"
 import { LogoutButton } from "../components/profile/logout-button"
 
 
-export const revalidate = 0
+export const revalidate = 60
 
 export default async function Page() {
 
@@ -67,6 +67,28 @@ export default async function Page() {
         }
     })
 
+    const { data: favorites, error: favoritesError } = await supabase
+        .from('favorites')
+        .select(`*, 
+            experiences(
+                title,
+                duration,
+                images (
+                    id,
+                    url
+                )
+            ) 
+        `)
+        .eq('user_id', userData.id)
+        
+    const favoritesWithFirstImage = favorites?.map(favorite => ({
+        ...favorite,
+        experiences: {
+            ...favorite.experiences,
+            images: favorite.experiences.images.length > 0 ? favorite.experiences.images[0].url : ''
+        }    
+    }))
+
     return (
         <div className="px-5">
             <h4 className="text-heading-4 my-8">Profile</h4>
@@ -81,7 +103,7 @@ export default async function Page() {
             </div>
             <PersonalInformation data={userData} />
             <Transactions data={invoicesWithArtistEmail} />
-            <Favorites />
+            <Favorites data={favoritesWithFirstImage} user={userData.id}/>
             <Assistance />
             <LogoutButton />
         </div>

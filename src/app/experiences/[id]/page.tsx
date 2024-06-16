@@ -133,8 +133,6 @@ export default async function Details({ params }: DetailsProps) {
 
     const userMetadata = user?.user_metadata
 
-    console.log('userMetadata: ', userMetadata)
-
     const userAuthenticated = userMetadata !== null
 
     if (!userAuthenticated) redirect('/')
