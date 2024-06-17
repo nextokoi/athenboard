@@ -1,41 +1,40 @@
-'use client'
-
-import { FavoriteButtonClient } from '../ui/favorite-button-client';
-
 import { FaStar } from "react-icons/fa6";
 import { FunctionComponent } from 'react';
-import Image from 'next/image';
+import { FavoriteButtonServer } from '../ui/favorite-button-server';
+import { Avatar } from 'antd';
+import Link from "next/link";
 
 type Props = {
     sourceImg: string
     score: string
     duration: string
     title: string
+    id: string
 }
 
-export const ExperienceHeroCard: FunctionComponent<Props> = ({ sourceImg, score, duration, title }) => {
+export const ExperienceHeroCard: FunctionComponent<Props> = ({ sourceImg, score, duration, title, id }) => {
     return (
-        <article className='w-64 bg-white flex rounded-lg p-1'>
-            <picture>
-                <Image src={sourceImg} alt="" className="rounded-lg" width={640} height={960}/>
-            </picture>
-            <div className='flex flex-col w-full pl-2'>
-                <div className='flex justify-between items-center gap-2'>
-                    <span className='flex items-center gap-2'>
-                        <FaStar className='text-xl text-yellow-500' />
-                        <h3 className='heading-text-3'>
-                            {score} 
-                        </h3>
-                    </span> 
-                    <h3 className='heading-text-3'>
-                        {duration}
-                    </h3>
-                    <FavoriteButtonClient />
-                </div>
-                <p className='body-text-2 text-pretty font-semibold'>
-                    {title}
-                </p>
+        <div className='bg-white flex rounded-lg p-1'>
+            <Link href={`/experiences/${id}`}>
+                <Avatar 
+                    src={sourceImg} 
+                    size={120}
+                    shape='square'
+                />
+            </Link>
+            <div className='p-3'>
+                <div className='flex items-center gap-2'>
+                    <FaStar className='text-xl text-yellow-500' />
+                    <h3 className='heading-text-3'>{score}</h3>
+                    <h3 className='heading-text-3'>{duration}hr</h3>
+                    <FavoriteButtonServer id={id} />
+                </div> 
+                <Link href={`/experiences/${id}`}>
+                    <p className='body-text-2 text-pretty font-semibold'>
+                        {title}
+                    </p>
+                </Link>
             </div>
-        </article>
+        </div>
     )
 }

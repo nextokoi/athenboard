@@ -11,10 +11,10 @@ type Props = {
 
 export const FeatureBlock: FunctionComponent<Props> = ({ title, description, Icon }) => {
     return (
-        <article className="flex flex-col items-center gap-3 text-center">
+        <article className="flex flex-col items-center gap-3 text-center w-fit">
             <Icon className='text-3xl'/>
             <h4 className="text-2xl font-semibold text-balance">{title}</h4>
-            <p className="text-lg text-pretty">
+            <p className="text-lg text-pretty xl:w-96">
                 {description}
             </p>
         </article>

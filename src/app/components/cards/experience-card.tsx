@@ -10,7 +10,7 @@ type Props = {
     title: string
     description: string
     size: string
-    id: string
+    id?: string
 }
 
 export const ExperienceCard = ({ score, title, description, sourceImg, size, id } : Props) => {
@@ -26,13 +26,13 @@ export const ExperienceCard = ({ score, title, description, sourceImg, size, id 
                     <FaStar className='text-xl text-yellow-500' /> 
                     {score}
                 </div>
-                <FavoriteButtonServer id={id} />
+                <FavoriteButtonServer id={id || ''} />
             </div>
             <div>
                 <Link href={`/experiences/${id}`}>
-                    <span className='mb-2 text-xl font-semibold text-balance'>{title}</span>
+                    <span className='text-xl font-semibold text-balance'>{title}</span>
                 </Link>
-                <p className='text-body-4 text-pretty'>
+                <p className='text-body-4 text-pretty mt-3'>
                     {description}
                 </p>
             </div>
