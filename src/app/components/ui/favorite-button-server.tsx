@@ -7,16 +7,27 @@ interface FavoriteButtonServerProps {
 }
 
 export const FavoriteButtonServer = async ({ id }: FavoriteButtonServerProps) => {
-    const initialFavorites = await fetchFavorites()
-    const supabase = createClient()
-
-    const { data: { user } } = await supabase.auth.getUser()
-
-    return (
-        <FavoriteButtonClient
-            id={id}
-            initialFavorites={initialFavorites}
-            user={user}
-        />
-    )
+    try {
+        const supabase = createClient()
+        const { data: { user }, error: userError } = await supabase.auth.getUser()
+        if (userError) {
+            return (
+                <FavoriteButtonClient
+                    id={id}
+                    initialFavorites={[]}
+                    user={null}
+                />
+            )
+        }
+        const initialFavorites = await fetchFavorites()
+        return (
+            <FavoriteButtonClient
+                id={id}
+                initialFavorites={initialFavorites}
+                user={user}
+            />
+        )
+    } catch (error){
+        console.error('Error fetching favorites:', error)
+    }
 }
