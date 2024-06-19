@@ -3,7 +3,7 @@ import './globals.css'
 import { NavbarComponent } from './components/layouts/navbar';
 import { Footer } from './components/layouts/footer';
 import { LoginNav } from './components/layouts/login-nav';
-import { NewNavbar } from './components/layouts/new-navbar';
+import { AppNavbar } from './components/layouts/app-navbar';
 
 export const metadata: Metadata = {
 	title: 'Athenboard',
@@ -21,7 +21,9 @@ export default function RootLayout({
 				{/* <NavbarComponent>
 					<LoginNav />
 				</NavbarComponent> */}
-				<NewNavbar />
+				<AppNavbar>
+					<LoginNav />
+				</AppNavbar>
 				<main className='flex-grow bg-[#F5F5F5]'>
 					{children}
 				</main>

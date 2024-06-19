@@ -7,7 +7,7 @@ import { login, signup } from "@/app/login/action";
 export default function LoginDropdown() {
     return (
         <Dropdown action={
-            <Button className='bg-transparent hover:bg-transparent text-white p-0'>
+            <Button className='bg-transparent hover:bg-transparent text-white p-0 mr-5'>
                 <FaUserCircle className="text-2xl mr-2" />
                 Sign in
             </Button>
