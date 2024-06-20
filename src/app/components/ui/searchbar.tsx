@@ -1,6 +1,7 @@
 'use client'
 
-import { Icon, Input } from "keep-react"
+/* import { Icon, Input } from "keep-react" */
+import { Input } from "antd"
 import { useRouter } from "next/navigation"
 import { useEffect, useState } from "react"
 import { FaMagnifyingGlass } from "react-icons/fa6"
@@ -29,10 +30,7 @@ export const SearchBarComponent = () => {
     return (
         <div className='flex items-center justify-between gap-5'>
             <fieldset className="relative w-full">
-                <Input placeholder="Art" className="ps-12" value={search} onChange={handleChange} />
-                <Icon>
-                    <FaMagnifyingGlass className='text-xl text-[#8a8a8a]' />
-                </Icon>
+                <Input placeholder="Art" className='py-2' value={search} onChange={handleChange} prefix={<FaMagnifyingGlass className='text-md text-[#8a8a8a] mr-2' />}/>
             </fieldset>
             <SearchFilters />
         </div>

@@ -18,7 +18,7 @@ export default async function Experiences({ searchParams }: { searchParams: { [k
     } = searchParams
 
     const filterCriteria = {
-        date, category, available_languages, sensory_needs,
+        category, available_languages, sensory_needs,
         personal_assistants_features, communication_features, mobility_features
     }
 
@@ -60,6 +60,14 @@ export default async function Experiences({ searchParams }: { searchParams: { [k
             if (value) {
                 experiences = filterByCriteria(experiences, key, value as string)
             }
+        }
+
+        if (date) {
+            const targetDate = new Date(date as string).toISOString().split('T')[0]
+
+            const dateTest = experiences.filter(experience => experience.dates.includes(targetDate))
+
+            experiences = experiences.filter(experience => experience.dates.includes(targetDate))
         }
 
         return experiences

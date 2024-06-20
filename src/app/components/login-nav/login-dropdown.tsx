@@ -1,6 +1,6 @@
 "use client"
 
-import { Dropdown, Input, Button, Form } from "antd";
+import { Dropdown, Input, Button, Form, ConfigProvider } from "antd";
 import { FaUserCircle } from "react-icons/fa";
 import { login, signup } from "@/app/login/action";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
@@ -31,12 +31,22 @@ export default function LoginDropdown() {
         }
     }
 
-    const items = [
-        {
-            key: 'form',
-            label: (
-                // biome-ignore lint/a11y/useKeyWithClickEvents: <explanation>
-                <div className="p-2" onClick={(e) => e.stopPropagation()}>
+    const form = () => {
+        return (
+            <div className="bg-[#F5F5F5] p-5 rounded-md">
+                <ConfigProvider
+                    theme={{
+                        components: {
+                            Button: {
+                                colorPrimary: '#006876',
+                                primaryShadow: '#006876',
+                                defaultColor: "#333",
+                                defaultBg: "#fff",
+                                defaultBorderColor: "#006876",
+                            }
+                        }
+                    }}
+                >
                     <Form
                         name="normal_login"
                         className="login-form"
@@ -46,40 +56,57 @@ export default function LoginDropdown() {
                             name="email"
                             rules={[{ required: true, message: 'Please input your email!' }]}
                         >
-                            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Email" />
+                            <Input
+                                size="large"
+                                prefix={<UserOutlined
+                                    className="site-form-item-icon mr-2" />}
+                                placeholder="Email"
+                            />
                         </Form.Item>
                         <Form.Item
                             name="password"
                             rules={[{ required: true, message: 'Please input your Password!' }]}
                         >
                             <Input
-                                prefix={<LockOutlined className="site-form-item-icon" />}
+                                size="large"
+                                prefix={<LockOutlined className="site-form-item-icon mr-2" />}
                                 type="password"
                                 placeholder="Password"
                             />
                         </Form.Item>
                         <Form.Item>
                             <div className="flex flex-col gap-3">
-                                <Button type="primary" htmlType="submit" onClick={() => setAction('login')}>
+                                <Button size="large" type="primary" htmlType="submit" onClick={() => setAction('login')}>
                                     Log in
                                 </Button>
-                                <Button type="text" htmlType="submit" className="border border-slate-300" onClick={() => setAction('signup')}>
+                                <Button size="large" htmlType="submit" className="border border-slate-300" onClick={() => setAction('signup')}>
                                     Sign up
                                 </Button>
                             </div>
                         </Form.Item>
                     </Form>
-                </div>
-            )
-        }
-    ]
+                </ConfigProvider>
+            </div>
+        )
+    }
 
     return (
-        <Dropdown menu={{ items }} trigger={["click"]} onOpenChange={handleOpenChange}>
-            <Button type="text" className="text-white">
-                <FaUserCircle className="text-2xl" />
-                <span className="font-medium">Sign in</span>
-            </Button>
-        </Dropdown>
+        <ConfigProvider
+            theme={{
+                components: {
+                    Button: {
+                        defaultBg: "#006876",
+                        defaultColor: "#fff",
+                        defaultBorderColor: "#006876",
+                    },
+                },
+            }}
+        >
+            <Dropdown trigger={["click"]} onOpenChange={handleOpenChange} dropdownRender={() => form() }>
+                <Button icon={<FaUserCircle className="text-2xl" />}>
+                    <span className="font-medium">Sign in</span>
+                </Button>
+            </Dropdown>
+        </ConfigProvider>
     )
 }

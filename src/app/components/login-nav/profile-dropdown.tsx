@@ -22,7 +22,7 @@ export default function ProfileDropdown({ role } : { role: string | null }) {
         ...(role === 'user' ? [{
             label: <Link href={"/profile"}>Profile</Link>,
             key: "profile",
-            icon: <FaUserCircle className="text-2xl" />
+            icon: <FaUserCircle className="text-2xl" />,
         }] : []),
         ...(role === 'admin' ? [{
             label: <Link href={"/admin"}>Admin panel</Link>,
@@ -38,10 +38,8 @@ export default function ProfileDropdown({ role } : { role: string | null }) {
     ];
 
     return (
-        <Dropdown menu={{ items }} trigger={["click"]} overlayClassName="w-36">
-            <Button type="text" className={`text-white ${role === "admin" && "rounded-full border-2 border-white p-2"}`}>
-                { role === "user" ? <FaUserCircle className="text-2xl" /> : <FaUserNinja className="text-md" />}
-            </Button>
+        <Dropdown menu={{ items }} trigger={["click"]} overlayClassName="w-40">
+            <Button shape="circle" className={ role === 'admin' ? "border-2 border-white" : ""} type="text" icon={ role === "user" ? <FaUserCircle className="text-2xl text-white" /> : <FaUserNinja className="text-md text-white" />} />
         </Dropdown>
     )
 }

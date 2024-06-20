@@ -1,16 +1,20 @@
 
 'use client'
-import { Checkbox, Label } from 'keep-react'
+/* import { Checkbox, Label } from 'keep-react' */
+import { Checkbox } from 'antd'
+import type { CheckboxProps } from 'antd'
+import { CheckboxChangeEvent } from 'antd/es/checkbox'
 
-interface CheckboxProps {
+interface CheckboxKeepProps {
   data: string[]
   filterName: string
   selectedCheckbox?: { filterName: string, value: string }[]
-  onCheckBoxChange?: (e: React.ChangeEvent<HTMLInputElement>, filterName: string) => void
+  onCheckBoxChange?: (e: CheckboxChangeEvent, filterName: string) => void
 }
 
-export const CheckboxComponent = ({ data, filterName, onCheckBoxChange, selectedCheckbox }: CheckboxProps) => {
-  const handleCheckBoxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+export const CheckboxComponent = ({ data, filterName, onCheckBoxChange, selectedCheckbox }: CheckboxKeepProps) => {
+  
+  const onChange: CheckboxProps['onChange'] = (e: CheckboxChangeEvent) => {
     onCheckBoxChange?.(e, filterName)
   }
 
@@ -24,8 +28,8 @@ export const CheckboxComponent = ({ data, filterName, onCheckBoxChange, selected
       return (
         // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
         <div key={index} className='flex items-center justify-between'>
-          <Label htmlFor={labelTreated} className='text-lg text-pretty w-10/12'>{label}</Label>
-          <Checkbox id={labelTreated} value={label} onChange={handleCheckBoxChange} checked={isChecked(label)} />
+          <label htmlFor={labelTreated} className='text-lg text-pretty w-10/12'>{label}</label>
+          <Checkbox id={labelTreated} value={label} onChange={onChange} checked={isChecked(label)} />
         </div>
       )
     })

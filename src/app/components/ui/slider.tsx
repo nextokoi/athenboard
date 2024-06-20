@@ -1,6 +1,7 @@
 
 "use client";
-import { Icon, Slider } from "keep-react";
+/* import { Icon, Slider } from "keep-react"; */
+import { Input, Slider } from "antd";
 import { FaEuroSign } from "react-icons/fa6";
 
 interface SliderProps {
@@ -15,28 +16,17 @@ export const SliderComponent = ({ onRangeValuesChange, rangeValues }: SliderProp
                 step={5}
                 min={25}
                 max={100}
-                tooltip="bottom"
                 range={true}
                 defaultValue={rangeValues}
                 onChange={(value) => onRangeValuesChange(value as number[])}
             />
             <div className="flex justify-between items-center gap-5">
                 <fieldset className="relative max-w-md">
-                    <div className="border border-slate-200 w-32 h-12 rounded-lg">
-                        <Icon>
-                            <FaEuroSign className="text-xl mr-3" />
-                            {Array.isArray(rangeValues) ? rangeValues[0] : ''}
-                        </Icon>
-                    </div>
+                    <Input size="large" prefix={<FaEuroSign className="text-xl" />} disabled value={Array.isArray(rangeValues) ? rangeValues[0] : ''} /> 
                 </fieldset>
                 <hr className="w-10" />
                 <fieldset className="relative max-w-md">
-                    <div className="border border-slate-200 w-32 h-12 rounded-lg">
-                        <Icon className="border border-slate-200 w-32 h-12 rounded-lg">
-                            <FaEuroSign className="text-xl mr-3" />
-                            {Array.isArray(rangeValues) ? rangeValues[1] : ''}
-                        </Icon>
-                    </div>
+                    <Input size="large" prefix={<FaEuroSign className="text-xl" />} disabled value={Array.isArray(rangeValues) ? rangeValues[1] : ''} />                            
                 </fieldset>
             </div>
 
