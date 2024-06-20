@@ -1,30 +1,54 @@
 'use client'
-import { Breadcrumb } from 'keep-react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { House } from 'phosphor-react'
 
-export const BreadcrumbComponent = ({ title } : { title?: string }) => {
-  const currentRoute = usePathname()
-  const namePage = currentRoute.substring(1).charAt(0).toUpperCase() + currentRoute.slice(2)
-  const breadPieces = namePage.split('/')
-  
-  const breadItems = () => {
-    const lastIndex = breadPieces.length - 1
-    return breadPieces.map((item, index) => {
-      const isUUID = /\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/i.test(item)
-      return(
-        // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-        <Breadcrumb.Item key={index} activeType={index === lastIndex ? 'base' : undefined} href={index !== lastIndex ? `/${item.toLowerCase()}` : null as unknown as string}>
-          {isUUID ? title : item}
-        </Breadcrumb.Item>
-      )
-    })
+import { Breadcrumb, ConfigProvider } from 'antd';
+import { BreadcrumbItemType, BreadcrumbSeparatorType } from 'antd/es/breadcrumb/Breadcrumb';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { House } from 'phosphor-react';
+
+export const BreadcrumbComponent = ({ title }: { title?: string }) => {
+  const currentRoute = usePathname();
+  const breadPieces = currentRoute.substring(1).split('/');
+
+  const items = [
+    {
+      path: '/',
+      title: <House size={20} />,
+    },
+    ...breadPieces.map((item, index) => {
+      const isUUID = /\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/i.test(item);
+      return {
+        path: `/${breadPieces.slice(0, index + 1).join('/').toLowerCase()}`,
+        title: isUUID ? title : item.charAt(0).toUpperCase() + item.slice(1),
+      };
+    }),
+  ];
+
+  type RouteType = Partial<BreadcrumbItemType & BreadcrumbSeparatorType>;
+
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
+  function itemRender(route: RouteType, params: any, routes: RouteType[], paths: string[]) {
+    const isLast = route.path === routes[routes.length - 1].path;
+    return isLast ? (
+      <span>{route.title}</span>
+    ) : (
+      <Link href={route.path as string}>{route.title}</Link>
+    );
   }
 
   return (
-    <Breadcrumb dividerIconStyle="slash" icon={<Link href='/'><House size={20} /></Link>}>
-      {breadItems()}
-    </Breadcrumb>
-  )
+    <ConfigProvider
+      theme={{
+        components: {
+          Breadcrumb: {
+            lastItemColor: '#006876',
+            linkColor: '#333',
+            separatorColor: '#333',
+          }
+        }
+      }}
+    >
+      <Breadcrumb className='p-2' itemRender={itemRender} items={items} separator=" / " />
+    </ConfigProvider>
+  );
 }

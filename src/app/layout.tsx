@@ -17,6 +17,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
+			<head>
+				<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js" />
+			</head>
 			<body className='flex flex-col min-h-screen'>
 				<ConfigProvider
 					theme={{

@@ -65,8 +65,6 @@ export default async function Experiences({ searchParams }: { searchParams: { [k
         if (date) {
             const targetDate = new Date(date as string).toISOString().split('T')[0]
 
-            const dateTest = experiences.filter(experience => experience.dates.includes(targetDate))
-
             experiences = experiences.filter(experience => experience.dates.includes(targetDate))
         }
 

@@ -1,12 +1,15 @@
 "use client"
 
 import Image from "next/image";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules"
+import { register } from 'swiper/element/bundle'
+
+register()
 
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
+import styles from './carousel.module.css'
 
 
 type Props = {
@@ -18,29 +21,28 @@ export const CarouselComponent = ({ images }: Props) => {
     return images.map((image, index) => {
       return (
         // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-        <SwiperSlide key={index}>
-          <div className="flex w-full items-center justify-center">
+        <swiper-slide key={index}>
+          <div className={styles.imageWrapper}>
             <Image
               src={image}
               alt={`slider-${index}`}
-              className="object-cover object-center lg:w-1/4 w-2/3 h-96"
+              className={styles.image}
               height={960}
               width={640}
             />
           </div>
-        </SwiperSlide>
+        </swiper-slide>
       )
     })
   }
   return (
-    <Swiper
+    <swiper-container
       navigation
       pagination={{ type: "fraction" }}
       modules={[Navigation, Pagination]}
-      className="w-full text-white bg-[#cecece]"
-      loop
+      className={styles.carousel}
     >
       {renderItemCarousel()}
-    </Swiper>
+    </swiper-container>
   )
 }
