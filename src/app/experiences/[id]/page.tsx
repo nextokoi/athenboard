@@ -1,5 +1,4 @@
 import { Divider } from "keep-react"
-import { CarouselComponent } from "../../components/ui/carousel"
 import { BreadcrumbComponent } from "../../components/ui/breadcrumbs"
 import { ExperienceHeader } from "../../components/experiences-id/experience-header"
 import { HostDetails } from "../../components/experiences-id/host-details"
@@ -15,6 +14,7 @@ import { FaFlag } from "react-icons/fa6"
 import { fetchImageUrl, fetchOneExperience, fetchOneArtist, fetchReviews, fetchScheduleDates } from "@/app/supabaseClientData"
 import { createClient } from "@/app/utils/supabase/server"
 import { redirect } from "next/navigation"
+import { DynamicCarouselComponent } from "@/app/components/ui/dynamic-carousel"
 
 interface DetailsProps {
     params: { id: string }
@@ -104,7 +104,7 @@ const renderExperienceMainContent = (experience: any,reviews: any, imageUrl: any
     return (
         <>
             <BreadcrumbComponent title={title} />
-            <CarouselComponent images={imageUrl} />
+            <DynamicCarouselComponent images={imageUrl} />
             <main className="pl-5 pb-10">
                 <ExperienceHeader id={id} title={title} address={address} />
                 <HostDetails artistName={name} image={imageUrl} available_languages={availableLanguages} duration={duration} />
