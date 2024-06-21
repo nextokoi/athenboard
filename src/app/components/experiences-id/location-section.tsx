@@ -13,7 +13,7 @@ export const LocationSection = () => {
         <h5 className="text-2xl font-medium">Where will you go</h5>
         {mapLoading && <Spin className="my-3"/>}
         <DynamicMapLeaflet onLoad={() => setMapLoading(false)}/>
-        <p className="text-body-2">
+        <p className="text-lg">
           My workshop is around here, I&apos;ll see you there.
         </p>
       </div>

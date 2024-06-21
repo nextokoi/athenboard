@@ -11,7 +11,7 @@ interface Props {
 export const ExperienceHeader = ({ id, title, address } : Props) => {
     return (
         <div className="pt-5 flex flex-col gap-3 pr-5">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between xl:justify-start xl:gap-10">
                 <h4 className="text-3xl text-balance">{title}</h4>
                 <FavoriteButtonServer id={id || ''}/>
             </div>

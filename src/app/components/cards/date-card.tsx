@@ -49,7 +49,7 @@ export const DateCard = ({ data, id, onSelect, userAuthenticated } : Props) => {
         <div id={id} className="mb-5">
             {contextHolder}
             <h6 className="text-xl font-medium mb-3">{formattedDate}</h6>
-            <div className="border border-slate-300 rounded-lg p-5">
+            <div className="border border-slate-300 rounded-lg p-5 xl:w-96">
                 <div className="flex justify-between mb-5">
                     <div>
                         <p className='mb-2'>{startTime} - {endTime} (CEST)</p>

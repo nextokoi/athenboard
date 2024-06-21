@@ -120,7 +120,7 @@ const renderExperienceMainContent = (experience: any,reviews: any, imageUrl: any
         >
             <BreadcrumbComponent title={title} />
             <DynamicCarouselComponent images={imageUrl} />
-            <main className="pl-5 pb-10">
+            <main className="pl-5 pb-10 md:mx-24 xl:mx-48">
                 <ExperienceHeader id={id} title={title} address={address} />
                 <HostDetails artistName={name} image={imageUrl} available_languages={availableLanguages} duration={duration} />
                 <ExperienceDescription description={description} />

@@ -153,7 +153,7 @@ export const ReviewsSection = ({ reviews, experienceId, user }: ReviewProps) => 
         {loading ? <Spin /> : (reviews.length > 0 ? renderReviews() : <p>No reviews yet. Be the first!</p>)}
       </HorizontalScroll>
       <div className="pr-5">
-        <Button size="large" className="w-full" onClick={handleOpenDrawer}>
+        <Button size="large" className="w-full xl:w-48" onClick={handleOpenDrawer}>
           Show more reviews
         </Button>
       </div>
@@ -169,8 +169,8 @@ export const ReviewsSection = ({ reviews, experienceId, user }: ReviewProps) => 
                 <h5 className="text-2xl font-medium">5 (100 reviews)</h5>
               </div>
             </header>
-            <main className="mt-10">
-              {loading ? <Spin /> : (reviews.length > 0 ? renderReviews() : <p>No reviews yet. Be the first!</p>)}  
+            <main className="mt-10 xl:px-8">
+              {loading ? <Spin /> : (reviews.length > 0 ? renderReviews() : <p className="text-lg">No reviews yet. Be the first!</p>)}  
             </main>
           </div>
           <footer>
@@ -186,7 +186,9 @@ export const ReviewsSection = ({ reviews, experienceId, user }: ReviewProps) => 
               <p className="mb-2">You're logged as <span className="font-medium">{user?.user_name}</span></p>
               <TextArea rows={4} placeholder="Write a review" autoSize={{ minRows: 6 }} value={reviewContent} onChange={(e) => setReviewContent(e.target.value)}/>
             </Modal>
-            <Button size="large" className="w-full py-6" onClick={showModal}>Add review</Button>
+            <div className="xl:flex xl:justify-center">
+              <Button size="large" className="w-full py-6 xl:w-56" onClick={showModal}>Add review</Button>
+            </div>
           </footer>
         </div>
       </Drawer>

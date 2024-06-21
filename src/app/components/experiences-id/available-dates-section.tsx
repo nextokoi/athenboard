@@ -76,18 +76,18 @@ export const AvailableDatesSection = ({ experience, image, available_languages, 
             <Divider />
             <div className="flex flex-col gap-3 py-5">
                 <h5 className="text-2xl font-medium mb-3">Choose from the available dates</h5>
-                <Button size="large" onClick={handleOpenDrawer}>
+                <Button className="xl:w-48" size="large" onClick={handleOpenDrawer}>
                     Show more dates
                 </Button>
                 <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer}>
-                    <div className="px-6 pb-8">
+                    <div className="px-6">
                         <header className="flex flex-col gap-5 mb-5 sticky top-0 bg-white pt-8 pb-8 z-10">
                             <Button type="text" className="p-1 self-start" onClick={handleCloseDrawer}>
                                 <FaChevronLeft className="text-2xl" />
                             </Button>
                             <h5 className="text-2xl font-medium text-balance">Choose from the available dates</h5>
                         </header>
-                        <main>
+                        <main className="xl:pb-8 xl:px-8">
                             {renderDateCard()}
                         </main>
                     </div>
