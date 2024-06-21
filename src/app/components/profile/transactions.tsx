@@ -64,7 +64,7 @@ export default function Transactions({ data }: {data: Invoice[] | undefined}) {
                     <div className="flex items-center justify-between w-full">
                         <Avatar src={invoice?.image} size={64} />
                         <div className="w-64">
-                            <h6 className="text-heading-6 mb-2 text-balance text-slate-900">{invoice?.experiences.title}</h6>
+                            <h6 className="text-xl font-medium mb-2 text-balance text-slate-900">{invoice?.experiences.title}</h6>
                             <div className="flex gap-2 text-slate-600 text-body-4">
                                 <span className="font-bold">INV</span>
                                 <p>#{invoice.id.toUpperCase()}</p>
@@ -97,14 +97,14 @@ export default function Transactions({ data }: {data: Invoice[] | undefined}) {
         const status = (selectedInvoice.status === 'complete') ? <Tag color="green">Paid</Tag> : <Tag color="orange">Pending</Tag>
         return (
             <div className="p-5 bg-slate-200 rounded-md">
-                <Button type="text" className="text-[#333] mb-5" onClick={handleBackClick}>
-                    <FaChevronLeft className="text-md" /> Back
+                <Button type="text" className="text-[#333] mb-10 font-medium" onClick={handleBackClick}>
+                    <FaChevronLeft/> Back
                 </Button>
                 <div className="flex flex-col gap-2">
                     <div className="flex flex-col items-center gap-5">
                         <Avatar shape="square" src={selectedInvoice?.image} size={120} />
-                        <h6 className="text-heading-6 mb-2 text-slate-900">{selectedInvoice?.experiences.title}</h6>
-                        <p className="text-body-3 text-pretty">{selectedInvoice?.experiences.description}</p>
+                        <h5 className="text-2xl mb-2 text-slate-900">{selectedInvoice?.experiences.title}</h5>
+                        <p className="text-pretty">{selectedInvoice?.experiences.description}</p>
                         <div className="grid grid-cols-2 items-center font-medium my-3">
                             <span>🏙️{selectedInvoice?.experiences.address}</span>
                             <p>🌍{selectedInvoice?.available_languages}</p>
@@ -129,28 +129,28 @@ export default function Transactions({ data }: {data: Invoice[] | undefined}) {
     return (
         <>
             <div>
-                <h6 className="text-heading-6">Transactions</h6>
+                <h5 className="text-2xl">Transactions</h5>
                 <div className="flex items-center justify-between gap-3 mt-5">
                     <div className="flex items-center gap-5">
                         <div className="flex items-center gap-3">
                             <TbInvoice className="text-2xl" />
-                            <p className="text-body-2 font-semibold">Invoices</p>
+                            <p className="font-semibold">Invoices</p>
                         </div>
                     </div>
                     <Button type="text" className="text-[#333] p-0" onClick={handleOpenDrawer}><FaChevronRight className="text-xl" /></Button>
                     <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer}>
                         <header className="sticky top-0 bg-white z-50">
-                            <div className="flex items-center gap-10 p-5">
+                            <div className="flex items-center gap-10 pt-5 pl-5">
                                 <Button type="text" className="text-[#333] p-0" onClick={handleCloseDrawer}>
                                     <FaChevronLeft className="text-2xl" />
                                 </Button>
-                                <h5 className="text-heading-5">Invoices</h5>
+                                <h5 className="text-2xl">Invoices</h5>
                             </div>
                             <Divider />
                         </header>
                         <div className="flex flex-col gap-5 px-10 pb-5">
                             {selectedInvoice ? invoiceListRenderSelected() : invoiceListRender()}
-                            {data?.length === 0 && <p className="text-body-2">No invoices yet</p>}
+                            {data?.length === 0 && <p>No invoices yet</p>}
                         </div>
                     </Drawer>
                 </div>

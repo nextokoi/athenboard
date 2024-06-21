@@ -59,19 +59,19 @@ export const AccesibilitySection = ({ mobility_features, communication_features,
         <div className="pr-5">
             <Divider />
             <div className="flex flex-col gap-5 py-5">
-                <h6 className="font-medium text-heading-6">Accesibility</h6>
+                <h5 className="text-2xl font-medium">Accesibility</h5>
                 <p className="text-pretty text-body-3">
                     Free entry for individuals assisting participants with functional diversity.
                 </p>
                 <Button size="large" className="mt-3" onClick={handleOpenDrawer}>Show all benefits</Button>
                 <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer}>
                     <div className="flex flex-col gap-3 px-5">
-                        <header className="py-5 sticky top-0 bg-white">
-                            <Button type="text" onClick={handleCloseDrawer}>
-                                <FaChevronLeft />
+                        <header className="py-5 sticky top-0 bg-white flex flex-col gap-5">
+                            <Button type="text" className="self-start" onClick={handleCloseDrawer}>
+                                <FaChevronLeft className="text-xl"/>
                             </Button>
-                            <h5 className="text-heading-5 pt-2">Accesibility</h5>
-                            <p className="text-pretty text-body-2 mt-2">This artist has highlighted suitable features for guests with accessibility requirements.</p>
+                            <h4 className="text-3xl">Accesibility</h4>
+                            <p className="text-pretty">This artist has highlighted suitable features for guests with accessibility requirements.</p>
                         </header>
                         <main>
                             {renderAccesibilityContent()}

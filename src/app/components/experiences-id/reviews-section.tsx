@@ -127,8 +127,8 @@ export const ReviewsSection = ({ reviews, experienceId, user }: ReviewProps) => 
           <div className="flex items-center gap-6 mb-3">
             <AvatarComponent image={user.avatar_url}/>
             <div>
-              <h6 className="text-heading-6 font-medium">{user.user_name}</h6>
-              <p className="text-body-4">{date}</p>
+              <h6 className="text-xl font-medium">{user.user_name}</h6>
+              <p>{date}</p>
             </div>
             { user && user.sub === review.user_id &&
             <Button type="text" onClick={() => handleRemove(review.id)}>
@@ -147,7 +147,7 @@ export const ReviewsSection = ({ reviews, experienceId, user }: ReviewProps) => 
       {contextHolder}
       <div className="flex items-center gap-3">
           <FaStar className="text-3xl"/>
-          <h6 className="text-heading-6">5 (100 reviews)</h6>
+          <h5 className="text-2xl font-medium">5 (100 reviews)</h5>
       </div>
       <HorizontalScroll>
         {loading ? <Spin /> : (reviews.length > 0 ? renderReviews() : <p>No reviews yet. Be the first!</p>)}
@@ -166,7 +166,7 @@ export const ReviewsSection = ({ reviews, experienceId, user }: ReviewProps) => 
               </Button>
               <div className="flex items-center gap-3">
                 <FaStar className="text-3xl"/>
-                <h6 className="text-heading-6">5 (100 reviews)</h6>
+                <h5 className="text-2xl font-medium">5 (100 reviews)</h5>
               </div>
             </header>
             <main className="mt-10">

@@ -30,9 +30,9 @@ export const HostBio = ({ name, biography, image } : Props) => {
         <div className="pr-5">
             <div className="flex flex-col gap-3 py-5">
                 <div className="flex gap-8 items-center justify-between">
-                    <h6 className="text-heading-6 font-medium">
+                    <h5 className="text-2xl font-medium">
                         Meet {name}, your artist
-                    </h6>
+                    </h5>
                     <AvatarComponent image={image}/>
                 </div>
                 <div className="flex flex-col gap-5">
@@ -54,8 +54,8 @@ export const HostBio = ({ name, biography, image } : Props) => {
                                 <Button type="text" className="self-start p-1" onClick={handleCloseDrawer}>
                                     <HiXMark className='text-4xl' />
                                 </Button>
-                                <h4 className="text-heading-4 mt-10">Ask the artist</h4>
-                                <h6 className="text-heading-6">Why do you want to get in touch with the artist?</h6>
+                                <h4 className="text-3xl mt-10">Ask the artist</h4>
+                                <h6 className="text-xl">Why do you want to get in touch with the artist?</h6>
                             </header>
                             <div className="mt-2 flex flex-col w-full gap-5">
                                 <Button size="large">Request a specific date</Button>

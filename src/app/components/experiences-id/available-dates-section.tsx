@@ -75,7 +75,7 @@ export const AvailableDatesSection = ({ experience, image, available_languages, 
         <div className="pr-5">
             <Divider />
             <div className="flex flex-col gap-3 py-5">
-                <h6 className="text-heading-6 font-medium mb-3">Choose from the available dates</h6>
+                <h5 className="text-2xl font-medium mb-3">Choose from the available dates</h5>
                 <Button size="large" onClick={handleOpenDrawer}>
                     Show more dates
                 </Button>
@@ -85,7 +85,7 @@ export const AvailableDatesSection = ({ experience, image, available_languages, 
                             <Button type="text" className="p-1 self-start" onClick={handleCloseDrawer}>
                                 <FaChevronLeft className="text-2xl" />
                             </Button>
-                            <h5 className="text-heading-5 text-balance">Choose from the available dates</h5>
+                            <h5 className="text-2xl font-medium text-balance">Choose from the available dates</h5>
                         </header>
                         <main>
                             {renderDateCard()}

@@ -91,13 +91,13 @@ export default async function Page() {
 
     return (
         <div className="px-5">
-            <h4 className="text-heading-4 my-8">Profile</h4>
+            <h4 className="text-3xl my-8">Profile</h4>
             <div className="flex items-center justify-between gap-3 mt-5">
                 <div className="flex items-center gap-5">
                     <Image src={avatar_url} alt="avatar" width={75} height={75} className="rounded-full" />
                     <div>
-                        <span className="text-body-1 font-semibold">{user_name}</span>
-                        <p className="text-body-2 text-slate-500">Welcome back!</p>
+                        <span className="text-xl font-semibold">{user_name}</span>
+                        <p className="text-slate-500">Welcome back!</p>
                     </div>
                 </div>
             </div>

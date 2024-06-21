@@ -48,16 +48,16 @@ export const DateCard = ({ data, id, onSelect, userAuthenticated } : Props) => {
     return (
         <div id={id} className="mb-5">
             {contextHolder}
-            <h6 className="text-heading-6 mb-3">{formattedDate}</h6>
+            <h6 className="text-xl font-medium mb-3">{formattedDate}</h6>
             <div className="border border-slate-300 rounded-lg p-5">
                 <div className="flex justify-between mb-5">
                     <div>
-                        <p className="text-body-2">{startTime} - {endTime} (CEST)</p>
-                        <p className="text-body-2"><span className="font-semibold">From {price}€</span> per person</p>
+                        <p className='mb-2'>{startTime} - {endTime} (CEST)</p>
+                        <p><span className="font-semibold">From {price}€</span> per person</p>
                     </div>
                     <Button size="middle" className="py-5 z-0" onClick={handleClick}>Choose</Button>
                 </div>
-                <p className="text-body-2 text-pretty">Available in {availableLanguages}</p>
+                <p className="text-body-2 text-pretty mb-2">Available in {availableLanguages}</p>
                 <p className="text-body-2 text-pretty">If you cancel before {cancelDateTime} (CEST), you will receive a full refund.</p>
             </div>
         </div>

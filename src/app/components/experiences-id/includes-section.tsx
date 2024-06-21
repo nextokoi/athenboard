@@ -6,7 +6,7 @@ import { BsTools } from "react-icons/bs";
 export const IncludesSection = () => {
     return (
         <div className="py-5">
-            <h6 className="text-heading-6 font-medium">What does it include</h6>
+            <h5 className="text-2xl font-medium mb-3">What does it include</h5>
             <div>
                 <HorizontalScroll>
                     <IncludesCard Icon={BsPaintBucket} title="Materials"/>

@@ -57,7 +57,7 @@ export const EditableField = ({ label, value, type, isEditing, onEdit, onChange 
         >
             <div className="flex items-center justify-between">
                 <div className="flex flex-col gap-1">
-                    <p className="text-body-2 font-semibold">{label}</p>
+                    <p className="text-lg font-semibold">{label}</p>
                     {
                         isEditing ? (
                             <div className="relative">
@@ -75,13 +75,13 @@ export const EditableField = ({ label, value, type, isEditing, onEdit, onChange 
                                 )}
                             </div>
                         ) : (
-                            <p className="text-body-2 text-slate-500 mt-1">{type === "password" ? "********" : (inputValue ? inputValue : "Not provided")}</p>
+                            <p className="text-slate-500 mt-1">{type === "password" ? "********" : (inputValue ? inputValue : "Not provided")}</p>
                         )
                     }
                 </div>
-                <Button type="link" className="text-body-2 font-semibold p-0 text-[#333]" onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</Button>
+                <Button type="link" className="text-lg font-semibold p-0 text-[#333]" onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</Button>
             </div>
-            <Divider className="my-5" />
+            <Divider/>
         </ConfigProvider>
     )
 

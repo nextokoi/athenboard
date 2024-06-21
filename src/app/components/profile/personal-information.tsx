@@ -96,13 +96,13 @@ export default function PersonalInformation({ data }: PersonalInformationProps) 
                 </Button>
                 <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer}>
                     <div className="sticky top-0 bg-white">
-                        <div className="flex items-center gap-10 p-5">
+                        <div className="flex items-center gap-10 pt-5 pl-5">
                             <Button type="text" className="text-[#333] p-0" onClick={handleCloseDrawer}>
                                 <FaChevronLeft className="text-2xl" />
                             </Button>
-                            <h5 className="text-heading-5">Personal information</h5>
+                            <h5 className="text-2xl">Personal information</h5>
                         </div>
-                        <Divider className="mb-5"/>
+                        <Divider/>
                     </div>
                     <div className="p-5">
                         {fields.map(field => (

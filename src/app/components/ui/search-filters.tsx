@@ -11,6 +11,7 @@ import { CheckboxComponent } from "./checkbox";
 import { SliderComponent } from "./slider";
 import { useRouter } from "next/navigation";
 import { CheckboxChangeEvent } from "antd/es/checkbox";
+import { Typography } from 'antd';
 
 export const SearchFilters = () => {
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
@@ -19,6 +20,8 @@ export const SearchFilters = () => {
     const [rangeValues, setRangeValues] = useState<number[]>([25, 100])
     const [sliderKey, setSliderKey] = useState<number>(0)
     const router = useRouter()
+
+    const { Title } = Typography
 
     const handleOpenDrawer = () => {
         setIsDrawerOpen(true)
@@ -92,60 +95,59 @@ export const SearchFilters = () => {
                 <Button shape='circle' size='large' icon={<FaSliders className='text-xl' />} onClick={handleOpenDrawer} />
                 <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer}>
                     <div className="sticky top-0 bg-[#fdfdfd] z-10 rounded-t-xl">
-                        <header className="flex justify-between items-center w-full p-4">
+                        <header className="flex justify-between items-center w-full pt-5 px-4">
                             <Button shape='circle' size="large" icon={<HiXMark className='text-3xl' />} onClick={handleCloseDrawer} />
-                            <h4 className="flex-grow text-center text-heading-4">Filters</h4>
+                            <Title level={2} className="flex-grow text-center">Filters</Title>
                         </header>
                         <Divider />
                     </div>
                     <main>
-                        <div className="flex flex-col gap-8 pt-5 px-5">
-                            <h5 className="text-heading-5">Choose a date</h5>
+                        <div className="flex flex-col gap-8 px-5">
+                            <Title level={3}>Choose a date</Title>
                             <div className="w-2/3 mx-auto">
                                 <DatePickerComponent onDateChange={setSelectedDate} date={selectedDate} />
                             </div>
                             <Divider />
                         </div>
-                        <div className="flex flex-col gap-8 pt-5 px-5">
-                            <h5 className="text-heading-5">Activity type</h5>
+                        <div className="flex flex-col gap-8 px-5">
+                            <Title level={3}>Activity type</Title>
                             <CheckboxComponent data={activityType} onCheckBoxChange={handleCheckBoxChange} selectedCheckbox={selectedCheckbox} filterName="category" />
                             <Divider />
                         </div>
-                        <div className="flex flex-col gap-8 pt-5 px-5">
-                            <h5 className="text-heading-5">Price range</h5>
+                        <div className="flex flex-col gap-8 px-5">
+                            <Title level={3}>Price range</Title>
                             <SliderComponent key={sliderKey} rangeValues={rangeValues} onRangeValuesChange={setRangeValues} />
                             <Divider />
                         </div>
-                        <div className="flex flex-col gap-8 pt-5 px-5">
-                            <h5 className="text-heading-5">Available languages</h5>
+                        <div className="flex flex-col gap-8 px-5">
+                            <Title level={3}>Available languages</Title>
                             <CheckboxComponent data={availableLanguages} filterName="available_languages" onCheckBoxChange={handleCheckBoxChange} selectedCheckbox={selectedCheckbox} />
-                            <span className="font-bold text-md">Show all</span>
                             <Divider />
                         </div>
-                        <div className="flex flex-col gap-8 pt-5 px-5">
-                            <h5 className="text-heading-5">Accesibility features</h5>
+                        <div className="flex flex-col gap-8 px-5">
+                            <Title level={3}>Accesibility features</Title>
                             <article>
-                                <h6 className="font-semibold mb-5 text-heading-6">Mobility</h6>
+                                <Title level={5}>Mobility</Title>
                                 <CheckboxComponent data={mobility} filterName="mobility_features" onCheckBoxChange={handleCheckBoxChange} selectedCheckbox={selectedCheckbox} />
                             </article>
                             <article>
-                                <h6 className="font-semibold mb-5 text-heading-6">Communication</h6>
+                                <Title level={5}>Communication</Title>
                                 <CheckboxComponent data={communication} filterName="communication_features" onCheckBoxChange={handleCheckBoxChange} selectedCheckbox={selectedCheckbox} />
                             </article>
                             <article>
-                                <h6 className="font-semibold mb-5 text-heading-6">Sensory needs</h6>
+                                <Title level={5}>Sensory needs</Title>
                                 <CheckboxComponent data={sensoryNeeds} filterName="sensory_needs" onCheckBoxChange={handleCheckBoxChange} selectedCheckbox={selectedCheckbox} />
                             </article>
                             <article>
-                                <h6 className="font-semibold mb-5 text-heading-6">Personal assistants</h6>
+                                <Title level={5}>Personal assistants</Title>
                                 <CheckboxComponent data={personalAssistants} filterName="personal_assistants_features" onCheckBoxChange={handleCheckBoxChange} selectedCheckbox={selectedCheckbox} />
-                                <p className="text-pretty text-slate-400 mt-2 mb-10 w-10/12 text-body-3">Interpreters, caregivers, or other personal assistants can accompany the participants they assist without having to pay any additional fees</p>
+                                <p className="text-pretty text-slate-400 mt-2 mb-10 w-10/12">Interpreters, caregivers, or other personal assistants can accompany the participants they assist without having to pay any additional fees</p>
                             </article>
                         </div>
                     </main>
                     <div className="flex justify-between items-center w-full border-y-2 p-5 sticky bottom-0 bg-[#fdfdfd] z-10">
-                        <Button color="secondary" className="font-medium" onClick={handleRemoveFilters}>Remove filters</Button>
-                        <Button color="success" onClick={handleShowResults}>Show results</Button>
+                        <Button className="font-medium" onClick={handleRemoveFilters}>Remove filters</Button>
+                        <Button type="primary" onClick={handleShowResults}>Show results</Button>
                     </div>
                 </Drawer>
         </>

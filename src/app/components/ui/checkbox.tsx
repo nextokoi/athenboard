@@ -28,7 +28,7 @@ export const CheckboxComponent = ({ data, filterName, onCheckBoxChange, selected
       return (
         // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
         <div key={index} className='flex items-center justify-between'>
-          <label htmlFor={labelTreated} className='text-lg text-pretty w-10/12'>{label}</label>
+          <label htmlFor={labelTreated} className='text-pretty w-10/12'>{label}</label>
           <Checkbox id={labelTreated} value={label} onChange={onChange} checked={isChecked(label)} />
         </div>
       )

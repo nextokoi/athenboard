@@ -73,7 +73,7 @@ export default function Favorites({ data, user }: { data: any, user: any }) {
     return (
         <>
             <div>
-                <h6 className="text-heading-6">Favorites</h6>
+                <h5 className="text-2xl">Favorites</h5>
                 <div className="flex items-center justify-between gap-3 mt-5">
                     <div className="flex items-center gap-5">
                         <div className="flex items-center gap-3">
@@ -88,7 +88,7 @@ export default function Favorites({ data, user }: { data: any, user: any }) {
                                 <Button type="text" className="text-[#333] p-0" onClick={handleCloseDrawer}>
                                     <FaChevronLeft className="text-2xl" />
                                 </Button>
-                                <h5 className="text-heading-5">Favorites</h5>
+                                <h5 className="text-2xl">Favorites</h5>
                             </div>
                             <Divider />
                         </header>
