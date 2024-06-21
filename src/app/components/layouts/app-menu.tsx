@@ -8,7 +8,7 @@ export const AppMenu = ({ isVertical = false, onCloseMenu }: { isVertical?: bool
   const items: MenuItem[] = [
     {
       label: <Link href="/" onClick={onCloseMenu}>Home</Link>,
-      key: "Home",
+      key: "home",
       style: {
         color: isVertical ? "#333" : "#fff",
       },
@@ -21,8 +21,8 @@ export const AppMenu = ({ isVertical = false, onCloseMenu }: { isVertical?: bool
       },
     },
     {
-      label: "About us",
-      key: "About us",
+      label: <Link href="/about" onClick={onCloseMenu}>About me</Link>,
+      key: "about-me",
       style: {
         color: isVertical ? "#333" : "#fff",
       },
