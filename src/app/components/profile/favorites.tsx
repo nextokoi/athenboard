@@ -98,7 +98,7 @@ export default function Favorites({ data, user }: { data: any, user: any }) {
                     </Drawer>
                 </div>
             </div>
-            <Divider className="border border-slate-300 my-5" />
+            <Divider />
         </>
     )
 }

@@ -2,11 +2,10 @@
 
 import { HorizontalScroll } from "@/app/components/horizontal-scroll"
 import { AvatarComponent } from "../ui/avatar"
-import { Button, Modal, Spin, message } from "antd"
+import { Button, Modal, Spin, message, Input } from "antd"
 import { Drawer } from "../ui/drawer"
 import { useState } from "react"
 import { FaChevronLeft, FaStar } from "react-icons/fa6"
-import { Input } from "antd"
 import { useRouter } from "next/navigation"
 import { FaRegTrashCan } from "react-icons/fa6"
 import { createClient } from "@/app/utils/supabase/client"

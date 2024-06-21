@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, Divider, Icon, Input } from "keep-react";
+import { Button, ConfigProvider, Divider, Input } from "antd";
 import { useEffect, useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
 
@@ -46,7 +46,15 @@ export const EditableField = ({ label, value, type, isEditing, onEdit, onChange 
     }
 
     return (
-        <>
+        <ConfigProvider
+            theme={{
+                components: {
+                    Button: {
+                        colorLinkHover: "#006876",
+                    }
+                }
+            }}
+        >
             <div className="flex items-center justify-between">
                 <div className="flex flex-col gap-1">
                     <p className="text-body-2 font-semibold">{label}</p>
@@ -71,10 +79,10 @@ export const EditableField = ({ label, value, type, isEditing, onEdit, onChange 
                         )
                     }
                 </div>
-                <Button className="text-body-2 font-semibold bg-transparent hover:bg-transparent p-0 text-[#333]" onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</Button>
+                <Button type="link" className="text-body-2 font-semibold p-0 text-[#333]" onClick={handleEditClick}>{isEditing ? "Save" : "Edit"}</Button>
             </div>
             <Divider className="my-5" />
-        </>
+        </ConfigProvider>
     )
 
 }

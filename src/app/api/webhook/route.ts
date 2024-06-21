@@ -1,7 +1,7 @@
 import { createClient } from '@/app/utils/supabase/server'
 import { headers } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
-import { UUID, randomUUID } from 'crypto'
+import { randomUUID } from 'crypto'
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 const Joi = require('joi')

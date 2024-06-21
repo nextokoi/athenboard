@@ -1,6 +1,5 @@
 "use client"
 
-import { FunctionComponent } from "react";
 import { addHours, format, parseISO, subDays } from 'date-fns'
 import { enUS } from 'date-fns/locale'
 import { message, Button } from "antd";
@@ -28,7 +27,7 @@ export const calculateEndTime = (hour: string, duration: number) => {
     return format(endTime, 'HH:mm')
 }
 
-export const DateCard: FunctionComponent<Props> = ({ data, id, onSelect, userAuthenticated }) => {
+export const DateCard = ({ data, id, onSelect, userAuthenticated } : Props) => {
     const date = parseISO(data.date)
     const formattedDate = format(date, 'eee, dd MMMM', { locale: enUS })
     const startTime = data.hour.substring(0, 5)

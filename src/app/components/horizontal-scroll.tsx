@@ -6,7 +6,7 @@ type Props = {
     children: ReactNode
 }
 
-export const HorizontalScroll: FunctionComponent<Props> = ({ children }) => {
+export const HorizontalScroll = ({ children } : Props) => {
     return (
         <div className="overflow-x-scroll whitespace-nowrap" style={{scrollbarWidth: 'none'}}>
             <div className="inline-flex space-x-4 p-4">

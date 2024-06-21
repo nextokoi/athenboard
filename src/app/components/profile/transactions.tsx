@@ -155,7 +155,7 @@ export default function Transactions({ data }: {data: Invoice[] | undefined}) {
                     </Drawer>
                 </div>
             </div>
-            <Divider className="border border-slate-300 my-5" />
+            <Divider />
         </>
     )
 }

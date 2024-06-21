@@ -1,6 +1,6 @@
 "use client"
 
-import { Button } from "keep-react"
+import { Button } from "antd"
 import { useState } from "react"
 import { Drawer } from "../ui/drawer"
 import { FaChevronRight, FaRegCircleQuestion } from "react-icons/fa6"
@@ -25,7 +25,7 @@ export default function FAQs() {
                     <p className="text-body-2 font-semibold">FAQs</p>
                 </div>
             </div>
-            <Button className="bg-transparent hover:bg-transparent text-[#333] p-0"><FaChevronRight className="text-xl" /></Button>
+            <Button type="text" className="text-[#333] p-0"><FaChevronRight className="text-xl" /></Button>
         </div>
     )
 }

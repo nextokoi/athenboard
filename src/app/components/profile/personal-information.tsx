@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, Divider } from "keep-react"
+import { Button, Divider } from "antd"
 import { useState } from "react"
 import { Drawer } from "../ui/drawer"
 import { FaChevronRight, FaChevronLeft, FaRegCircleUser } from "react-icons/fa6"
@@ -91,13 +91,13 @@ export default function PersonalInformation({ data }: PersonalInformationProps) 
                     <FaRegCircleUser className="text-2xl" />
                     <p className="text-body-2 font-semibold">Personal information</p>
                 </div>
-                <Button className="bg-transparent hover:bg-transparent text-[#333] p-0" onClick={handleOpenDrawer}>
+                <Button type="text" className="text-[#333] p-0" onClick={handleOpenDrawer}>
                     <FaChevronRight className="text-xl" />
                 </Button>
                 <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer}>
                     <div className="sticky top-0 bg-white">
                         <div className="flex items-center gap-10 p-5">
-                            <Button className="bg-transparent hover:bg-transparent text-[#333] p-0" onClick={handleCloseDrawer}>
+                            <Button type="text" className="text-[#333] p-0" onClick={handleCloseDrawer}>
                                 <FaChevronLeft className="text-2xl" />
                             </Button>
                             <h5 className="text-heading-5">Personal information</h5>
@@ -122,7 +122,7 @@ export default function PersonalInformation({ data }: PersonalInformationProps) 
                     </div>
                 </Drawer>
             </div>
-            <Divider className="border border-slate-300 my-5" />
+            <Divider />
         </>
     )
 }

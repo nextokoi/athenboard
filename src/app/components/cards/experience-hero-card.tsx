@@ -1,5 +1,4 @@
 import { FaStar } from "react-icons/fa6";
-import { FunctionComponent } from 'react';
 import { FavoriteButtonServer } from '../ui/favorite-button-server';
 import { Avatar } from 'antd';
 import Link from "next/link";
@@ -12,7 +11,7 @@ type Props = {
     id: string
 }
 
-export const ExperienceHeroCard: FunctionComponent<Props> = ({ sourceImg, score, duration, title, id }) => {
+export const ExperienceHeroCard = ({ sourceImg, score, duration, title, id } : Props) => {
     return (
         <div className='bg-white flex rounded-lg p-1'>
             <Link href={`/experiences/${id}`}>
