@@ -4,7 +4,7 @@ import { Breadcrumb, ConfigProvider } from 'antd';
 import { BreadcrumbItemType, BreadcrumbSeparatorType } from 'antd/es/breadcrumb/Breadcrumb';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { House } from 'phosphor-react';
+import { FaHouse } from "react-icons/fa6";
 
 export const BreadcrumbComponent = ({ title }: { title?: string }) => {
   const currentRoute = usePathname();
@@ -13,7 +13,7 @@ export const BreadcrumbComponent = ({ title }: { title?: string }) => {
   const items = [
     {
       path: '/',
-      title: <House size={20} />,
+      title: <FaHouse className='text-xl' />,
     },
     ...breadPieces.map((item, index) => {
       const isUUID = /\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\b/i.test(item);
