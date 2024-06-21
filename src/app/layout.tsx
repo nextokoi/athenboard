@@ -4,6 +4,7 @@ import { Footer } from './components/layouts/footer';
 import { LoginNav } from './components/layouts/login-nav';
 import { AppNavbar } from './components/layouts/app-navbar';
 import { ConfigProvider } from 'antd';
+import { AntdRegistry } from '@ant-design/nextjs-registry'
 
 export const metadata: Metadata = {
 	title: 'Athenboard',
@@ -32,11 +33,14 @@ export default function RootLayout({
 						<AppNavbar>
 							<LoginNav />
 						</AppNavbar>
+
 					</div>
 					<main className='flex-grow bg-[#F5F5F5]'>
-						{children}
+						<AntdRegistry>
+							{children}
+						</AntdRegistry>
 					</main>
-				<Footer />
+					<Footer />
 				</ConfigProvider>
 			</body>
 		</html>

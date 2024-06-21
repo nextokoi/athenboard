@@ -1,4 +1,4 @@
-import { Menu, type MenuProps } from "antd";
+import { ConfigProvider, Menu, type MenuProps } from "antd";
 import Link from "next/link";
 
 type MenuItem = Required<MenuProps>["items"][number];
@@ -33,13 +33,23 @@ export const AppMenu = ({ isVertical = false, onCloseMenu }: { isVertical?: bool
 
   return (
     <>
-      <Menu
-        mode={isVertical ? "vertical" : "horizontal"}
-        items={items}
-        className={!isVertical ? "bg-[#006876] w-full" : ""}
-        style={ style }
-        selectable={false}
-      />
+    <ConfigProvider
+      theme={{
+        components: {
+          Menu: {
+            itemBg: !isVertical ? "#006876" : "",
+          }
+        }
+      }}
+    >
+        <Menu
+          mode={isVertical ? "vertical" : "horizontal"}
+          items={items}
+          className={!isVertical ? "bg-[#006876] w-full" : ""}
+          style={ style }
+          selectable={false}
+        />
+      </ConfigProvider>
     </>
   );
 };

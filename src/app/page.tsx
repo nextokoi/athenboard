@@ -12,7 +12,7 @@ import { HorizontalScroll } from './components/horizontal-scroll';
 
 import Link from 'next/link';
 import { createClient } from "./utils/supabase/server";
-import { Button } from "antd";
+import { Button, ConfigProvider } from "antd";
 
 export const revalidate = 0
 
@@ -145,10 +145,20 @@ export default async function Home() {
 					Explore the Art
 				</h4>
 				<Link href="/experiences">
-					<Button className="text-lg px-10 py-8 font-medium text-[#333]">
-						<FaMagnifyingGlass className='text-2xl' />
-						Try it
-					</Button>
+					<ConfigProvider 
+						theme={{ 
+							components: { 
+								Button: { 
+									paddingBlockLG: 30,
+									paddingInlineLG: 40 
+								} 
+							} 
+						}}
+					>
+						<Button size="large" className="p-8 text-lg font-medium text-[#333]" icon={<FaMagnifyingGlass className='text-2xl' />}>
+							<span className="text-lg font-medium">Try it</span>
+						</Button>
+					</ConfigProvider>
 				</Link>
 			</section>
 			<section className='bg-[#9FEFFF] text-[#001F24] px-6 py-14 grid justify-items-center'>

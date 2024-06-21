@@ -98,7 +98,7 @@ export default function LoginDropdown() {
                         defaultBg: "#006876",
                         defaultColor: "#fff",
                         defaultBorderColor: "#006876",
-                    },
+                    }
                 },
             }}
         >

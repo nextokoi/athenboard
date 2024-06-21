@@ -51,6 +51,7 @@ export const EditableField = ({ label, value, type, isEditing, onEdit, onChange 
                 components: {
                     Button: {
                         colorLinkHover: "#006876",
+                        colorLink: "#006876",
                     }
                 }
             }}
@@ -67,12 +68,12 @@ export const EditableField = ({ label, value, type, isEditing, onEdit, onChange 
                                     onChange={handleInputChange}
                                     onKeyDown={handleKeyDown}
                                     className="w-96"
+                                    prefix={type === "password" && (
+                                        <Button type="text" onClick={toggleShowPassword} className="text-[#333]">
+                                            {showPassword ? <FaEyeSlash /> : <FaEye />}
+                                        </Button>
+                                    )}
                                 />
-                                {type === "password" && (
-                                    <Button onClick={toggleShowPassword} className="bg-transparent hover:bg-transparent text-[#333] p-0 absolute top-1/2 -translate-y-1/2 right-3">
-                                        {showPassword ? <FaEyeSlash /> : <FaEye />}
-                                    </Button>
-                                )}
                             </div>
                         ) : (
                             <p className="text-slate-500 mt-1">{type === "password" ? "********" : (inputValue ? inputValue : "Not provided")}</p>
