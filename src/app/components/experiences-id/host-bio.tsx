@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, Divider } from "keep-react"
+import { Button, Divider } from "antd"
 import { AvatarComponent } from "@/app/components/ui/avatar"
 import { FaStar } from "react-icons/fa6";
 import { MdVerified } from "react-icons/md";
@@ -35,7 +35,7 @@ export const HostBio = ({ name, biography, image } : Props) => {
                     </h6>
                     <AvatarComponent image={image}/>
                 </div>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-5">
                     <div className="flex items-center gap-2">
                         <span><FaStar className="text-2xl text-yellow-500" /></span>
                         <p className="text-body-2">100 reviews</p>
@@ -47,19 +47,19 @@ export const HostBio = ({ name, biography, image } : Props) => {
                     <p className="text-body-2 text-pretty">
                         {biography}
                     </p>
-                    <Button color="success" onClick={handleOpenDrawer}>Contact with the artist</Button>
+                    <Button size="large" onClick={handleOpenDrawer}>Contact with the artist</Button>
                     <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer}>
-                        <div className="flex flex-col gap-3 p-5">
+                        <div className="flex flex-col gap-10 p-5">
                             <header className="flex flex-col gap-3">
-                                <Button className="bg-transparent hover:bg-slate-100 text-black w-fit p-2" onClick={handleCloseDrawer}>
+                                <Button type="text" className="self-start p-1" onClick={handleCloseDrawer}>
                                     <HiXMark className='text-4xl' />
                                 </Button>
-                                <h4 className="text-heading-4">Ask the artist</h4>
+                                <h4 className="text-heading-4 mt-10">Ask the artist</h4>
                                 <h6 className="text-heading-6">Why do you want to get in touch with the artist?</h6>
                             </header>
-                            <div className="mt-2">
-                                <Button className="w-full bg-transparent hover:bg-slate-100 text-black border border-black">Request a specific date</Button>
-                                <Button className="w-full bg-transparent hover:bg-slate-100 text-black border border-black mt-5">Other question</Button>
+                            <div className="mt-2 flex flex-col w-full gap-5">
+                                <Button size="large">Request a specific date</Button>
+                                <Button size="large">Other question</Button>
                             </div>
                             <p className="text-pretty">If you have any questions about how experiences work, please <span className="font-bold">refer to our frequently asked questions</span>.</p>
                         </div>

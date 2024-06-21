@@ -1,6 +1,6 @@
 "use client"
 
-import { Button, Divider } from "keep-react"
+import { Button, Divider } from "antd"
 
 import { useState } from "react"
 import { Drawer } from "../ui/drawer"
@@ -75,14 +75,14 @@ export const AvailableDatesSection = ({ experience, image, available_languages, 
         <div className="pr-5">
             <Divider />
             <div className="flex flex-col gap-3 py-5">
-                <h6 className="text-heading-6 font-medium">Choose from the available dates</h6>
-                <Button className="w-full" color="success" onClick={handleOpenDrawer}>
+                <h6 className="text-heading-6 font-medium mb-3">Choose from the available dates</h6>
+                <Button size="large" onClick={handleOpenDrawer}>
                     Show more dates
                 </Button>
                 <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer}>
                     <div className="px-6 pb-8">
-                        <header className="flex flex-col gap-5 mb-5 sticky top-0 bg-white pt-8 pb-8">
-                            <Button className="p-2 w-fit bg-transparent hover:bg-slate-100 text-[#171D1E]" onClick={handleCloseDrawer}>
+                        <header className="flex flex-col gap-5 mb-5 sticky top-0 bg-white pt-8 pb-8 z-10">
+                            <Button type="text" className="p-1 self-start" onClick={handleCloseDrawer}>
                                 <FaChevronLeft className="text-2xl" />
                             </Button>
                             <h5 className="text-heading-5 text-balance">Choose from the available dates</h5>

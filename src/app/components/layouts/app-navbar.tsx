@@ -1,6 +1,5 @@
 "use client";
 
-import './app-navbar.css';
 import { Drawer } from "antd";
 import { FaBars } from "react-icons/fa6";
 import { useState } from "react";

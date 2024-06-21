@@ -3,8 +3,7 @@
 import { FunctionComponent } from "react";
 import { addHours, format, parseISO, subDays } from 'date-fns'
 import { enUS } from 'date-fns/locale'
-import { Button } from "keep-react";
-import { message } from "antd";
+import { message, Button } from "antd";
 
 type Props = {
     data: {
@@ -57,7 +56,7 @@ export const DateCard: FunctionComponent<Props> = ({ data, id, onSelect, userAut
                         <p className="text-body-2">{startTime} - {endTime} (CEST)</p>
                         <p className="text-body-2"><span className="font-semibold">From {price}€</span> per person</p>
                     </div>
-                    <Button onClick={handleClick}>Choose</Button>
+                    <Button size="middle" className="py-5 z-0" onClick={handleClick}>Choose</Button>
                 </div>
                 <p className="text-body-2 text-pretty">Available in {availableLanguages}</p>
                 <p className="text-body-2 text-pretty">If you cancel before {cancelDateTime} (CEST), you will receive a full refund.</p>

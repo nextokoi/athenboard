@@ -1,15 +1,15 @@
 "use client"
 
-import { HorizontalScroll } from "@/app/components/horizontal-scroll";
-import { AvatarComponent } from "../ui/avatar";
-import { Button, Modal, Spin, message } from "antd";
-import { Drawer } from "../ui/drawer";
-import { useState } from "react";
-import { FaChevronLeft, FaStar } from "react-icons/fa6";
-import { Input } from "antd";
-import { useRouter } from "next/navigation";
-import { FaRegTrashCan } from "react-icons/fa6";
-import { createClient } from "@/app/utils/supabase/client";
+import { HorizontalScroll } from "@/app/components/horizontal-scroll"
+import { AvatarComponent } from "../ui/avatar"
+import { Button, Modal, Spin, message } from "antd"
+import { Drawer } from "../ui/drawer"
+import { useState } from "react"
+import { FaChevronLeft, FaStar } from "react-icons/fa6"
+import { Input } from "antd"
+import { useRouter } from "next/navigation"
+import { FaRegTrashCan } from "react-icons/fa6"
+import { createClient } from "@/app/utils/supabase/client"
 
 interface User {
   sub: string
@@ -139,9 +139,9 @@ export const ReviewsSection = ({ reviews, experienceId, user }: ReviewProps) => 
           </div>
           <div className="text-pretty">{review.content}</div>
         </div>
-      );
-    });
-  };
+      )
+    })
+  }
 
   return (
     <div className="flex flex-col gap-3 py-5">
@@ -154,7 +154,7 @@ export const ReviewsSection = ({ reviews, experienceId, user }: ReviewProps) => 
         {loading ? <Spin /> : (reviews.length > 0 ? renderReviews() : <p>No reviews yet. Be the first!</p>)}
       </HorizontalScroll>
       <div className="pr-5">
-        <Button className="w-full " color="success" onClick={handleOpenDrawer}>
+        <Button size="large" className="w-full" onClick={handleOpenDrawer}>
           Show more reviews
         </Button>
       </div>
@@ -175,14 +175,22 @@ export const ReviewsSection = ({ reviews, experienceId, user }: ReviewProps) => 
             </main>
           </div>
           <footer>
-            <Modal title="Feedback" centered open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+            <Modal 
+              title="Feedback" 
+              centered 
+              open={isModalOpen} 
+              onOk={handleOk} 
+              onCancel={handleCancel}
+              okButtonProps={{className: 'font-medium'}}
+              cancelButtonProps={{type: 'text', className: 'font-medium'}}
+            >
               <p className="mb-2">You're logged as <span className="font-medium">{user?.user_name}</span></p>
               <TextArea rows={4} placeholder="Write a review" autoSize={{ minRows: 6 }} value={reviewContent} onChange={(e) => setReviewContent(e.target.value)}/>
             </Modal>
-            <Button type="primary" className="w-full p-8" onClick={showModal}>Add review</Button>
+            <Button size="large" className="w-full py-6" onClick={showModal}>Add review</Button>
           </footer>
         </div>
       </Drawer>
     </div>
-  );
-};
+  )
+}

@@ -48,7 +48,7 @@ export const BreadcrumbComponent = ({ title }: { title?: string }) => {
         }
       }}
     >
-      <Breadcrumb className='p-2' itemRender={itemRender} items={items} separator=" / " />
+      <Breadcrumb className='py-5 pl-5' itemRender={itemRender} items={items} separator=" / " />
     </ConfigProvider>
   );
 }

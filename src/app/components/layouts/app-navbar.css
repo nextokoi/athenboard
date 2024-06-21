@@ -1,9 +1,0 @@
-.appear {
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-}
-
-.disappear {
-  display: none !important;
-}

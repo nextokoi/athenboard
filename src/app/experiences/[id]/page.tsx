@@ -1,4 +1,5 @@
-import { Divider } from "keep-react"
+import { ConfigProvider, Divider } from "antd"
+
 import { BreadcrumbComponent } from "../../components/ui/breadcrumbs"
 import { ExperienceHeader } from "../../components/experiences-id/experience-header"
 import { HostDetails } from "../../components/experiences-id/host-details"
@@ -11,10 +12,11 @@ import { ReviewsSection } from "../../components/experiences-id/reviews-section"
 import { AvailableDatesSection } from "../../components/experiences-id/available-dates-section"
 import { CancellationPolicy } from "../../components/experiences-id/cancellation-policy"
 import { FaFlag } from "react-icons/fa6"
+
+import { DynamicCarouselComponent } from "@/app/components/ui/dynamic-carousel"
 import { fetchImageUrl, fetchOneExperience, fetchOneArtist, fetchReviews, fetchScheduleDates } from "@/app/supabaseClientData"
 import { createClient } from "@/app/utils/supabase/server"
 import { redirect } from "next/navigation"
-import { DynamicCarouselComponent } from "@/app/components/ui/dynamic-carousel"
 
 interface DetailsProps {
     params: { id: string }
@@ -102,7 +104,20 @@ const renderExperienceMainContent = (experience: any,reviews: any, imageUrl: any
     const availableLanguages = formatLanguages(available_languages)
 
     return (
-        <>
+        <ConfigProvider
+            theme={{
+                components: {
+                    Button: {
+                        defaultBg: "#006876",
+                        defaultBorderColor: "#006876",
+                        defaultColor: "#fff",
+                        defaultHoverColor: "#fff",
+                        defaultHoverBg: "#007a91",
+                        defaultHoverBorderColor: "#007a91",
+                    }
+                }
+            }}
+        >
             <BreadcrumbComponent title={title} />
             <DynamicCarouselComponent images={imageUrl} />
             <main className="pl-5 pb-10">
@@ -121,7 +136,7 @@ const renderExperienceMainContent = (experience: any,reviews: any, imageUrl: any
                     <FaFlag className="text-xl" />Report this experience
                 </p>
             </main>
-        </>
+        </ConfigProvider>
     )
 }
 

@@ -1,4 +1,4 @@
-import { Divider } from "keep-react"
+import { Divider } from "antd"
 
 export const ExperienceDescription = ({ description } : {description: string}) => {
     

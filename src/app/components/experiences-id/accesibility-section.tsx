@@ -1,8 +1,8 @@
 "use client"
 
-import { Button, Divider } from "keep-react"
+import { Button, Divider } from "antd"
 import { Drawer } from "../ui/drawer"
-import { AwaitedReactNode, JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useState } from "react"
+import { useState } from "react"
 import { FaChevronLeft } from "react-icons/fa6"
 
 interface Props {
@@ -39,7 +39,7 @@ export const AccesibilitySection = ({ mobility_features, communication_features,
                                 <ul>
                                     {item.data.map((value, index) => (
                                         // biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-                                        <li key={index} className="text-pretty text-body-4">{value}</li>
+                                        <li key={index} className="text-pretty text-body-3">{value}</li>
                                     ))}
                                 </ul>
                             ) : (
@@ -58,20 +58,20 @@ export const AccesibilitySection = ({ mobility_features, communication_features,
     return (
         <div className="pr-5">
             <Divider />
-            <div className="flex flex-col gap-3 py-5">
+            <div className="flex flex-col gap-5 py-5">
                 <h6 className="font-medium text-heading-6">Accesibility</h6>
-                <p className="text-pretty text-body-4">
+                <p className="text-pretty text-body-3">
                     Free entry for individuals assisting participants with functional diversity.
                 </p>
-                <Button onClick={handleOpenDrawer} color="success">Show all benefits</Button>
+                <Button size="large" className="mt-3" onClick={handleOpenDrawer}>Show all benefits</Button>
                 <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer}>
                     <div className="flex flex-col gap-3 px-5">
                         <header className="py-5 sticky top-0 bg-white">
-                            <Button className="bg-transparent hover:bg-slate-200 text-[#171D1E] p-3" onClick={handleCloseDrawer}>
+                            <Button type="text" onClick={handleCloseDrawer}>
                                 <FaChevronLeft />
                             </Button>
                             <h5 className="text-heading-5 pt-2">Accesibility</h5>
-                            <p className="text-pretty text-body-3 mt-2">This artist has highlighted suitable features for guests with accessibility requirements.</p>
+                            <p className="text-pretty text-body-2 mt-2">This artist has highlighted suitable features for guests with accessibility requirements.</p>
                         </header>
                         <main>
                             {renderAccesibilityContent()}

@@ -1,4 +1,4 @@
-import { Divider } from "keep-react"
+import { Divider } from "antd"
 import { FaStar } from "react-icons/fa6"
 import { FavoriteButtonServer } from "../ui/favorite-button-server"
 

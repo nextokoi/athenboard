@@ -1,12 +1,12 @@
 "use client"
 
-import { Divider } from "keep-react";
-import { DynamicMapLeaflet } from "./leaflet-map";
-import { useState } from "react";
-import { Spin } from "antd";
+import { Divider } from "antd"
+import { DynamicMapLeaflet } from "./leaflet-map"
+import { useState } from "react"
+import { Spin } from "antd"
 export const LocationSection = () => {
 
-  const [mapLoading, setMapLoading] = useState(true);
+  const [mapLoading, setMapLoading] = useState(true)
   return (
     <div className="pr-5">
       <div className="flex flex-col gap-3 py-5">
@@ -14,10 +14,10 @@ export const LocationSection = () => {
         {mapLoading && <Spin className="my-3"/>}
         <DynamicMapLeaflet onLoad={() => setMapLoading(false)}/>
         <p className="text-body-2">
-          My workshop is around here; i&apos;ll see you there.
+          My workshop is around here, I&apos;ll see you there.
         </p>
       </div>
       <Divider />
     </div>
-  );
-};
+  )
+}

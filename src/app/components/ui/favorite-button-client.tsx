@@ -1,9 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Button } from 'keep-react'
 import { FaHeart, FaRegHeart } from "react-icons/fa6"
-import { Spin, message } from 'antd'
+import { Spin, message, Button } from 'antd'
 
 interface FavoriteButtonClientProps {
     id: string
@@ -54,12 +53,11 @@ export const FavoriteButtonClient = ({ id, initialFavorites, user }: FavoriteBut
         <>
             {contextHolder}
             <Button
+                type='text'
                 shape='circle'
-                className='bg-transparent hover:bg-transparent text-[#171D1E]'
                 onClick={user !== null ? handleClick : info}
-            >
-                {loading ? <Spin /> : (isFavorite && user !== null ? <FaHeart className='text-xl text-red-500' /> : <FaRegHeart className='text-xl' />)}
-            </Button>
+                icon={loading ? <Spin /> : (isFavorite ? <FaHeart className='text-xl text-red-500' /> : <FaRegHeart className='text-xl' />)}
+            />
         </>
     )
 }

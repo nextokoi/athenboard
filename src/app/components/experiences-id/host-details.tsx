@@ -1,4 +1,4 @@
-import { Divider } from "keep-react"
+import { Divider } from "antd"
 import { AvatarComponent } from "@/app/components/ui/avatar"
 
 type Props = {
