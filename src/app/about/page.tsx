@@ -58,7 +58,7 @@ export default function Page() {
                     I'm excited to share this project with you and hope it serves as a strong testament to my skills and dedication in web development, particularly in creating innovative and functional experiences.
                 </p>
             </div>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-3 md:mx-24 xl:mx-20">
                 <h2 className="text-2xl">The Story Behind the Code</h2>
                 <p>
                     This project is the result of several months of work. Initially, I thought I could complete it sooner, but technical challenges and pauses in development while working with technologies like <strong>Next.js</strong> and <strong>Supabase</strong>, as well as the need to find alternative approaches for specific functions, extended the process.
