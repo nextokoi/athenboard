@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    color: #333;
+    --swiper-navigation-color: #006876;
+    --swiper-pagination-color: #006876;
+}
