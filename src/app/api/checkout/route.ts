@@ -59,8 +59,10 @@ export async function POST(request: NextRequest) {
 		}
 
 		const session = await stripe.checkout.sessions.create({
-			success_url: 'https://violet-icons-greet.loca.lt/checkout/success',
-			cancel_url: 'https://violet-icons-greet.loca.lt/checkout/cancel',
+			success_url:
+				'https://violet-icons-greet.loca.lt/checkout/success?valid=true',
+			cancel_url:
+				'https://violet-icons-greet.loca.lt/checkout/cancel?valid=true',
 			line_items: [
 				{
 					price_data: {
