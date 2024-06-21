@@ -28,8 +28,8 @@ export const LogoutButton = () => {
                 }
             }}
         >
-            <div className="flex items-center justify-between gap-3 my-10">
-                <Button size="large" className="w-full" onClick={signOut}>Log out</Button>
+            <div className="flex justify-center my-10">
+                <Button size="large" className="w-full md:self-center md:w-96" onClick={signOut}>Log out</Button>
             </div>
         </ConfigProvider>
     )

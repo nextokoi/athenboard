@@ -90,7 +90,7 @@ export default async function Page() {
     }))
 
     return (
-        <div className="px-5">
+        <div className="px-5 xl:px-96 md:mt-36 xl:mt-20">
             <h4 className="text-3xl my-8">Profile</h4>
             <div className="flex items-center justify-between gap-3 mt-5">
                 <div className="flex items-center gap-5">

@@ -48,7 +48,9 @@ export const BreadcrumbComponent = ({ title }: { title?: string }) => {
         }
       }}
     >
-      <Breadcrumb className='py-5 pl-5' itemRender={itemRender} items={items} separator=" / " />
+      <div className='xl:flex xl:justify-center'>
+        <Breadcrumb className='py-5 pl-5 xl:w-2/3' itemRender={itemRender} items={items} separator=" / " />
+      </div>
     </ConfigProvider>
   );
 }

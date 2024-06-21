@@ -55,7 +55,7 @@ export default function HelpCenter() {
                 </header>
                 <main className="p-5">
                     {!selectedArticle ? (
-                        <div>
+                        <div className="px-8">
                             <h2 className="text-2xl font-semibold mb-5">Help Articles</h2>
                             <ul>
                                 {articles.map(article => (
@@ -68,7 +68,7 @@ export default function HelpCenter() {
                             </ul>
                         </div>
                     ) : (
-                        <div>
+                        <div className="px-8">
                             <Button type="link" onClick={() => setSelectedArticle(null)}>
                                 &lt; Back to articles list
                             </Button>

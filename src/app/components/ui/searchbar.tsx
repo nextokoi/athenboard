@@ -28,8 +28,8 @@ export const SearchBarComponent = () => {
     }, [query, router])
 
     return (
-        <div className='flex items-center justify-between gap-5'>
-            <fieldset className="relative w-full">
+        <div className='flex items-center justify-between xl:justify-center gap-5'>
+            <fieldset className="relative w-full xl:w-96">
                 <Input placeholder="Art" className='py-2' value={search} onChange={handleChange} prefix={<FaMagnifyingGlass className='text-md text-[#8a8a8a] mr-2' />}/>
             </fieldset>
             <SearchFilters />
