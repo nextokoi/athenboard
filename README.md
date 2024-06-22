@@ -54,6 +54,11 @@ This project emerged from my curiosity to explore new technologies and demonstra
 
 ![App Screenshot Mobile](https://i.postimg.cc/HxXp7WnX/payment-success-mobile.png)
 
+### Database Diagram
+
+
+![App Database Diagram](https://i.postimg.cc/vZ1zX8Tj/athenboard.png)
+
 
 
 ## Color Reference
