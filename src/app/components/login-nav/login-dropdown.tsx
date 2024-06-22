@@ -5,6 +5,7 @@ import { FaUserCircle } from "react-icons/fa";
 import { login, signup } from "@/app/login/action";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { useState } from "react";
+import { Turnstile } from "@marsidev/react-turnstile";
 
 export default function LoginDropdown() {
     const [action, setAction] = useState('login')
@@ -74,6 +75,9 @@ export default function LoginDropdown() {
                                 placeholder="Password"
                             />
                         </Form.Item>
+                        <div className="mb-3">
+                            <Turnstile siteKey="0x4AAAAAAAdD3Ixz101duz3T" />
+                        </div>
                         <Form.Item>
                             <div className="flex flex-col gap-3">
                                 <Button size="large" type="primary" htmlType="submit" onClick={() => setAction('login')}>
