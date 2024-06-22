@@ -60,9 +60,9 @@ export async function POST(request: NextRequest) {
 
 		const session = await stripe.checkout.sessions.create({
 			success_url:
-				'https://violet-icons-greet.loca.lt/checkout/success?valid=true',
+				'https://6676fc896081190008ea6b49--athenboard.netlify.app/checkout/success?valid=true',
 			cancel_url:
-				'https://violet-icons-greet.loca.lt/checkout/cancel?valid=true',
+				'https://6676fc896081190008ea6b49--athenboard.netlify.app/checkout/cancel?valid=true',
 			line_items: [
 				{
 					price_data: {
