@@ -40,7 +40,7 @@ const formatLanguages = (languages: string[]): string => {
     return formattedLanguages;
 }
 
-export const fetchExperienceData = async (id: string) => {
+const fetchExperienceData = async (id: string) => {
     try {
         const experience = await fetchOneExperience(id)
 
