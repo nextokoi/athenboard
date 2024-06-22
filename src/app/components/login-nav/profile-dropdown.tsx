@@ -48,7 +48,7 @@ export default function ProfileDropdown({ role } : { role: string | null }) {
                 }
             }}
         >
-            <Dropdown menu={{ items }} trigger={["click"]} overlayClassName="w-40">
+            <Dropdown menu={{ items }} trigger={["click"]} overlayClassName="w-40 border border-slate-600 rounded-lg">
                 <Button shape="circle" className={ role === 'admin' ? "border-2 border-white" : ""} type="text" icon={ role === "user" ? <FaUserCircle className="text-2xl text-white" /> : <FaUserNinja className="text-md text-white" />} />
             </Dropdown>
         </ConfigProvider>

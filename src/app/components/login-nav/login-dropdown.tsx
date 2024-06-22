@@ -33,7 +33,7 @@ export default function LoginDropdown() {
 
     const form = () => {
         return (
-            <div className="bg-[#F5F5F5] p-5 rounded-md">
+            <div className="bg-[#F5F5F5] border border-slate-600 p-5 rounded-md">
                 <ConfigProvider
                     theme={{
                         components: {
