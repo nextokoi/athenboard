@@ -41,6 +41,7 @@ export const DateCard = ({ data, id, onSelect, userAuthenticated } : Props) => {
     const handleClick = () => {
         if (!userAuthenticated) {
             messageApi.info("You must be logged in to choose a date")
+            return
         }
         onSelect(data)
     }
