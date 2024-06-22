@@ -148,18 +148,16 @@ export default async function Details({ params }: DetailsProps) {
 
     const userMetadata = user?.user_metadata
 
-    const userAuthenticated = userMetadata !== null
-
-    if (!userAuthenticated) redirect('/')
+    const userAuthenticated = userMetadata !== undefined
 
     try {
         const { experience, reviews, imageUrl, artist, schedule_dates } = await fetchExperienceData(id)
 
-        if (!experience || !reviews || !imageUrl || !artist || !schedule_dates || !userAuthenticated ) { 
+        if (!experience || !reviews || !imageUrl || !artist || !schedule_dates) { 
             throw new Error('Missing data for the experience')
         }
 
-        return renderExperienceMainContent(experience, reviews, imageUrl, artist, schedule_dates, userAuthenticated, userMetadata )
+        return renderExperienceMainContent(experience, reviews, imageUrl, artist, schedule_dates, userAuthenticated, user)
     } catch (error) {
         return (
             <div>
