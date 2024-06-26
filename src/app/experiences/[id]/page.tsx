@@ -16,7 +16,6 @@ import { FaFlag } from "react-icons/fa6"
 import { DynamicCarouselComponent } from "@/app/components/ui/dynamic-carousel"
 import { fetchImageUrl, fetchOneExperience, fetchOneArtist, fetchReviews, fetchScheduleDates } from "@/app/supabaseClientData"
 import { createClient } from "@/app/utils/supabase/server"
-import { redirect } from "next/navigation"
 
 interface DetailsProps {
     params: { id: string }

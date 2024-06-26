@@ -2,7 +2,6 @@ import { fetchAllExperiences, fetchImageUrl } from '../supabaseClientData'
 import { ExperienceCard } from '../components/cards/experience-card'
 import { SearchBarComponent } from '../components/ui/searchbar'
 import { BreadcrumbComponent } from '../components/ui/breadcrumbs'
-import { TagComponent } from '../components/ui/tag'
 
 export const revalidate = 60
 
@@ -65,7 +64,7 @@ export default async function Experiences({ searchParams }: { searchParams: { [k
         if (date) {
             const targetDate = new Date(date as string).toISOString().split('T')[0]
 
-            experiences = experiences.filter(experience => experience.dates.includes(targetDate))
+            experiences = experiences.filter(experience => Array.isArray(experience.dates) && experience.dates.includes(targetDate))
         }
 
         return experiences
@@ -100,11 +99,6 @@ export default async function Experiences({ searchParams }: { searchParams: { [k
             <header className='py-8 flex flex-col gap-3 px-5'>
                 <SearchBarComponent />
                 <BreadcrumbComponent />
-{/*                 <div className='flex justify-center gap-4 md:gap-8'>
-                    <TagComponent label='Activity type' />
-                    <TagComponent label='Price' />
-                    <TagComponent label='Available languages' />
-                </div> */}
             </header>
             <main className='flex flex-col items-center gap-10 pb-10'>
                 <div className={`${experiencesClassName} gap-4`}>
@@ -113,9 +107,6 @@ export default async function Experiences({ searchParams }: { searchParams: { [k
                         : renderExperienceCards()
                     }
                 </div>
-                {/*                 {filteredExperiences.length >= 6 && (
-                    <ButtonComponent title='Show more' bgColor='#3B6939' width='w-full' />
-                )} */}
             </main>
         </>
     )

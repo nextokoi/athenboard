@@ -4,11 +4,31 @@ const supabase = createClient()
 
 export async function fetchAllExperiences() {
 	try {
-		const { data, error } = await supabase.from('experiences').select()
-		if (error) {
-			throw error
+		const { data: experiences, error: experiencesError } = await supabase
+			.from('experiences')
+			.select(`
+				*,
+				experiences_schedule_date (
+					schedule_date (
+						date (date)
+					)
+				)
+
+			`)
+		if (experiencesError) {
+			throw experiencesError
 		}
-		return data
+
+		const experiencesWithDates = experiences.map((experience) => {
+			const dates = experience.experiences_schedule_date.map(
+				// biome-ignore lint/suspicious/noExplicitAny: <explanation>
+				(esd: { schedule_date: { date: { date: any } } }) =>
+					esd.schedule_date.date.date,
+			)
+			return { ...experience, dates }
+		})
+
+		return experiencesWithDates
 	} catch (error) {
 		console.error('Error retrieving data from Supabase: ', error.message)
 	}
