@@ -186,6 +186,10 @@ During the development of this project, I encountered several challenges:
 
 - Create the artist view
 
+- Create vertical sticky card for available dates on dynamic experience pages in desktop
+  
+- Create horizontal sticky card with expandable drawer button in mobile
+
 
 ## Feedback
 
