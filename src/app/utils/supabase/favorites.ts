@@ -1,10 +1,11 @@
 import { createClient } from '@/app/utils/supabase/server'
 
-export const fetchFavorites = async (): Promise<string[]> => {
+export const fetchFavorites = async (userId: string): Promise<string[]> => {
 	const supabase = createClient()
 	const { data, error } = await supabase
 		.from('favorites')
 		.select('experience_id')
+		.eq('user_id', userId)
 	if (error) throw error
 	return data.map((item: { experience_id: string }) => item.experience_id)
 }

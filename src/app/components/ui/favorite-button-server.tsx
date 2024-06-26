@@ -19,7 +19,11 @@ export const FavoriteButtonServer = async ({ id }: FavoriteButtonServerProps) =>
                 />
             )
         }
-        const initialFavorites = await fetchFavorites()
+        const userId = user?.id
+
+        if (!userId) throw new Error('User ID not found')
+
+        const initialFavorites = await fetchFavorites(userId)
         return (
             <FavoriteButtonClient
                 id={id}

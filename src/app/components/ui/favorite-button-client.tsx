@@ -21,6 +21,10 @@ export const FavoriteButtonClient = ({ id, initialFavorites, user }: FavoriteBut
         setIsFavorite(favorites.includes(id))
     }, [favorites, id])
 
+    useEffect(() => {
+        setFavorites(initialFavorites)
+    }, [initialFavorites])
+
     const handleClick = async () => {
         setLoading(true)
         try {
