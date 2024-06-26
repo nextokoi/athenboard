@@ -156,7 +156,7 @@ export default async function Details({ params }: DetailsProps) {
             throw new Error('Missing data for the experience')
         }
 
-        return renderExperienceMainContent(experience, reviews, imageUrl, artist, schedule_dates, userAuthenticated, user)
+        return renderExperienceMainContent(experience, reviews, imageUrl, artist, schedule_dates, userAuthenticated, userMetadata)
     } catch (error) {
         return (
             <div>
