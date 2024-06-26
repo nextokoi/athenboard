@@ -21,6 +21,13 @@ export const AppMenu = ({ isVertical = false, onCloseMenu }: { isVertical?: bool
       },
     },
     {
+      label: <Link href="/help" onClick={onCloseMenu}>Help center</Link>,
+      key: "help",
+      style: {
+        color: isVertical ? "#333" : "#fff",
+      },
+    },
+    {
       label: <Link href="/about" onClick={onCloseMenu}>About me</Link>,
       key: "about-me",
       style: {
@@ -33,15 +40,15 @@ export const AppMenu = ({ isVertical = false, onCloseMenu }: { isVertical?: bool
 
   return (
     <>
-    <ConfigProvider
-      theme={{
-        components: {
-          Menu: {
-            itemBg: !isVertical ? "#006876" : "",
+      <ConfigProvider
+        theme={{
+          components: {
+            Menu: {
+              itemBg: !isVertical ? "#006876" : "",
+            }
           }
-        }
-      }}
-    >
+        }}
+      >
         <Menu
           mode={isVertical ? "vertical" : "horizontal"}
           items={items}

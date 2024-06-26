@@ -131,7 +131,7 @@ export default async function Home() {
 	return (
 		<main>
 			<header className="bg-[url('https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/hero.webp?t=2024-03-28T14%3A50%3A12.791Z')] w-full h-screen bg-cover flex flex-col justify-around md:bg-center lg:bg-top lg:bg-[url('https://ofrkgmwhpmpxhpjhnlro.supabase.co/storage/v1/object/public/user_images/hero-desktop.webp?t=2024-06-17T13%3A46%3A19.387Z')]">
-				<h4 className="text-4xl font-medium text-balance text-[#261A00] ml-10 xl:ml-52 w-96" >
+				<h4 className="text-3xl xl:text-4xl font-medium text-balance text-[#261A00] mx-4 xl:mx-8 max-w-md break-words" >
 					Find the experiences that appeal to you
 				</h4>
 				<div className='ml-5 xl:ml-96'>
@@ -166,7 +166,7 @@ export default async function Home() {
 					{renderFeatureBlocks()}
 				</div>
 			</section>
-			<section className='py-14 pl-6'>
+			<section className='py-14 ml-6 xl:ml-20'>
 				<h3 className='text-2xl font-semibold mb-6 pr-6'>
 					Uncover the diverse experiences awaiting you nearby
 				</h3>
@@ -179,11 +179,6 @@ export default async function Home() {
 				<HorizontalScroll>
 					{renderExperiencesCards()}
 				</HorizontalScroll>
-				{/* 				<div className='pr-6'>
-					<button type="button" className='bg-[#3B6939] text-white w-full p-4 rounded-lg my-8'>
-						Show all
-					</button>
-				</div> */}
 			</section>
 		</main>
 	)

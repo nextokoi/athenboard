@@ -19,6 +19,7 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<head>
+				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 				<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-element-bundle.min.js" />
 			</head>
 			<body className='flex flex-col min-h-screen'>
@@ -29,17 +30,16 @@ export default function RootLayout({
 						}
 					}}
 				>
-					<div className='md:mb-14'>
+					<header className='md:mb-14'>
 						<AppNavbar>
 							<LoginNav />
 						</AppNavbar>
-
-					</div>
-					<main className='flex-grow bg-[#F5F5F5]'>
+					</header>
+					<div className='flex-grow bg-[#F5F5F5]'>
 						<AntdRegistry>
 							{children}
 						</AntdRegistry>
-					</main>
+					</div>
 					<Footer />
 				</ConfigProvider>
 			</body>

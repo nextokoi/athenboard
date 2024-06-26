@@ -2,7 +2,6 @@ import Image from "next/image"
 import PersonalInformation from "../components/profile/personal-information"
 import Transactions from "../components/profile/transactions"
 import Favorites from "../components/profile/favorites"
-import Assistance from "../components/profile/assistance"
 import { createClient } from "../utils/supabase/server"
 import { redirect } from "next/navigation"
 import { LogoutButton } from "../components/profile/logout-button"
@@ -104,7 +103,6 @@ export default async function Page() {
             <PersonalInformation data={userData} />
             <Transactions data={invoicesWithArtistEmail} />
             <Favorites data={favoritesWithFirstImage} user={userData.id}/>
-            <Assistance />
             <LogoutButton />
         </div>
     )
