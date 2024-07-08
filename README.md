@@ -35,7 +35,7 @@ This project emerged from my curiosity to explore new technologies and demonstra
 
 ### Desktop version
 
-![App Screenshot Desktop](https://i.postimg.cc/nLMbqFRM/desktop.png)
+![App Screenshot Desktop](https://i.postimg.cc/pTXvLMxj/Captura-de-pantalla-2024-06-30-134804.png)
 
 ![App Screenshot Desktop](https://i.postimg.cc/jjWqt4r8/dates-desktop.png)
 
